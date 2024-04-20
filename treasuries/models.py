@@ -1,7 +1,7 @@
 from django.db import models
 
 class Treasury(models.Model):
-    company = models.CharField(max_length=255)
+    company = models.CharField(max_length=255, unique=True)
     country = models.CharField(max_length=50)
     symbol = models.CharField(max_length=50)
     exchange = models.CharField(max_length=50)
@@ -17,4 +17,4 @@ class Treasury(models.Model):
     cssclass = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self):
-        return self.company
+        return f"{self.company}({self.exchange}:{self.symbol})"
