@@ -1,0 +1,51 @@
+[
+    {
+      "company": "MicroStrategy",
+      "country": "US",
+      "symbol": "MSTR",
+      "exchange": "NADQ",
+      "percentbtc": null,
+      "filingurl":"https://www.microstrategy.com/press/microstrategy-completes-603-million-offering-of-0875-convertible-senior-notes-due-2031_03-19-2024",
+      "info_url": "/microstrategy/",
+      "btc": 214746,
+      "btcc": "214,246",
+      "btc_source_dt": "2020-04-02",
+      "tot_balance_sheet": 2443079000,
+      "type": "public",
+      "dateoffirstbuy": "2020-04-02"
+    },
+    {
+      "company": "Tesla, Inc",
+      "country": "US",
+      "symbol": "TSLA",
+      "exchange": "NADQ",
+      "percentbtc": null,
+      "filingurl":
+        "https://tesla-cdn.thron.com/static/EIUQEC_2022_Q2_Quarterly_Update_Deck_J8VLIK.pdf?xseo=&response-content-disposition=inline%3Bfilename%3D%22_022-Q2-Quarterly-Update-Deck.pdf%22",
+      "info_url": "/tesla/",
+      "btc": 9720,
+      "btcc": "9,720",
+      "btc_source_dt": "2020-04-02",
+      "tot_balance_sheet": 68513000000,
+      "type": "public",
+      "dateoffirstbuy": "2020-04-02",
+      "cssclass": "tesla-treasuries"
+    },
+    {
+      "company": "Block, Inc.",
+      "country": "US",
+      "symbol": "SQ",
+      "exchange": "NYSE",
+      "percentbtc": null,
+      "filingurl": "https://s27.q4cdn.com/311240100/files/doc_downloads/Square-Inc.-Bitcoin-Investment-Whitepaper.pdf",
+      "btc": 8027,
+      "btcc": "8,827",
+      "btc_source_dt": "2020-04-02",
+      "tot_balance_sheet": 9869550000,
+      "type": "public",
+      "dateoffirstbuy": "2020-04-02",
+      "cssclass": "square-treasuries",
+      "info_url": "/block/"
+    }
+  ]
+  

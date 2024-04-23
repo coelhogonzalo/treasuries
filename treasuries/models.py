@@ -3,8 +3,8 @@ from django.db import models
 class Treasury(models.Model):
     company = models.CharField(max_length=255, unique=True)
     country = models.CharField(max_length=50)
-    symbol = models.CharField(max_length=50)
     exchange = models.CharField(max_length=50)
+    symbol = models.CharField(max_length=50)
     filingurl = models.URLField(max_length=2000)
     btc = models.IntegerField()
     btcc = models.CharField(max_length=50)
@@ -17,4 +17,7 @@ class Treasury(models.Model):
     cssclass = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self):
-        return f"{self.company}({self.exchange}:{self.symbol})"
+        return f"{self.id}-{self.company}({self.exchange}:{self.symbol})"
+    
+    class Meta:
+        unique_together = ('exchange', 'symbol',)
