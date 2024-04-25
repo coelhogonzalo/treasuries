@@ -1,10 +1,15 @@
-import json
-from rest_framework import viewsets
-from rest_framework import status
-from rest_framework.response import Response
-from .models import Treasury
-from .serializers import TreasurySerializer, UpdateTreasurySerializer
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.response import Response
+import json
+from .models import Treasury
+from .domain import parse_date
+
+from .serializers import (
+    TreasurySerializer,
+    UpdateTreasurySerializer,
+    HistoryTreasurySerializer,
+)
 
 
 class TreasuryViewSet(viewsets.ModelViewSet):
@@ -54,3 +59,21 @@ class TreasuryViewSet(viewsets.ModelViewSet):
             return Response(
                 {"error": "Invalid JSON format"}, status=status.HTTP_400_BAD_REQUEST
             )
+
+
+    @action(detail=True, methods=["get"])
+    def history(self, request, pk=None):
+        start_date = parse_date(request.query_params.get('start'))
+        end_date = parse_date(request.query_params.get('end'))
+        treasury = self.get_object()
+        history_queryset = treasury.history.all()
+        if start_date == "Invalid date format":
+            return Response({"error": "Start date is invalid"}, status=status.HTTP_400_BAD_REQUEST)
+        if end_date == "Invalid date format":
+            return Response({"error": "End date is invalid"}, status=status.HTTP_400_BAD_REQUEST)
+        if start_date:
+            history_queryset = history_queryset.filter(history_date__gte=start_date)
+        if end_date:
+            history_queryset = history_queryset.filter(history_date__lte=end_date)
+        serializer = HistoryTreasurySerializer(history_queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

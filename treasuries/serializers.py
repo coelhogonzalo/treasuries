@@ -38,3 +38,6 @@ class UpdateTreasurySerializer(TreasurySerializer):
         super().__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].required = False
+
+class HistoryTreasurySerializer(TreasurySerializer):
+    history_date = serializers.DateTimeField(read_only=True)

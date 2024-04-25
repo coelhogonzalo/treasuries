@@ -1,4 +1,5 @@
 from django.db import models
+from simple_history.models import HistoricalRecords
 
 class Treasury(models.Model):
     company = models.CharField(max_length=255, unique=True)
@@ -15,6 +16,8 @@ class Treasury(models.Model):
     percentbtc = models.CharField(null=True, blank=True, max_length=50)
     info_url = models.CharField(null=True, blank=True, max_length=255)
     cssclass = models.CharField(null=True, blank=True, max_length=50)
+    history = HistoricalRecords()
+
 
     def __str__(self):
         return f"{self.id}-{self.company}({self.exchange}:{self.symbol})"
