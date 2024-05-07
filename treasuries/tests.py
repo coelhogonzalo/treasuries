@@ -309,6 +309,48 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, serializer.data)
 
+    def test_get_treasuries_search_company(self):
+        first_treasury = TreasuryFactory.create(company="Boca")
+        second_treasury = TreasuryFactory.create(company="River")
+        url = reverse("treasury-list")
+        response = TreasuriesTestCase.client.get(url)
+
+        treasuries = Treasury.objects.all()
+        serializer = TreasurySerializer(treasuries, many=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+        response = TreasuriesTestCase.client.get(
+            url, {"search": "Boc"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]["id"], first_treasury.id)
+        response = TreasuriesTestCase.client.get(
+            url, {"search": "Riv"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]["id"], second_treasury.id)
+
+    def test_get_treasuries_search_symbol(self):
+        first_treasury = TreasuryFactory.create(company="Boca", symbol="JUN")
+        second_treasury = TreasuryFactory.create(company="River", symbol="PLA")
+        url = reverse("treasury-list")
+        response = TreasuriesTestCase.client.get(url)
+
+        treasuries = Treasury.objects.all()
+        serializer = TreasurySerializer(treasuries, many=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+        response = TreasuriesTestCase.client.get(
+            url, {"search": "JU"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]["id"], first_treasury.id)
+        response = TreasuriesTestCase.client.get(
+            url, {"search": "PL"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]["id"], second_treasury.id)
+
     def test_get_treasury(self):
         treasury = TreasuryFactory.create()
         url = reverse("treasury-detail", kwargs={"pk": treasury.pk})

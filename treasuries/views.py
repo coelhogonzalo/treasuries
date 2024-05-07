@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework import viewsets
+from rest_framework import filters
 
 import json
 
@@ -95,6 +96,8 @@ class AdminTreasuryViewSet(BaseViewSet):
 
 class TreasuryViewSet(BaseViewSet):
     permission_classes = [HasAPIKey]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company', 'symbol']
 
     def get_allowed_methods(self):
         return ["GET"]
