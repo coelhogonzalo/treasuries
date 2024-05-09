@@ -454,7 +454,7 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(response.data[0]["exchange"], "NEW-EXCHANGE")
 
 # API tracking tests
-    def test_get_treasuries(self):
+    def test_API_tracking(self):
         api_key, key = TreasuriesAPIKey.objects.create_key(name="test")
         authorization = f"Api-Key {key}"
         client = APIClient()
