@@ -1,5 +1,6 @@
 from django.db import models
 from simple_history.models import HistoricalRecords
+from rest_framework_api_key.models import AbstractAPIKey
 
 class Treasury(models.Model):
     company = models.CharField(max_length=255, unique=True)
@@ -26,3 +27,12 @@ class Treasury(models.Model):
         unique_together = ('exchange', 'symbol',)
         verbose_name = 'Treasuries'
         verbose_name_plural = 'Treasuries'
+
+
+class TreasuriesAPIKey(AbstractAPIKey):
+    hit_count = models.IntegerField(default=0, help_text="Number of times this API key has been used.")
+    data_used = models.FloatField(default=0, help_text="Amount of data used (in megabytes).")
+    last_used = models.DateField(null=True, default=None, help_text="Date when this API key was last used.")
+
+    def __str__(self) -> str:
+        return f"{self.name}:{self.prefix}"

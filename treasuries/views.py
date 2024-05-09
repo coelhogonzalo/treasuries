@@ -8,6 +8,8 @@ from rest_framework import filters
 
 import json
 
+from treasuries.permissions import HasTreasuriesAPIKey
+
 from .models import Treasury
 from .domain import parse_date
 
@@ -95,7 +97,7 @@ class AdminTreasuryViewSet(BaseViewSet):
 
 
 class TreasuryViewSet(BaseViewSet):
-    permission_classes = [HasAPIKey]
+    permission_classes = [HasTreasuriesAPIKey]
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'symbol']
 

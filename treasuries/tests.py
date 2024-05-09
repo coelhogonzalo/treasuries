@@ -9,7 +9,7 @@ from rest_framework_api_key.models import APIKey
 from django.contrib.auth.models import User
 from django.db.models import Max
 
-from treasuries.models import Treasury
+from treasuries.models import TreasuriesAPIKey, Treasury
 from treasuries.serializers import TreasurySerializer
 from treasuries.factories import TreasuryFactory
 from treasuries.domain import parse_date
@@ -27,7 +27,7 @@ def getAdminClient():
 class TreasuriesTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
-        _, key = APIKey.objects.create_key(name="test")
+        _, key = TreasuriesAPIKey.objects.create_key(name="test")
         authorization = f"Api-Key {key}"
         cls.client = APIClient()
         cls.client.credentials(HTTP_AUTHORIZATION=authorization)
@@ -452,3 +452,25 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]["exchange"], "NEW-EXCHANGE")
+
+# API tracking tests
+    def test_get_treasuries(self):
+        api_key, key = TreasuriesAPIKey.objects.create_key(name="test")
+        authorization = f"Api-Key {key}"
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION=authorization)
+        self.assertEqual(api_key.hit_count, 0)
+        self.assertEqual(api_key.data_used, 0)
+        self.assertEqual(api_key.last_used, None)
+        url = reverse("treasury-list")
+        response = client.get(url)
+
+        treasuries = Treasury.objects.all()
+        serializer = TreasurySerializer(treasuries, many=True)
+
+        api_key = TreasuriesAPIKey.objects.get(id=api_key.id)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, serializer.data)
+        self.assertNotEqual(api_key.hit_count, 0)
+        self.assertNotEqual(api_key.data_used, 0)
+        self.assertNotEqual(api_key.last_used, None)
