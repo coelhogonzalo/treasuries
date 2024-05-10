@@ -25,7 +25,7 @@ class Treasury(models.Model):
     
     class Meta:
         unique_together = ('exchange', 'symbol',)
-        verbose_name = 'Treasuries'
+        verbose_name = 'Treasury'
         verbose_name_plural = 'Treasuries'
 
 
