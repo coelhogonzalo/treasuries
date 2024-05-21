@@ -10,8 +10,12 @@ SECRET_KEY = "django-insecure-jb(qxxew2b9#ine^%vm_6gunm24uqc*w(ihf40du2k^(en))%^
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["treasuries-production.up.railway.app", "127.0.0.1"]
+ALLOWED_HOSTS = ["treasuries-production.up.railway.app"]
 
+CSRF_TRUSTED_ORIGINS = ["https://treasuries-production.up.railway.app"]
+CSRF_ALLOWED_ORIGINS = ["https://treasuries-production.up.railway.app"]
+CORS_ORIGINS_WHITELIST = ["treasuries-production.up.railway.app"]
+CORS_ALLOWED_ORIGINS = ["treasuries-production.up.railway.app"]
 
 # Application definition
 
