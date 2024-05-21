@@ -1,0 +1,1 @@
+web: gunicorn BitcoinTreasuries.wsgi --log-file - 

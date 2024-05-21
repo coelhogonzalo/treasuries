@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block title %}
+  <title>Bitcoin Treasuries</title>
+  {% endblock %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}" />
+  
+</head>
+
+<body>
+
+  
+
+  {% include 'nav.html' %}
+
+  <p class="treasuries-subtitle">BTC holdings in publicly traded and private companies, ETFs and countries. Help update
+    data <a href="https://github.com/BuyBitcoinWorldwide/bitcointreasuries">here</a>.</p>
+  <table class="treasuries-index treasuries-table value-table treasuries-table--smaller is--top">
+    <thead>
+      <tr class="top-table-header">
+        <th class="top-treasuries-table-label" data-title="Company Name">Entities</th>
+        <th class="top-treasuries-table-label" data-title="BTC"># of BTC</th>
+        <th class="top-treasuries-table-label" data-title="Value">Value Today</th>
+        <th class="top-treasuries-table-label" style="padding-left: 20px !important;" data-title="% of 21m">% of 21m
+        </th>
+        <th class="top-treasuries-table-label" data-title="Last Updated">Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="display: none;">
+        <td class="td-symbol" data-title="Category"><a href="#etfs">ETFs</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr style="display: none;">
+        <td class="td-symbol" data-title="Category">
+          <a href="#countries">Countries</a>
+        </td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr style="display: none;">
+        <td class="td-symbol" data-title="Category"><a href="#public">Public Companies</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr style="display: none;">
+        <td class="td-symbol" data-title="Category"><a href="#private">Private Companies</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr class="top-table-data-row">
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">71
+        </td>
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma"
+          data-title="BTC">
+
+
+
+        </td>
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value"></td>
+        <td
+          style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;"
+          class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated"
+          data-title="Last Updated">
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="treasuries-index treasuries-table--mobile">
+    <tbody>
+      <tr>
+        <th class="top-treasuries-table-label">Entities</th>
+        <td>71</td>
+      </tr>
+      <tr>
+        <th class="top-treasuries-table-label"># of BTC</th>
+        <td class="add-comma">
+
+
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <th class="top-treasuries-table-label">Value Today</th>
+        <td class="td-value" data-title="Value"></td>
+      </tr>
+      <tr>
+        <th class="top-treasuries-table-label">% of 21m</th>
+        <td>%</td>
+      </tr>
+      <tr>
+        <th class="top-treasuries-table-label">Last Updated</th>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <h2 class="center-on-mobile">Totals by Category</h2>
+  <table class="treasuries-index treasuries-table treasuries-table--smaller">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Category</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-symbol" data-title="Category"><a href="#etfs">ETFs</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr>
+        <td class="td-symbol" data-title="Category">
+          <a href="#countries">Countries</a>
+        </td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr>
+        <td class="td-symbol" data-title="Category"><a href="#public">Public Companies</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr>
+        <td class="td-symbol" data-title="Category"><a href="#private">Private Companies</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+
+      <tr>
+        <td class="td-symbol" data-title="Category"><a href="/miners/">BTC Mining Companies</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      <tr>
+        <td class="td-symbol" data-title="Category"><a href="/#defi">Defi</a></td>
+        <td class="td-company_btc add-comma" data-title="BTC">
+
+
+
+
+
+        </td>
+        <td class="td-value" data-title="Value"></td>
+        <td class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <h2>Get Notifications</h2>
+
+  <p>Get notified when any company, country or ETF on this page gets its balance updated.</p>
+
+
+  <div class="button-holder">
+    <a href="https://t.me/BTCTreasuries" target="_blank" class="notify-button">Telegram</a>
+    <a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
+  </div>
+
+
+  <br>
+
+  <br>
+
+  <!-- ------------------------------------ -->
+  <h2 class="center-on-mobile" id="public">Public Companies that Own Bitcoin</h2>
+  <table class="treasuries-table">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+
+
+
+
+
+
+    <tbody>
+      <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC"></td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <!-- ------------------------------------ -->
+  <h2 class="center-on-mobile" id="countries">Countries & Governments that Own Bitcoin</h2>
+  <table class="treasuries-table">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+
+
+
+
+
+    <tbody>
+      <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC"></td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <!-- ------------------------------------ -->
+  <h2 class="center-on-mobile" id="private">Private Companies that Own Bitcoin</h2>
+  <table class="treasuries-table">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+
+
+
+
+
+    <tbody>
+      <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC"></td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <!-- ------------------------------------ -->
+  <h2 class="center-on-mobile" id="etfs">ETFs that Own Bitcoin</h2>
+
+  <a href="/us-etfs/" class="view-chart">View Treasuries of Only U.S. Bitcoin ETFs</a>
+
+  <table class="treasuries-table">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+
+
+
+    
+
+    <tbody>
+      {% for treasury in etfs %}
+        {% include 'treasury_row.html' %}
+      {% endfor %}
+      <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC"></td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <h2 class="center-on-mobile" id="miners">Bitcoin Mining Companies that Own Bitcoin</h2>
+  <p>The list below shows only Bitcoin mining companies.</p>
+
+  <a href="/miners/" class="view-chart">View Chart</a>
+
+  <br>
+
+  <table class="treasuries-table">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+
+
+
+
+
+    <tbody>
+      <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC"></td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <h2 class="center-on-mobile" id="defi">Defi</h2>
+  <table class="treasuries-table">
+    <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+    </thead>
+
+
+
+
+
+    <tbody>
+      <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC"></td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+          %
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+
+  <h2>Get Notifications</h2>
+
+  <p>Get notified when any company, country or ETF on this page gets its balance updated.</p>
+
+  <a href="https://t.me/BTCTreasuries" target="_blank" class="notify-button">Telegram</a>
+  <a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
+
+  <br>
+
+
+  <div class="bitcoin-uptime-days-down">
+    <h3 class="bitcoin-uptime-subheading">Help us update and maintain the data:</h3>
+    <a target="_blank" rel="nofollow noopener" class="button-cover button" style="max-width: 250px !important;"
+      href="https://github.com/BuyBitcoinWorldwide/bitcointreasuries">Submit Issue / Data</a>
+  </div>
+
+  <br>
+
+
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import TreasuryViewSet, AdminTreasuryViewSet
+from treasuries.views import TreasuryViewSet, AdminTreasuryViewSet
 
 treasury_list = TreasuryViewSet.as_view({"get": "list"})
 treasury_detail = TreasuryViewSet.as_view({"get": "retrieve"})
@@ -14,22 +14,22 @@ bulk_upload = AdminTreasuryViewSet.as_view({"post": "bulk_upload"})
 admin_history = AdminTreasuryViewSet.as_view({"get": "history"})
 
 urlpatterns = [
-    path("treasuries/", treasury_list, name="treasury-list"),
-    path("treasuries/<int:pk>/", treasury_detail, name="treasury-detail"),
-    path("treasuries/<int:pk>/history/", history, name="treasury-history"),
-    path("treasuries/admin", admin_treasury_list, name="treasury-admin-list"),
+    path("", treasury_list, name="treasury-list"),
+    path("<int:pk>/", treasury_detail, name="treasury-detail"),
+    path("<int:pk>/history/", history, name="treasury-history"),
+    path("admin", admin_treasury_list, name="treasury-admin-list"),
     path(
-        "treasuries/admin/<int:pk>/",
+        "admin/<int:pk>/",
         admin_treasury_detail,
         name="treasury-admin-detail",
     ),
     path(
-        "treasuries/admin/bulk_upload/",
+        "admin/bulk_upload/",
         bulk_upload,
         name="treasury-admin-bulk-upload",
     ),
     path(
-        "treasuries/admin/<int:pk>/history/",
+        "admin/<int:pk>/history/",
         admin_history,
         name="treasury-admin-history",
     ),

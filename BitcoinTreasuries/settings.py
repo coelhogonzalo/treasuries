@@ -6,11 +6,11 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-jb(qxxew2b9#ine^%vm_6gunm24uqc*w(ihf40du2k^(en))%^"
+SECRET_KEY = "django-insecure-jb(qxxew2b9#ine^%vm_6gunm24uqc*w(ihf40du2k^(en))%^"#temporal
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["treasuries-production.up.railway.app", "127.0.0.1"]
 
 
 # Application definition
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "treasuries",
     "drf_spectacular",
     "drf_spectacular_sidecar",
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
@@ -37,10 +38,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "treasuries.middleware.DataUsageMiddleware"
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "treasuries.middleware.DataUsageMiddleware",
 ]
 
-ROOT_URLCONF = "treasuriesAPI.urls"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+ROOT_URLCONF = "BitcoinTreasuries.urls"
 
 TEMPLATES = [
     {
@@ -58,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "treasuriesAPI.wsgi.application"
+WSGI_APPLICATION = "BitcoinTreasuries.wsgi.application"
 
 DATABASES = {
     "default": {
@@ -110,6 +114,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = BASE_DIR / "static" 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
