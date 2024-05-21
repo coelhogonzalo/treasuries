@@ -1,0 +1,21 @@
+<tr{% if treasury.cssclass %} class="{{ treasury.cssclass }}"{% endif %}>                                
+<td class="td-company" data-title="Company Name">{{ treasury.company }}</td>
+<td class="td-location">
+<span class="flag-icon flag-icon-{{ treasury.country }}" data-tooltip="{{ treasury.country }}"> {{ treasury.country }}</span>
+</td>
+
+
+{% if treasury.treasury_type == 'public' or treasury.treasury_type == 'etf' %}
+<td class="td-symbol" data-title="Symbol">{{ treasury.symbol }}:{{ treasury.exchange }}</td>
+{% else %} 
+{% endif %}
+
+<td class="td-purchases" data-title="Purchases/Filings">{% if treasury.filingurl %}<a href="{{ treasury.filingurl }}" target="_blank" rel="nofollow noopener">Filing</a> | {% endif %}<a href="{{ treasury.info_url }}" target="_blank">News</a></td>
+
+<td class="td-company_btc" data-title="BTC">{{ treasury.btcc }}</td>
+
+<td class="td-value" data-title="Value">{{ treasury.btc }}</td>
+
+<td class="td-company_percent" data-title="%">{{ treasury.btc }}%</td>
+
+</tr> 
