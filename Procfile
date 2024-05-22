@@ -1,1 +1,1 @@
-web: gunicorn BitcoinTreasuries.wsgi --log-file - 
+web: python manage.py migrate && gunicorn BitcoinTreasuries.wsgi
