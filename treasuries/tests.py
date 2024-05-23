@@ -1,11 +1,10 @@
 import datetime
 from django.utils import timezone
-from django.test import TestCase, override_settings
+from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
-from unittest.mock import patch, Mock
-from rest_framework_api_key.models import APIKey
+from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.db.models import Max
 
@@ -39,13 +38,10 @@ class TreasuriesTestCase(TestCase):
             "country": "US",
             "symbol": "TSLATEST",
             "exchange": "NADQTEST",
-            "percentbtc": None,
             "info_url": "/tesla/",
             "filingurl": "https://tesla.com",
             "btc": 9720,
-            "btcc": "9,720",
             "btc_source_dt": "2020-04-02",
-            "tot_balance_sheet": 68513000000,
             "treasury_type": "public",
             "dateoffirstbuy": "2020-04-02",
             "cssclass": "tesla-treasuries",
@@ -144,13 +140,8 @@ class TreasuriesTestCase(TestCase):
             response.data["filingurl"], TreasuriesTestCase.treasury["filingurl"]
         )
         self.assertEqual(response.data["btc"], TreasuriesTestCase.treasury["btc"])
-        self.assertEqual(response.data["btcc"], TreasuriesTestCase.treasury["btcc"])
         self.assertEqual(
             response.data["btc_source_dt"], TreasuriesTestCase.treasury["btc_source_dt"]
-        )
-        self.assertEqual(
-            response.data["tot_balance_sheet"],
-            TreasuriesTestCase.treasury["tot_balance_sheet"],
         )
         self.assertEqual(
             response.data["treasury_type"], TreasuriesTestCase.treasury["treasury_type"]
@@ -158,9 +149,6 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(
             response.data["dateoffirstbuy"],
             TreasuriesTestCase.treasury["dateoffirstbuy"],
-        )
-        self.assertEqual(
-            response.data["percentbtc"], TreasuriesTestCase.treasury["percentbtc"]
         )
         self.assertEqual(
             response.data["info_url"], TreasuriesTestCase.treasury["info_url"]
@@ -200,13 +188,10 @@ class TreasuriesTestCase(TestCase):
                 "country": "US",
                 "symbol": "MSTRTEST",
                 "exchange": "NADQTEST",
-                "percentbtc": None,
                 "filingurl": "https://microstrategies.com",
                 "info_url": "/microstrategy/",
                 "btc": 214746,
-                "btcc": "214,246",
                 "btc_source_dt": "2020-04-02",
-                "tot_balance_sheet": 2443079000,
                 "treasury_type": "public",
                 "dateoffirstbuy": "2020-04-02",
                 "cssclass": "microstategies-treasuries",

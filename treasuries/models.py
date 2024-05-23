@@ -1,22 +1,20 @@
+import datetime
 from django.db import models
 from simple_history.models import HistoricalRecords
 from rest_framework_api_key.models import AbstractAPIKey
 
 class Treasury(models.Model):
     company = models.CharField(max_length=255, unique=True)
-    country = models.CharField(max_length=50)
-    exchange = models.CharField(max_length=50)
-    symbol = models.CharField(max_length=50)
-    filingurl = models.URLField(max_length=2000)
+    country = models.CharField(null=True, max_length=50)
+    exchange = models.CharField(null=True, max_length=50)
+    symbol = models.CharField(null=True, max_length=50)
+    filingurl = models.URLField(null=True,max_length=2000)
     btc = models.IntegerField()
-    btcc = models.CharField(max_length=50)
     btc_source_dt = models.DateField()
-    tot_balance_sheet = models.BigIntegerField()
     treasury_type = models.CharField(max_length=50, default="public")
-    dateoffirstbuy = models.DateField()
-    percentbtc = models.CharField(null=True, blank=True, max_length=50)
-    info_url = models.CharField(null=True, blank=True, max_length=255)
-    cssclass = models.CharField(null=True, blank=True, max_length=50)
+    dateoffirstbuy = models.DateField(null=True)
+    info_url = models.CharField(null=True, max_length=255)
+    cssclass = models.CharField(null=True, max_length=50)
     history = HistoricalRecords()
 
 
