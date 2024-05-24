@@ -8,14 +8,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-jb(qxxew2b9#ine^%vm_6gunm24uqc*w(ihf40du2k^(en))%^"#temporal
 
-DEBUG = True
+DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = ["treasuries-production.up.railway.app"]
+ALLOWED_HOSTS = ["treasuries-production.up.railway.app", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ["https://treasuries-production.up.railway.app"]
-CSRF_ALLOWED_ORIGINS = ["https://treasuries-production.up.railway.app"]
-CORS_ORIGINS_WHITELIST = ["treasuries-production.up.railway.app"]
-CORS_ALLOWED_ORIGINS = ["treasuries-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://treasuries-production.up.railway.app","http://127.0.0.1"]
+CSRF_ALLOWED_ORIGINS = ["https://treasuries-production.up.railway.app","http://127.0.0.1"]
+CORS_ORIGINS_WHITELIST = ["treasuries-production.up.railway.app","http://127.0.0.1"]
+CORS_ALLOWED_ORIGINS = ["treasuries-production.up.railway.app","http://127.0.0.1"]
+
+
 
 # Application definition
 
@@ -46,8 +48,6 @@ MIDDLEWARE = [
     "treasuries.middleware.DataUsageMiddleware",
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 ROOT_URLCONF = "BitcoinTreasuries.urls"
 
 TEMPLATES = [
@@ -71,11 +71,11 @@ WSGI_APPLICATION = "BitcoinTreasuries.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("PGDATABASE"),
-        'USER': os.getenv("PGUSER"),
-        'PASSWORD': os.getenv("PGPASSWORD"),
-        'HOST': os.getenv("PGHOST"),
-        'PORT': os.getenv("PGPORT"),
+        'NAME': os.environ["PGDATABASE"],
+        'USER': os.environ["PGUSER"],
+        'PASSWORD': os.environ["PGPASSWORD"],
+        'HOST': os.environ["PGHOST"],
+        'PORT': os.environ["PGPORT"],
     }
 }
 
@@ -111,9 +111,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-STATIC_ROOT = BASE_DIR / "static" 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
