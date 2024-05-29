@@ -249,24 +249,6 @@ class TreasuriesTestCase(TestCase):
         response = TreasuriesTestCase.client.post(url, [], format="json")
         self.assertEqual(response.data, {"error": "No data provided"})
 
-    def test_admin_bulk_upload_unique_exchange_and_symbol(self):
-        url = reverse("treasury-admin-list")
-        response = TreasuriesTestCase.client.post(
-            url, TreasuriesTestCase.treasury, format="json"
-        )
-        url = reverse("treasury-admin-bulk-upload")
-        treasury_data = [
-            {
-                **TreasuriesTestCase.treasury,
-                "company": "NEWCOMPANYNAME",
-            }
-        ]
-        response = TreasuriesTestCase.client.post(url, treasury_data, format="json")
-        self.assertEqual(
-            str(response.data["non_field_errors"][0]),
-            "The fields exchange, symbol must make a unique set.",
-        )
-
     def test_admin_bulk_upload_unique_company_name(self):
         url = reverse("treasury-admin-list")
         response = TreasuriesTestCase.client.post(

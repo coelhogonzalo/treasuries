@@ -9,7 +9,7 @@ class Treasury(models.Model):
     exchange = models.CharField(null=True, blank=True, max_length=50)
     symbol = models.CharField(null=True, blank=True, max_length=50)
     filingurl = models.URLField(null=True, blank=True,max_length=2000)
-    btc = models.IntegerField()
+    btc = models.FloatField()
     btc_source_dt = models.DateField()
     treasury_type = models.CharField(max_length=50, default="public")
     dateoffirstbuy = models.DateField(null=True, blank=True)
@@ -22,7 +22,6 @@ class Treasury(models.Model):
         return f"{self.id}-{self.company}({self.exchange}:{self.symbol})"
     
     class Meta:
-        unique_together = ('exchange', 'symbol',)
         verbose_name = 'Treasury'
         verbose_name_plural = 'Treasuries'
 

@@ -22,11 +22,11 @@ class TreasurySerializer(serializers.ModelSerializer):
     company = serializers.CharField(
         max_length=255, validators=[UniqueValidator(queryset=Treasury.objects.all())]
     )
-    country = serializers.CharField(required=False, max_length=50)
-    exchange = serializers.CharField(max_length=50)
-    symbol = serializers.CharField(max_length=50)
-    filingurl = serializers.URLField(max_length=2000)
-    btc = serializers.IntegerField()
+    country = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
+    exchange = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
+    symbol = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
+    filingurl = serializers.URLField(required=False, allow_null=True, allow_blank=True, max_length=2000)
+    btc = serializers.FloatField()
     btc_source_dt = CustomDateFormatField()
     treasury_type = serializers.CharField(max_length=50, default="public")
     dateoffirstbuy = CustomDateFormatField(required=False, allow_null=True)

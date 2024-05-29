@@ -3,6 +3,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	margin-left: 1%;
 }
 
 .navbar-brand-wrapper .navbar-brand {
@@ -153,6 +154,8 @@
 	text-align: center;
 	margin-top: 60px;
 	padding: 20px 0;
+	width: 80%;
+	align-self: center;
 }
 
 .bitcoin-uptime-subheading {
@@ -271,6 +274,7 @@
 	margin-left: 10%;
 	margin-bottom: 20px;
 	text-decoration: none;
+	width: fit-content;
 }
 
 .view-chart:hover{
@@ -2305,6 +2309,12 @@ img {
 
 /* --- Navbar --- */
 
+.main-navbar{
+	margin-right: 1%;
+	float: right;
+	justify-content: flex-end;
+}
+
 .navbar-custom {
 	background-color: #2579c6;
 	border-bottom: 1px solid #DDDDDD;
@@ -2327,7 +2337,7 @@ img {
 	padding-top: 0.625rem;
 	padding-bottom: 0.625rem;
 	font-size: 1.125rem;
-	margin-right: 0.6rem !important;
+	margin-right: 0rem !important;
 }
 
 .navbar-custom .navbar-brand-logo {
@@ -3334,6 +3344,14 @@ pre {
 	text-decoration: underline;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 #nav-search-icon {
 	display: inline-block;
 }
@@ -3603,6 +3621,11 @@ footer.footer-min {
 	position: fixed;
 	width: 100%;
 	z-index: 999;
+}
+
+.info-nav__list {
+	text-align: center;
+	margin: 0 auto;
 }
 
 .info-nav__credits p {
