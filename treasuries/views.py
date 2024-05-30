@@ -21,6 +21,7 @@ from .serializers import (
 
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 
+
 class BaseViewSet(viewsets.ModelViewSet):
     queryset = Treasury.objects.all()
     serializer_class = TreasurySerializer
@@ -46,9 +47,7 @@ class BaseViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@extend_schema(
-    exclude=True
-)
+@extend_schema(exclude=True)
 class AdminTreasuryViewSet(BaseViewSet):
     queryset = Treasury.objects.all()
     serializer_class = TreasurySerializer
@@ -101,38 +100,32 @@ class AdminTreasuryViewSet(BaseViewSet):
 class TreasuryViewSet(BaseViewSet):
     permission_classes = [HasTreasuriesAPIKey]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['company', 'symbol']
+    search_fields = ["company", "symbol"]
 
     def get_allowed_methods(self):
         return ["GET"]
-    
+
     @extend_schema(
         methods=("GET",),
         parameters=[
             OpenApiParameter(name="search", exclude=True),
             OpenApiParameter(
                 name="pk",
-                description=(
-                    "Treasury Identifier"
-                ),
+                description=("Treasury Identifier"),
                 required=True,
                 location=OpenApiParameter.PATH,
                 type=int,
             ),
             OpenApiParameter(
                 name="start",
-                description=(
-                    "Date in 'YYYYMMDDHHMMSS' format. "
-                ),
+                description=("Date in 'YYYYMMDDHHMMSS' format. "),
                 required=False,
                 location=OpenApiParameter.QUERY,
                 type=str,
             ),
             OpenApiParameter(
                 name="end",
-                description=(
-                    "Date in 'YYYYMMDDHHMMSS' format. "
-                ),
+                description=("Date in 'YYYYMMDDHHMMSS' format. "),
                 required=False,
                 location=OpenApiParameter.QUERY,
                 type=str,
@@ -143,15 +136,13 @@ class TreasuryViewSet(BaseViewSet):
     )
     def history(self, request, pk=None):
         return super().history(request, pk)
-    
+
     @extend_schema(
         methods=("GET",),
         parameters=[
             OpenApiParameter(
                 name="search",
-                description=(
-                    "Starts with search for company or symbol fields"
-                ),
+                description=("Starts with search for company or symbol fields"),
                 required=True,
                 location=OpenApiParameter.QUERY,
                 type=str,
@@ -162,16 +153,14 @@ class TreasuryViewSet(BaseViewSet):
     )
     def list(self, request, pk=None):
         return super().list(request, pk)
-    
+
     @extend_schema(
         methods=("GET",),
         parameters=[
             OpenApiParameter(name="search", exclude=True),
             OpenApiParameter(
                 name="pk",
-                description=(
-                    "Treasury Identifier"
-                ),
+                description=("Treasury Identifier"),
                 required=True,
                 location=OpenApiParameter.PATH,
                 type=int,

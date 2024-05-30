@@ -14,6 +14,7 @@ from treasuries.factories import TreasuryFactory
 from treasuries.domain import parse_date
 from faker import Faker
 
+
 def getAdminClient():
     fake = Faker()
     username = fake.pystr(min_chars=12, max_chars=12)
@@ -22,6 +23,7 @@ def getAdminClient():
     my_admin = User.objects.create_superuser(username, f"{username}@test.com", password)
     client.login(username=my_admin.username, password=password)
     return client
+
 
 class TreasuriesTestCase(TestCase):
     @classmethod
@@ -46,7 +48,8 @@ class TreasuriesTestCase(TestCase):
             "dateoffirstbuy": "2020-04-02",
             "cssclass": "tesla-treasuries",
         }
-# Permissions tests
+
+    # Permissions tests
     def test_get_treasuries_API_key_missing(self):
         url = reverse("treasury-list")
         response = APIClient().get(url)
@@ -55,22 +58,20 @@ class TreasuriesTestCase(TestCase):
         TreasurySerializer(treasuries, many=True)
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        
+
     def test_post_treasury_not_admin_authorization(self):
         url = reverse("treasury-admin-list")
-        response = APIClient().post(
-            url, TreasuriesTestCase.treasury, format="json"
-        )
+        response = APIClient().post(url, TreasuriesTestCase.treasury, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-# Domain tests
+    # Domain tests
     def test_to_string(self):
         treasury = TreasuryFactory.create()
         self.assertEqual(
             str(treasury),
             f"{treasury.id}-{treasury.company}({treasury.exchange}:{treasury.symbol})",
         )
-        
+
     def test_parse_date_valid_date(self):
         date_str = "20220202"
         expected_result = datetime.datetime(2022, 2, 2)
@@ -115,16 +116,16 @@ class TreasuriesTestCase(TestCase):
         date_str = ""
         self.assertEqual(parse_date(date_str), None)
 
-# Admin tests
+    # Admin tests
     def test_post_treasury(self):
         password = "mypassword3"
-        my_admin = User.objects.create_superuser("myuser3", "myemail3@test.com", password)
+        my_admin = User.objects.create_superuser(
+            "myuser3", "myemail3@test.com", password
+        )
         client = getAdminClient()
         client.login(username=my_admin.username, password=password)
         url = reverse("treasury-admin-list")
-        response = client.post(
-            url, TreasuriesTestCase.treasury, format="json"
-        )
+        response = client.post(url, TreasuriesTestCase.treasury, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(
             response.data["company"], TreasuriesTestCase.treasury["company"]
@@ -265,7 +266,7 @@ class TreasuriesTestCase(TestCase):
         response = TreasuriesTestCase.client.post(url, treasury_data, format="json")
         self.assertEqual(str(response.data["company"][0]), "This field must be unique.")
 
-# User tests
+    # User tests
     def test_get_treasuries(self):
         url = reverse("treasury-list")
         response = TreasuriesTestCase.client.get(url)
@@ -286,14 +287,10 @@ class TreasuriesTestCase(TestCase):
         serializer = TreasurySerializer(treasuries, many=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
-        response = TreasuriesTestCase.client.get(
-            url, {"search": "Boc"}
-        )
+        response = TreasuriesTestCase.client.get(url, {"search": "Boc"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]["id"], first_treasury.id)
-        response = TreasuriesTestCase.client.get(
-            url, {"search": "Riv"}
-        )
+        response = TreasuriesTestCase.client.get(url, {"search": "Riv"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]["id"], second_treasury.id)
 
@@ -307,14 +304,10 @@ class TreasuriesTestCase(TestCase):
         serializer = TreasurySerializer(treasuries, many=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
-        response = TreasuriesTestCase.client.get(
-            url, {"search": "JU"}
-        )
+        response = TreasuriesTestCase.client.get(url, {"search": "JU"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]["id"], first_treasury.id)
-        response = TreasuriesTestCase.client.get(
-            url, {"search": "PL"}
-        )
+        response = TreasuriesTestCase.client.get(url, {"search": "PL"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]["id"], second_treasury.id)
 
@@ -328,16 +321,16 @@ class TreasuriesTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, serializer.data)
-        
+
     def test_get_treasury_not_found(self):
-        max_id = Treasury.objects.all().aggregate(Max('id'))['id__max'] or 0
+        max_id = Treasury.objects.all().aggregate(Max("id"))["id__max"] or 0
         non_existent_id = max_id + 1
         url = reverse("treasury-detail", kwargs={"pk": non_existent_id})
         response = TreasuriesTestCase.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-# History tests
+    # History tests
     def test_history(self):
         treasury = TreasuryFactory.create()
         history_url = reverse("treasury-history", kwargs={"pk": treasury.pk})
@@ -374,7 +367,7 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]["exchange"], "NEW-EXCHANGE")
-        
+
     @patch("django.utils.timezone.now")
     def test_history_end(self, mock_now):
         mock_now.return_value = timezone.make_aware(datetime.datetime(2022, 1, 1))
@@ -420,7 +413,7 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]["exchange"], "NEW-EXCHANGE")
 
-# API tracking tests
+    # API tracking tests
     def test_API_tracking(self):
         api_key, key = TreasuriesAPIKey.objects.create_key(name="test")
         authorization = f"Api-Key {key}"

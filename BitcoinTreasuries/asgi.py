@@ -1,4 +1,3 @@
-
 """
 ASGI config for BitcoinTreasuries project.
 

@@ -1,6 +1,7 @@
 from rest_framework_api_key.permissions import HasAPIKey
 from treasuries.models import TreasuriesAPIKey
 
+
 class HasTreasuriesAPIKey(HasAPIKey):
     model = TreasuriesAPIKey
 
