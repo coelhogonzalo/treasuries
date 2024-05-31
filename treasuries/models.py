@@ -34,7 +34,13 @@ class Treasury(models.Model):
     def btc_rounded(self):
         if (self.btc).is_integer():
             return int(self.btc)
-        return round(self.btc, 2)
+        return round(self.btc, 1)
+
+    @property
+    def btc_rounded_str(self):
+        if (self.btc).is_integer():
+            return "{:,.0f}".format(self.btc)
+        return "{:,.1f}".format(self.btc)
 
 
 class TreasuriesAPIKey(AbstractAPIKey):

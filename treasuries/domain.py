@@ -3,6 +3,8 @@ import datetime
 
 from urllib.request import urlopen
 
+from treasuries.models import Treasury
+
 
 def parse_date(date_string):
     if not date_string:
@@ -36,3 +38,7 @@ def get_bitcoin_price():
     except Exception as e:
         print("An error occurred while fetching the bitcoin price:", e)
         return None
+
+
+def get_etfs():
+    return Treasury.objects.filter(treasury_type="etf").order_by("-btc")
