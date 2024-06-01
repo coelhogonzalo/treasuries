@@ -206,15 +206,11 @@
       <tr>
         <td class="td-symbol" data-title="Category"><a href="/miners/">BTC Mining Companies</a></td>
         <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
+          {{ miners_total.btc }}
         </td>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
         <td class="td-company_percent" data-title="% of 21m">
-          %
+          {{ miners_total.percentage_from_21m }}%
         </td>
       </tr>
       <tr>
@@ -427,6 +423,9 @@
 
 
     <tbody>
+      {% for treasury in miners %}
+        {% include 'treasury_row.html' %}
+      {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>

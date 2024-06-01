@@ -17,6 +17,7 @@ class Treasury(models.Model):
     dateoffirstbuy = models.DateField(null=True, blank=True)
     info_url = models.CharField(null=True, blank=True, max_length=255)
     cssclass = models.CharField(null=True, blank=True, max_length=50)
+    miner = models.BooleanField(default=False)
     history = HistoricalRecords()
 
     def __str__(self):

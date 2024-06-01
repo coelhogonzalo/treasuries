@@ -46,6 +46,10 @@ def get_treasury_by_type(type):
     return Treasury.objects.filter(treasury_type=type).order_by("-btc")
 
 
+def get_miners():
+    return Treasury.objects.filter(miner=True).order_by("-btc")
+
+
 def get_context():
     btc_price = get_bitcoin_price()
     partial_context = {
@@ -53,6 +57,7 @@ def get_context():
         "countries": get_treasury_by_type(TreasuryType.GOVERNMENT.value),
         "public_companies": get_treasury_by_type(TreasuryType.PUBLIC.value),
         "private_companies": get_treasury_by_type(TreasuryType.PRIVATE.value),
+        "miners": get_miners(),
         "defi": get_treasury_by_type(TreasuryType.DEFI.value),
     }
     context = partial_context.copy()

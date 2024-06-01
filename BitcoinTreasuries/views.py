@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 
-from treasuries.domain import get_bitcoin_price, get_context
+from treasuries.domain import get_context
 
 
 def index(request):
