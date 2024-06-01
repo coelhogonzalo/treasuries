@@ -3,6 +3,8 @@ import datetime
 
 from urllib.request import urlopen
 
+from BitcoinTreasuries.constants import BTC_21M_CAP
+from treasuries.enums import TreasuryType
 from treasuries.models import Treasury
 
 
@@ -40,5 +42,30 @@ def get_bitcoin_price():
         return None
 
 
-def get_etfs():
-    return Treasury.objects.filter(treasury_type="etf").order_by("-btc")
+def get_treasury_by_type(type):
+    return Treasury.objects.filter(treasury_type=type).order_by("-btc")
+
+
+def get_context():
+    btc_price = get_bitcoin_price()
+    partial_context = {
+        "etfs": get_treasury_by_type(TreasuryType.ETF.value),
+        "countries": get_treasury_by_type(TreasuryType.GOVERNMENT.value),
+        "public_companies": get_treasury_by_type(TreasuryType.PUBLIC.value),
+        "private_companies": get_treasury_by_type(TreasuryType.PRIVATE.value),
+        "defi": get_treasury_by_type(TreasuryType.DEFI.value),
+    }
+    context = partial_context.copy()
+    for treasury_type, treasuries in partial_context.items():
+        total_btc = sum(treasury.btc for treasury in treasuries)
+        total_btc_in_usd = "{:,.0f}".format((btc_price * total_btc))
+        total_percentage_from_21m = round(total_btc * 100 / BTC_21M_CAP, 3)
+        total_btc = "{:,.0f}".format(total_btc)
+
+        context[f"{treasury_type}_total"] = {
+            "btc": total_btc,
+            "btc_in_usd": total_btc_in_usd,
+            "percentage_from_21m": total_percentage_from_21m,
+        }
+    context["btc_price"] = btc_price
+    return context

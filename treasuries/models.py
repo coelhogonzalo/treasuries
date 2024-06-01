@@ -27,8 +27,8 @@ class Treasury(models.Model):
         verbose_name_plural = "Treasuries"
 
     @property
-    def percentage_from_total(self):
-        return round(self.btc / BTC_21M_CAP, 4)
+    def percentage_from_21m(self):
+        return round(self.btc * 100 / BTC_21M_CAP, 4)
 
     @property
     def btc_rounded(self):

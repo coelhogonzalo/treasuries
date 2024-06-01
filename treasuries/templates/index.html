@@ -163,15 +163,11 @@
       <tr>
         <td class="td-symbol" data-title="Category"><a href="#etfs">ETFs</a></td>
         <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
+            {{ etfs_total.btc }}
         </td>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value"> {{ etfs_total.btc_in_usd }}</td>
         <td class="td-company_percent" data-title="% of 21m">
-          %
+          {{ etfs_total.percentage_from_21m }}%
         </td>
       </tr>
       <tr>
@@ -179,43 +175,31 @@
           <a href="#countries">Countries</a>
         </td>
         <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
+          {{ countries_total.btc }}
         </td>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value"> {{ countries_total.btc_in_usd }}</td>
         <td class="td-company_percent" data-title="% of 21m">
-          %
+          {{ countries_total.percentage_from_21m }}%
         </td>
       </tr>
       <tr>
         <td class="td-symbol" data-title="Category"><a href="#public">Public Companies</a></td>
         <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
+          {{ public_companies_total.btc }}
         </td>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value">{{ public_companies_total.btc_in_usd }}</td>
         <td class="td-company_percent" data-title="% of 21m">
-          %
+          {{ public_companies_total.percentage_from_21m }}%
         </td>
       </tr>
       <tr>
         <td class="td-symbol" data-title="Category"><a href="#private">Private Companies</a></td>
         <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
+          {{ private_companies_total.btc }}
         </td>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value">{{ private_companies_total.btc_in_usd }}</td>
         <td class="td-company_percent" data-title="% of 21m">
-          %
+          {{ private_companies_total.percentage_from_21m }}%
         </td>
       </tr>
 
@@ -236,15 +220,11 @@
       <tr>
         <td class="td-symbol" data-title="Category"><a href="/#defi">Defi</a></td>
         <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
+          {{ defi_total.btc }}
         </td>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value">{{ defi_total.btc_in_usd }}</td>
         <td class="td-company_percent" data-title="% of 21m">
-          %
+          {{ defi_total.percentage_from_21m }}%
         </td>
       </tr>
     </tbody>
@@ -288,6 +268,9 @@
 
 
     <tbody>
+      {% for treasury in public_companies %}
+        {% include 'treasury_row.html' %}
+      {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
@@ -322,6 +305,9 @@
 
 
     <tbody>
+      {% for treasury in countries %}
+        {% include 'treasury_row.html' %}
+      {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
@@ -355,6 +341,9 @@
 
 
     <tbody>
+      {% for treasury in private_companies %}
+        {% include 'treasury_row.html' %}
+      {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
@@ -473,6 +462,9 @@
 
 
     <tbody>
+      {% for treasury in defi %}
+        {% include 'treasury_row.html' %}
+      {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>

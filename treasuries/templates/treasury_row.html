@@ -2,9 +2,16 @@
 {% load extras %}
 <tr{% if treasury.cssclass %} class="{{ treasury.cssclass }}"{% endif %}>                                
 <td class="td-company" data-title="Company Name">{{ treasury.company }}</td>
+
+{% if treasury.country != None and treasury.country != ""%}
 <td class="td-location">
     <img class="flag-icon" src="static/flags/4x3/{{ treasury.country|lower }}.svg" data-tooltip="{{ treasury.country }}"></img>
 </td>
+{% else %} 
+<td class="td-location">
+    
+</td>
+{% endif %}
 
 {% if treasury.treasury_type == 'public' or treasury.treasury_type == 'etf' %}
 <td class="td-symbol" data-title="Symbol">{{ treasury.symbol }}:{{ treasury.exchange }}</td>
@@ -17,6 +24,6 @@
 
 <td class="td-value" data-title="Value">${{ treasury.btc_rounded|mul:btc_price|number_to_string }}</td>
 
-<td class="td-company_percent" data-title="%">{{ treasury.percentage_from_total }}%</td>
+<td class="td-company_percent" data-title="%">{{ treasury.percentage_from_21m }}%</td>
 
 </tr> 
