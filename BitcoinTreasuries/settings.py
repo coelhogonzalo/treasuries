@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import re
 
 load_dotenv()
 
@@ -12,18 +13,10 @@ SECRET_KEY = (
 
 DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = ["treasuries-production.up.railway.app", "127.0.0.1"]
+ALLOWED_HOSTS = re.split(' ', os.environ.get("ALLOWED_HOSTS"))
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://treasuries-production.up.railway.app",
-    "http://127.0.0.1",
-]
-CSRF_ALLOWED_ORIGINS = [
-    "https://treasuries-production.up.railway.app",
-    "http://127.0.0.1",
-]
-CORS_ORIGINS_WHITELIST = ["treasuries-production.up.railway.app", "http://127.0.0.1"]
-CORS_ALLOWED_ORIGINS = ["treasuries-production.up.railway.app", "http://127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = re.split(' ', os.environ.get("TRUSTED_ORIGINS"))
+CSRF_ALLOWED_ORIGINS = re.split(' ', os.environ.get("TRUSTED_ORIGINS"))
 
 
 # Application definition
