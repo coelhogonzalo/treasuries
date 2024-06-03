@@ -3,7 +3,7 @@ import datetime
 
 from urllib.request import urlopen
 
-from BitcoinTreasuries.constants import BTC_21M_CAP
+from BitcoinTreasuries.constants import BTC_21M_CAP, BTC_DEFAULT_PRICE
 from treasuries.enums import TreasuryType
 from treasuries.models import Treasury
 
@@ -39,7 +39,7 @@ def get_bitcoin_price():
             return btc_price
     except Exception as e:
         print("An error occurred while fetching the bitcoin price:", e)
-        return None
+        return BTC_DEFAULT_PRICE
 
 
 def get_treasury_by_type(type):
@@ -73,4 +73,11 @@ def get_context():
             "percentage_from_21m": total_percentage_from_21m,
         }
     context["btc_price"] = btc_price
+    context["navbar_links"] = {
+        "US ETF Tracker & Flows": "/us-etfs/",
+        "Countries": "/countries/",
+        "Latest Changes": "https://alerts.bitcointreasuries.com/",
+        "Email Updates": "https://alerts.bitcointreasuries.com/subscribe",
+        "Telegram": "https://t.me/BTCTreasuries",
+    }
     return context

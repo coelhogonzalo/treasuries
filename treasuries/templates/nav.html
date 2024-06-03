@@ -10,7 +10,7 @@
         </ul>
     </div>
 </div>
-<nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom ">
+<nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular">
     <div class="navbar-brand-wrapper">
         <a class="navbar-brand navbar-brand-logo" href="">Bitcoin Treasuries
         </a>
@@ -27,7 +27,20 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse custom-right navbar-collapse" id="main-navbar">
+    <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="navbar-nav ml-auto">
+          {% for key, value in navbar_links.items %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{{ value }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ key }}</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ value }}">{{ key }}</a>
+                </div>
+              </li>
+            {% endfor %}    
+        </ul>
+      </div>
+
+    <!-- <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav ml-auto">
 
 
@@ -111,22 +124,12 @@
         
   
       </ul>
-    </div>
+    </div> -->
   
     
       
         
-      
     
-  
-    
-      <!-- <div class=" avatar-container">
-                            <div class="avatar-img-border">
-                                <a href="">
-                                    <img alt="Navigation bar avatar" class="avatar-img" src="" />
-                                </a>
-                            </div>
-                </div> -->
 
 
 </nav>

@@ -1,0 +1,19 @@
+:root {
+	/* Navbar Colors */
+	--navbar-col: #2579c6;
+	--navbar-text-col: #fff;
+	--navbar-border-col: #DDDDDD;
+  
+	/* Page Colors */
+	--page-col: #FFFFFF;
+	--text-col: #404040;
+	--link-col: #2579c6;
+	--hover-col: #dddddd;
+  
+	/* Footer Colors */
+	--footer-col: #2579c6;
+	--footer-text-col: #fff;
+	--footer-link-col: #fff;
+	--footer-hover-col: #0085A1;
+	--navbar-var-length: false;
+  }
