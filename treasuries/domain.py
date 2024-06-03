@@ -50,6 +50,14 @@ def get_miners():
     return Treasury.objects.filter(miner=True).order_by("-btc")
 
 
+def get_treasury_count():
+    return Treasury.objects.count()
+
+
+def get_latest_update():
+    return Treasury.history.order_by("-history_date").first().history_date
+
+
 def get_context():
     btc_price = get_bitcoin_price()
     partial_context = {
@@ -61,8 +69,14 @@ def get_context():
         "defi": get_treasury_by_type(TreasuryType.DEFI.value),
     }
     context = partial_context.copy()
+    treasuries_total_btc = 0
+    treasuries_total_usd = 0
+    treasuries_total_percentage = 0
     for treasury_type, treasuries in partial_context.items():
         total_btc = sum(treasury.btc for treasury in treasuries)
+        treasuries_total_btc += total_btc
+        treasuries_total_usd += btc_price * total_btc
+        treasuries_total_percentage += round(total_btc * 100 / BTC_21M_CAP, 3)
         total_btc_in_usd = "{:,.0f}".format((btc_price * total_btc))
         total_percentage_from_21m = round(total_btc * 100 / BTC_21M_CAP, 3)
         total_btc = "{:,.0f}".format(total_btc)
@@ -72,6 +86,8 @@ def get_context():
             "btc_in_usd": total_btc_in_usd,
             "percentage_from_21m": total_percentage_from_21m,
         }
+    treasuries_total_btc = "{:,.0f}".format(treasuries_total_btc)
+    treasuries_total_usd = "{:,.0f}".format(treasuries_total_usd)
     context["btc_price"] = btc_price
     context["navbar_links"] = {
         "US ETF Tracker & Flows": "/us-etfs/",
@@ -80,4 +96,9 @@ def get_context():
         "Email Updates": "https://alerts.bitcointreasuries.com/subscribe",
         "Telegram": "https://t.me/BTCTreasuries",
     }
+    context["treasury_count"] = get_treasury_count()
+    context["treasuries_total_btc"] = treasuries_total_btc
+    context["treasuries_total_usd"] = treasuries_total_usd
+    context["treasuries_total_percentage"] = treasuries_total_percentage
+    context["latest_update"] = get_latest_update()
     return context
