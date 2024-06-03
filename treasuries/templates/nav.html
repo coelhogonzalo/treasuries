@@ -12,8 +12,7 @@
 </div>
 <nav id=navbar class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular">
     <div class="navbar-brand-wrapper">
-        <a class="navbar-brand navbar-brand-logo" href="">Bitcoin Treasuries
-        </a>
+        <a class="navbar-brand navbar-brand-logo" href="">Bitcoin Treasuries</a>
         <span>by</span>
         <a class="bitbo-nav" target="_blank" href="https://bitbo.io/">
             <img class="bitbo-nav__logo" width="15" height="25" alt=" Logo" src="/static/bitbo-logo.svg" />
@@ -30,106 +29,10 @@
     <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav ml-auto">
           {% for key, value in navbar_links.items %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{{ value }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ key }}</a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{ value }}">{{ key }}</a>
-                </div>
-              </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ value }}">{{ key }}</a>
+          </li>
             {% endfor %}    
         </ul>
       </div>
-
-    <!-- <div class="collapse navbar-collapse" id="main-navbar">
-        <ul class="navbar-nav ml-auto">
-
-
-            <li class="nav-item dropdown">
-                
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-
-                    <a class="dropdown-item" href="/us-etfs/">US ETFs</a>
-                  
-                
-              </div>
-            </li>
-          
-            <li class=" nav-item">
-                        <a class="nav-link" href="/us-etfs/">US ETFs</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-
-                    <a class="dropdown-item" href="/countries/">Countries</a>
-                  
-                
-              </div>
-            </li>
-          
-            <li class=" nav-item">
-                        <a class="nav-link" href="/countries/">Countries</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-
-                    <a class="dropdown-item" href="/miners/">Miners</a>
-                  
-                
-              </div>
-            </li>
-          
-            <li class=" nav-item">
-                        <a class="nav-link" href="/miners/">Miners</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-
-                    <a class="dropdown-item" href="https://alerts.bitcointreasuries.com/subscribe">Email Updates</a>
-                  
-                
-              </div>
-            </li>
-          
-            <li class=" nav-item">
-                        <a class="nav-link" href="https://alerts.bitcointreasuries.com/subscribe">Email Updates</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-
-                    <a class="dropdown-item" href="https://t.me/BTCTreasuries">Telegram</a>
-                  
-                
-              </div>
-            </li>
-          
-            <li class=" nav-item">
-                        <a class="nav-link" href="https://t.me/BTCTreasuries">Telegram</a>
-            </li>
-
-            
-          
-        
-  
-      </ul>
-    </div> -->
-  
-    
-      
-        
-    
-
-
 </nav>

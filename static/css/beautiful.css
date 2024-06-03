@@ -165,7 +165,6 @@ img {
   padding-bottom: 0.625rem;
   font-size: 1.125rem;
   margin-right: 0.6rem !important;
-  margin-left: 5%;
 }
 
 .navbar-custom .navbar-brand-logo {
@@ -278,6 +277,7 @@ img {
   text-decoration: none !important;
   font-weight: normal;
   color: var(--navbar-text-col);
+  white-space: normal;
 }
 
 @media (min-width: 1200px) {

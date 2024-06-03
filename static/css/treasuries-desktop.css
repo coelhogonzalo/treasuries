@@ -1,6 +1,3 @@
-html {
-	font-size: 80%
-}
 .navbar-brand-wrapper {
 	display: flex;
 	align-items: center;
@@ -76,7 +73,6 @@ html {
 	text-align: center;
 	border-radius: 15px 15px 0 0 !important;
 	overflow: hidden;
-	width: 80%;
 	margin: 0 auto;
 }
 
@@ -155,8 +151,6 @@ html {
 	text-align: center;
 	margin-top: 60px;
 	padding: 20px 0;
-	width: 80%;
-	align-self: center;
 }
 
 .bitcoin-uptime-subheading {
@@ -290,23 +284,4 @@ html {
 	to {
 		transform: rotate(360deg);
 	}
-}
-
-:root {
-  /* Navbar Colors */
-  --navbar-col: #2579c6;
-  --navbar-text-col: #fff;
-  --navbar-border-col: #DDDDDD;
-
-  /* Page Colors */
-  --page-col: #FFFFFF;
-  --text-col: #404040;
-  --link-col: #2579c6;
-  --hover-col: #dddddd;
-
-  /* Footer Colors */
-  --footer-col: #2579c6;
-  --footer-text-col: #fff;
-  --footer-link-col: #fff;
-  --footer-hover-col: #0085A1;
 }
