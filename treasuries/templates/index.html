@@ -1,37 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% block title %}
-  <title>Bitcoin Treasuries</title>
-  {% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Track Bitcoin Treasuries of companies, miners and countries at BitcoinTreasuries.com.">
-  <!-- Add additional CSS in static file -->
-  {% load static %}
-  <link rel="icon" href="{% static 'favicon.ico' %}" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="{% static 'css/beautiful.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/staticman.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/treasuries-desktop.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/treasuries-mobile.css' %}" />
-  
-  <!-- Scripts -->
-  <script src="https://cdn.usefathom.com/script.js" data-site="SLIFJUVH" defer></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="{% static 'js/beautiful.js' %}"></script>
-</head>
+ 
+  {% include 'head.html' %}
 
 <body>
-  
 
   {% include 'nav.html' %}
+  
+  {% include 'header.html' with title=base_domain %}
 
-  <p class="treasuries-subtitle">BTC holdings in publicly traded and private companies, ETFs and countries. Help update
-    data <a href="https://github.com/BuyBitcoinWorldwide/bitcointreasuries">here</a>.</p>
+  <p class="treasuries-subtitle">BTC holdings in publicly traded and private companies, ETFs and countries. Help update data <a href="/contact/">here</a>.</p>
+
   <table class="treasuries-index treasuries-table value-table treasuries-table--smaller is--top">
     <thead>
       <tr class="top-table-header">
@@ -42,7 +21,24 @@
         </th>
         <th class="top-treasuries-table-label" data-title="Last Updated">Last Updated</th>
       </tr>
-    </thead>      
+    </thead> 
+    <tbody>
+      <tr class="top-table-data-row">
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">
+          {{ treasury_count }}
+        </td>
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC"> 
+          {{ treasuries_total_btc }}
+        </td>
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">${{ treasuries_total_usd }}</td>
+        <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
+          {{ treasuries_total_percentage }}%
+        </td>
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
+          {{ latest_update }} 
+        </td>
+	    </tr>
+    </tbody>    
   </table>
   <table class="treasuries-index treasuries-table--mobile">
     <tbody>

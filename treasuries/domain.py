@@ -55,7 +55,7 @@ def get_treasury_count():
 
 
 def get_latest_update():
-    return Treasury.history.order_by("-history_date").first().history_date
+    return Treasury.history.order_by("-history_date").first().history_date.date()
 
 
 def get_context():
@@ -101,4 +101,5 @@ def get_context():
     context["treasuries_total_usd"] = treasuries_total_usd
     context["treasuries_total_percentage"] = treasuries_total_percentage
     context["latest_update"] = get_latest_update()
+    context["title"] = "Bitcoin Treasuries"
     return context
