@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
- 
-  {% include 'head.html' %}
+{% extends 'page.html' %}
 
+{% block content %}
 <body>
 
-  {% include 'nav.html' %}
   
   {% include 'header.html' with title=base_domain %}
 
@@ -419,11 +416,9 @@
 
   <br>
 
-  {% include 'footer.html' %}
-
 </body>
 
-</html>
+{% endblock %}
 
 
 <script>

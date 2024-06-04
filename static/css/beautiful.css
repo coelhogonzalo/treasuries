@@ -42,7 +42,6 @@ body > main {
 p {
   line-height: 1.5;
   margin: 1.875rem 0;
-  margin-left: 10%;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
@@ -54,7 +53,6 @@ h1 {
 }
 h2 {
   font-size: 1.875rem;
-  margin-left: 10%;
 }
 h3 {
   font-size: 1.5rem;
