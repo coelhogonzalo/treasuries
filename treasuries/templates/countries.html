@@ -1,0 +1,233 @@
+---
+title: Bitcoin Holdings of Countries & Governments
+seotitle: "Bitcoin Holdings of Countries & Governments"
+permalink: /countries/
+layout: page
+lang: en
+pagename: countrytreasuries
+treasuries: yes
+sitemap:
+ priority: 0.7
+update: November 19, 2023
+include_remote_javascript:
+  - https://code.highcharts.com/stock/highstock.js
+---
+
+<table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
+  <thead>
+    <tr class="top-table-header">
+      <th class="top-treasuries-table-label" data-title="Company Name">Countries</th>
+      <th class="top-treasuries-table-label" data-title="BTC"># of BTC</th>
+      <th class="top-treasuries-table-label" data-title="Value">Value Today</th>
+      <th class="top-treasuries-table-label" style="padding-left: 20px !important;" data-title="% of 21m">% of 21M BTC</th>
+      <th class="top-treasuries-table-label" data-title="Last Updated">Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="display: none;">
+      <td class="td-symbol" data-title="Category"><a href="/treasuries/#etfs">ETFs</a></td>
+      <td class="td-company_btc add-comma" data-title="BTC">{% assign etftotal = 0 %}
+        {% for entity in site.data.treasuries %}
+        {% if entity.symbol == "gov" %}
+        {% assign etftotal = etftotal | plus: entity.btc %}
+        {% endif %}
+        {% endfor %}{{ etftotal }}
+      </td>
+      <td class="td-value" data-title="Value">{{ etftotal }}</td>
+      <td class="td-company_percent" data-title="% of 21m">
+        {{ etftotal | times: 100.0 | divided_by: 21000000 | round: 3 }}%
+      </td>
+    </tr>
+    <tr class="top-table-data-row">
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">10</td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">{% assign gentotal = 0 %}
+        {% for entity in site.data.treasuries %}
+        {% if entity.symbol == "gov" %}
+        {% assign gentotal = gentotal | plus: entity.btc %}
+        {% endif %}
+        {% endfor %}{{ gentotal }}
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">{{ gentotal }}</td>
+      <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
+        {{ gentotal | times: 100.0 | divided_by: 21000000 | round: 3 }}%
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
+        March 5, 2024
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="treasuries-index treasuries-table--mobile">
+  <tbody>
+    <tr>
+      <th class="top-treasuries-table-label">Entities</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label"># of BTC</th>
+      <td class="add-comma">
+        {% assign gentotal = 0 %}
+        {% for entity in site.data.treasuries %}
+          {% if entity.symbol == "gov" %}
+            {% assign gentotal = gentotal | plus: entity.btc %}
+          {% endif %}
+        {% endfor %}
+        {{ gentotal }}
+      </td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">Value Today</th>
+      <td class="td-value" data-title="Value">{{ gentotal }}</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">% of 21m</th>
+      <td>{{ gentotal | times: 100.0 | divided_by: 21000000 | round: 3 }}%</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">Last Updated</th>
+      <td>March 4, 2024</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<!-- Your Jekyll Loop Here -->
+   {% assign treasuries = site.data.treasuries | sort:"btc" %}
+{% for entity in treasuries reversed %}
+   {% if entity.symbol == "gov" %}
+	  <span class="company-data" data-name="{{ entity.company }}" data-btcc="{{ entity.btcc }}"></span>
+   {% endif %}
+{% endfor %}
+
+<div id="myHighchart" style="width:100%; height:400px;"></div>
+
+
+
+<script>
+  // Read data from the Jekyll generated elements
+  var companies = [];
+  var btcCounts = [];
+
+  document.querySelectorAll('.company-data').forEach(function(el) {
+	  companies.push(el.getAttribute('data-name'));
+  
+	  // Remove commas before converting to a float
+	  var btcCount = el.getAttribute('data-btcc').replace(/,/g, '');
+	  btcCounts.push(parseFloat(btcCount));
+  });
+
+
+  // Initialize Highcharts
+  Highcharts.chart('myHighchart', {
+	  chart: {
+		  type: 'bar'
+	  },
+	  title: {
+		  text: 'Countries Holding Bitcoin (BTC)'
+	  },
+	  xAxis: {
+		  categories: companies
+	  },
+	  yAxis: {
+		  title: {
+			  text: 'Number of Bitcoins'
+		  }
+	  },
+	  tooltip: {
+		  pointFormatter: function() {
+			  // Format the number with commas for thousands
+			  return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + Highcharts.numberFormat(this.y, 0, '.', ',') + '</b><br/>';
+		  }
+	  },
+	  series: [{
+		  name: 'Bitcoins',
+		  data: btcCounts
+	  }]
+  });
+</script>
+
+<br><br>
+
+<h2 class="center-on-mobile" id="public">Countries that Own Bitcoin</h2>
+<table class="treasuries-table">
+   <thead>
+	  <tr>
+		<th class="th-company" data-title="Company Name">Entity</th>
+		<th class="th-location">Country</th>
+		<th class="th-company_btc" data-title="BTC"># of BTC</th>
+		<th class="th-value-today" data-title="Value">Value Today</th>
+		<th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+	  </tr>
+   </thead>
+   {% assign treasuries = site.data.treasuries | sort:"btc" %}
+   {% for entity in treasuries reversed %}
+   {% if entity.symbol == "gov" %}
+   {% include treasuriessilopages.html %}
+   {% endif %}
+   {% endfor %}
+</table>
+
+<br><br>
+
+{% include totalowned.html %}
+
+
+
+
+<script>
+   const DEFAULT_PRICE = 36000;
+
+   function numberWithCommas(x) {
+     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+   }
+
+   async function getPriceInfo() {
+     const valueEls = document.getElementsByClassName('td-value');
+     for (const valueEl of valueEls) {
+       try {
+         valueEl.rawValue = parseFloat(valueEl.innerHTML);
+         valueEl.innerHTML = '<i class="fa fa-spinner rotating"></i>';
+       } catch(_) {
+         continue;
+       }
+     }
+
+     let price = DEFAULT_PRICE;
+     try {
+       const response = await fetch('https://www.satochi.co/latest');
+       const priceInfo = await response.json();
+       price = priceInfo.Price;
+       if (!price || price < 0) {
+         throw 'no price'; /* uses default value */
+       }
+     } catch(_) {}
+
+     for (const valueEl of valueEls) {
+       try {
+         valueEl.innerHTML = '$' + numberWithCommas(Math.round(valueEl.rawValue * price));
+       } catch(e) {
+         continue;
+       }
+     }
+
+   }
+
+   function addCommas() {
+     const valueEls = document.getElementsByClassName('add-comma');
+     for (const valueEl of valueEls) {
+       try {
+         const rawValue = parseFloat(valueEl.innerHTML);
+         valueEl.innerHTML = numberWithCommas(Math.round(rawValue));
+       } catch(_) {
+         continue;
+       }
+     }
+   }
+
+   getPriceInfo();
+   addCommas();
+
+
+</script>
