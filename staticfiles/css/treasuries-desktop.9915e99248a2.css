@@ -1,0 +1,312 @@
+html {
+	font-size: 80%
+}
+.navbar-brand-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.navbar-brand-wrapper .navbar-brand {
+	margin-right: 0 !important;
+}
+
+.navbar-custom .navbar-brand-logo,
+.navbar-custom .navbar-brand-logo~span {
+	margin-top: -2px;
+}
+
+.navbar-custom .navbar-brand-logo~span {
+	color: #fff;
+}
+
+.bitbo-nav {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.bitbo-nav:hover {
+	text-decoration: none !important;
+}
+
+.old-site-label {
+	font-size: 21px;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.top-treasuries-table {
+	margin-top: 35px;
+}
+
+.treasuries-table--mobile {
+	display: none;
+}
+
+.top-treasuries-table-inner {
+	display: flex;
+}
+
+.treasuries-table--smaller thead .top-table-header {
+	background: transparent !important;
+	border-bottom: none !important;
+}
+
+.top-treasuries-table-label {
+	color: rgba(0, 0, 0, 0.60) !important;
+	margin-bottom: 10px;
+	font-size: 13px;
+	margin-top: -4px;
+	text-transform: uppercase;
+	letter-spacing: .5px;
+	font-weight: 600;
+}
+
+.treasuries-subtitle {
+	font-size: 21px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+	line-height: 28px;
+	font-weight: 400;
+}
+
+.treasuries-table {
+	border: unset;
+	border-width: 0px;
+	text-align: center;
+	border-radius: 15px 15px 0 0 !important;
+	overflow: hidden;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.treasuries-index {
+	margin-left: 10%;
+}
+
+.treasuries-table--smaller {
+	max-width: 650px;
+}
+
+.treasuries-table--smaller.is--top {
+	max-width: 800px;
+	margin-top: 35px;
+}
+
+.treasuries-table td,
+.treasuries-table th {
+	font-size: 15px !important;
+	line-height: 1.4;
+	border-left: none !important;
+	border-right: none !important;
+	border-collapse: collapse;
+	border-spacing: 2px;
+	border-style: none;
+	box-sizing: border-box;
+	color: #051b52;
+	font-weight: 400 !important;
+	line-height: 1.2;
+	padding: 12px 10px !important;
+	text-align: left;
+	width: unset;
+}
+
+.treasuries-table tr th {
+	background: transparent;
+	border-collapse: collapse;
+	border-spacing: 2px;
+	border-style: none;
+	box-sizing: border-box;
+	color: #fff;
+	font-weight: 400 !important;
+	padding: 19px 10px !important;
+	text-align: left;
+	min-width: 100px;
+	font-size: 15px !important;
+}
+
+.treasuries-table tr .th-company {
+	border-top-left-radius: 15px;
+}
+
+.treasuries-table tr .th-company_percent {
+	border-top-right-radius: 15px;
+	text-align: right;
+}
+
+.treasuries-table tr:nth-child(odd),
+.treasuries-table tr:nth-child(even) {
+	background-color: #f5f7ff;
+	border-bottom: 2px solid #E2E6FF;
+}
+
+.treasuries-table thead tr {
+	border-bottom: unset;
+	background: linear-gradient(94.32deg, #3351FF 25.31%, #0085FF 76.51%) !important;
+}
+
+.treasuries-table tr:nth-last-child(2) td:last-child {
+	border-bottom-right-radius: 0px !important;
+}
+
+.bitcoin-uptime-days-down {
+	background: #FEFCF5;
+	border: 1px solid rgba(232, 208, 27, 0.40);
+	text-align: center;
+	margin-top: 60px;
+	padding: 20px 0;
+	width: 80%;
+	align-self: center;
+}
+
+.bitcoin-uptime-subheading {
+	font-size: 20px;
+	color: #000000;
+	letter-spacing: 0;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.bitcoin-uptime-days-down .button {
+	background: #1ca440;
+	color: #fff;
+	padding: 12px;
+	display: inline-block;
+	width: 100%;
+	max-width: 200px;
+	text-align: center;
+	border-radius: 5px;
+	border-bottom: 4px solid #3e8040;
+	margin-top: 15px;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.bw-body .container-bw {
+	max-width: 1210px !important;
+}
+
+.td-location, .th-location {
+	width: 100px !important;
+}
+
+.th-company_percent, .td-company_percent {
+	width: 86px !important;
+	text-align: right !important;
+}
+
+.td-company_percent {
+	border-bottom-right-radius: 0px !important;
+}
+
+.treasuries-table .td-company_btc {
+	font-weight: 600 !important;
+}
+
+
+.treasuries-table .total-label {
+	text-align: left !important;
+	padding-left: 20px !important;
+	border-top: unset !important;
+}
+
+.treasuries-table--smaller tr .top-treasuries-table-label {
+	font-weight: 600 !important;
+	padding: 10px !important;
+}
+
+.top-table-data-row {
+	background-color: #fff !important;
+	border-bottom: 1px solid #E2E6FF !important;
+}
+
+.rotating {
+	animation-name: spin;
+	animation-duration: 1000ms;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.notify-button {
+	display: inline-block;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	background-color: #4299e1;
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 16px;
+	border-bottom: 4px solid #2b6cb0;
+	font-weight: 700;
+	color: white;
+	line-height: 26px;
+	margin-right: 20px;
+	width: fit-content;
+}
+
+.email-notify {
+	background: #a4a4a4 !important;
+	border-bottom: 4px solid #8B8B8B;
+}
+
+.button-holder{
+	margin-left: 10%;
+	display: inline-block;
+}
+
+.notify-button:hover {
+	text-decoration: underline;
+	color: black !important;
+}
+
+.view-chart {
+	display: inline-block;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	background-color: rgb(46, 164, 79);
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 16px;
+	border-bottom: 4px solid rgb(21, 136, 62);
+	font-weight: 700;
+	color: white;
+	line-height: 26px;
+	margin-left: 10%;
+	margin-bottom: 20px;
+	text-decoration: none;
+	width: fit-content;
+}
+
+.view-chart:hover{
+	text-decoration: underline;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+:root {
+  /* Navbar Colors */
+  --navbar-col: #2579c6;
+  --navbar-text-col: #fff;
+  --navbar-border-col: #DDDDDD;
+
+  /* Page Colors */
+  --page-col: #FFFFFF;
+  --text-col: #404040;
+  --link-col: #2579c6;
+  --hover-col: #dddddd;
+
+  /* Footer Colors */
+  --footer-col: #2579c6;
+  --footer-text-col: #fff;
+  --footer-link-col: #fff;
+  --footer-hover-col: #0085A1;
+}

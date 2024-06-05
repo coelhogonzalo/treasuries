@@ -28,10 +28,4 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
-    - name: Coverage Robot Action
-      uses: coverage-robot/action@v1.0.4
-      with:
-        token: ${{ secrets.COVERAGE_TOKEN }}
-        files: ./coverage/**/coverage.xml
-        tag: api-service
           

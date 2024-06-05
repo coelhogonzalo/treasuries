@@ -1,0 +1,278 @@
+@media only screen and (max-width: 1199px) {
+
+	.treasuries-table tr,
+	.treasuries-table td,
+	.treasuries-table th,
+	.treasuries-table tbody,
+	.treasuries-table thead,
+	.treasuries-table tfoot,
+	.treasuries-table {
+		display: block;
+		width: 100%;
+	}
+
+	.treasuries-table--smaller.is--top {
+		display: none;
+	}
+
+	.treasuries-table--mobile {
+		border: 1px solid #cccccc;
+		/* #E2E6FF */
+		display: table;
+		margin-top: 35px;
+		max-width: 800px;
+		width: 100%;
+	}
+
+	.treasuries-table--mobile tr {
+		background-color: unset !important;
+		border-bottom: 1px solid #cccccc;
+	}
+
+	.treasuries-table--mobile tr th {
+		border: none;
+		border-right: 1px solid #cccccc;
+	}
+
+	.treasuries-table--mobile th,
+	.treasuries-table--mobile td {
+		font-size: 13px !important;
+	}
+
+	.treasuries-table--mobile .top-treasuries-table-label {
+		background-color: unset;
+		border-color: inherit;
+		border-bottom: none;
+		font-weight: 600 !important;
+	}
+
+	.treasuries-table--mobile td {
+		border-left: 0;
+		border-right: 0;
+		color: #051b52;
+		font-weight: 500 !important;
+	}
+
+	.treasuries-table--mobile .td-value {
+		text-align: left !important;
+	}
+
+	.td-location, .th-location {
+		width: calc(100% - 10px) !important;
+	}
+
+	.treasuries-table tbody td {
+		position: relative;
+		padding-left: 160px !important;
+		border-top: 1px solid #E2E6FF;
+	}
+
+	.treasuries-table .td-location {
+		width: 65px;
+		padding: 0 20px 0 0;
+		border-top: none;
+		text-align: right !important;
+		border-bottom: unset !important;
+	}
+
+	.treasuries-table tbody td:before {
+		content: attr(data-title);
+		border-right: 1px solid #E2E6FF;
+		position: absolute;
+		left: 0;
+		top: 0;
+		padding: 10px 20px;
+		width: 140px;
+		height: 100%;
+		display: flex;
+	}
+
+	.treasuries-table .total-label:before {
+		display: none !important;
+	}
+
+	.treasuries-table tr:nth-child(odd), .treasuries-table tr:nth-child(even) {
+		border: 1px solid #E2E6FF;
+		margin-bottom: 15px;
+		margin-top: 5px;
+		border-radius: 12px 12px 0px 0px;
+	}
+
+	.treasuries-table tr td:nth-child(1) {
+		border-top: 0;
+	}
+
+	.treasuries-table .td-company {
+		padding-left: 20px !important;
+		width: auto;
+		float: left;
+		border-top: none !important;
+		font-weight: 700 !important;
+		font-size: 15px !important;
+		position: relative;
+		z-index: 1;
+	}
+
+	.treasuries-table .td-company:before {
+		display: none;
+	}
+
+	.treasuries-table .td-location:before {
+		border-right: 0px !important;
+		display: none;
+	}
+
+	.treasuries-table thead {
+		display: none;
+	}
+
+	.treasuries-table--smaller {
+		max-width: none;
+	}
+
+	.center-on-mobile {
+		text-align: center;
+		font-size: 24px;
+		margin-bottom: 10px;
+	}
+
+	.treasuries-table .th-location {
+		display: none;
+	}
+
+	.treasuries-table tr {
+		margin-bottom: 0px;
+	}
+
+	.treasuries-table tr .th-value-today {
+		text-align: right;
+	}
+
+	.treasuries-table--smaller tr .th-value-today {
+		text-align: left !important;
+	}
+
+	.treasuries-table tr th {
+		font-size: 13px !important;
+		padding-top: 13px !important;
+		padding-bottom: 13px !important;
+	}
+
+	.treasuries-table td,
+	.treasuries-table th {
+		font-size: 13px !important;
+	}
+
+	.treasuries-table tr .th-company_percent {
+		text-align: right !important;
+		padding-right: 10px !important;
+	}
+
+	.treasuries-table .td-company_percent {
+		text-align: left !important;
+		width: 100% !important;
+	}
+
+	.td-company_percent {
+		text-align: right !important;
+		border-bottom: unset;
+	}
+
+	.treasuries-table tbody tr td.hidden-on-mobile {
+		display: none;
+	}
+
+	.treasuries-table tbody tr td:nth-child(1) {
+		min-height: 36px;
+	}
+
+	.totals-pseudo-hide:before {
+		display: none !important;
+		content: '' !important;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.treasuries-table .td-symbol {
+		clear: both;
+		text-align: right;
+	}
+
+	.td-location {
+		position: relative;
+	}
+
+	.flag-icon {
+		left: 10px;
+		bottom: 0px;
+	}
+
+	.th-symbol {
+		margin-left: -20px;
+		margin-right: 54px;
+	}
+
+	.td-company, .td-symbol {
+		flex: 10%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.td-company:hover, .td-symbol:hover {
+		overflow: auto;
+		white-space: normal;
+		text-overflow: initial;
+	}
+
+	.td-company_btc {
+		flex: 3%;
+	}
+
+	.td-value, .td-company_btc {
+		text-align: right !important;
+	}
+
+	.treasuries-table--smaller .th-value-today {
+		position: absolute;
+		width: 0px;
+		right: 0;
+		left: unset;
+	}
+
+	.treasuries-table--smaller tr .th-value-today {
+		text-align: right !important;
+	}
+
+	.treasuries-table tbody tr td {
+		text-align: left !important;
+	}
+
+	.treasuries-table--smaller .th-company_btc {
+		display: block !important;
+	}
+}
+
+@media(max-width: 450px) {
+	.navbar-brand-wrapper {
+		gap: 5px;
+	}
+
+	.navbar-custom .navbar-brand-logo,
+	.navbar-custom .navbar-brand-logo~span {
+		font-size: 1rem;
+	}
+
+	.bitbo-nav .bitbo-nav__logo {
+		display: none;
+	}
+
+	.bitbo-nav .bitbo-nav__text-logo {
+		width: 50px;
+	}
+
+	.treasuries-table {
+		width: 96vw;
+		margin-left: calc(-48vw + 50%);
+	}
+}

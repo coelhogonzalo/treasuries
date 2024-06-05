@@ -1,29 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'page.html' %}
 
-<head>
-  {% block title %}
-  <title>Bitcoin Treasuries</title>
-  {% endblock %}
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <!-- Add additional CSS in static file -->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'styles.css' %}" />
-  <link rel="icon" href="{% static 'favicon.ico' %}" />
-  
-</head>
-
+{% block content %}
 <body>
 
   
+  {% include 'header.html' with title=base_domain %}
 
-  {% include 'nav.html' %}
+  <p class="treasuries-subtitle">BTC holdings in publicly traded and private companies, ETFs and countries. Help update data <a href="/contact/">here</a>.</p>
 
-  <p class="treasuries-subtitle">BTC holdings in publicly traded and private companies, ETFs and countries. Help update
-    data <a href="https://github.com/BuyBitcoinWorldwide/bitcointreasuries">here</a>.</p>
   <table class="treasuries-index treasuries-table value-table treasuries-table--smaller is--top">
     <thead>
       <tr class="top-table-header">
@@ -34,115 +18,48 @@
         </th>
         <th class="top-treasuries-table-label" data-title="Last Updated">Last Updated</th>
       </tr>
-    </thead>
+    </thead> 
     <tbody>
-      <tr style="display: none;">
-        <td class="td-symbol" data-title="Category"><a href="#etfs">ETFs</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
-        </td>
-        <td class="td-value" data-title="Value"></td>
-        <td class="td-company_percent" data-title="% of 21m">
-          %
-        </td>
-      </tr>
-      <tr style="display: none;">
-        <td class="td-symbol" data-title="Category">
-          <a href="#countries">Countries</a>
-        </td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
-        </td>
-        <td class="td-value" data-title="Value"></td>
-        <td class="td-company_percent" data-title="% of 21m">
-          %
-        </td>
-      </tr>
-      <tr style="display: none;">
-        <td class="td-symbol" data-title="Category"><a href="#public">Public Companies</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
-        </td>
-        <td class="td-value" data-title="Value"></td>
-        <td class="td-company_percent" data-title="% of 21m">
-          %
-        </td>
-      </tr>
-      <tr style="display: none;">
-        <td class="td-symbol" data-title="Category"><a href="#private">Private Companies</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-
-
-
-
-
-        </td>
-        <td class="td-value" data-title="Value"></td>
-        <td class="td-company_percent" data-title="% of 21m">
-          %
-        </td>
-      </tr>
       <tr class="top-table-data-row">
-        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">71
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">
+          {{ treasury_count }}
         </td>
-        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma"
-          data-title="BTC">
-
-
-
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC"> 
+          {{ treasuries_total_btc }}
         </td>
-        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value"></td>
-        <td
-          style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;"
-          class="td-company_percent" data-title="% of 21m">
-          %
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">${{ treasuries_total_usd }}</td>
+        <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
+          {{ treasuries_total_percentage }}%
         </td>
-        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated"
-          data-title="Last Updated">
-
+        <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
+          {{ latest_update }} 
         </td>
-      </tr>
-    </tbody>
+	    </tr>
+    </tbody>    
   </table>
   <table class="treasuries-index treasuries-table--mobile">
     <tbody>
       <tr>
         <th class="top-treasuries-table-label">Entities</th>
-        <td>71</td>
+        <td>{{ treasury_count }}</td>
       </tr>
       <tr>
         <th class="top-treasuries-table-label"># of BTC</th>
         <td class="add-comma">
-
-
-
-
-
+          {{ treasuries_total_btc }}
         </td>
       </tr>
       <tr>
         <th class="top-treasuries-table-label">Value Today</th>
-        <td class="td-value" data-title="Value"></td>
+        <td class="td-value" data-title="Value">{{ treasuries_total_usd }}</td>
       </tr>
       <tr>
         <th class="top-treasuries-table-label">% of 21m</th>
-        <td>%</td>
+        <td>{{ treasuries_total_percentage }}%</td>
       </tr>
       <tr>
         <th class="top-treasuries-table-label">Last Updated</th>
-        <td></td>
+        <td>{{ latest_update }}</td>
       </tr>
     </tbody>
   </table>
@@ -238,8 +155,7 @@
     <a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
   </div>
 
-
-  <br>
+  {% include 'jobsad.html' %}
 
   <br>
 
@@ -272,10 +188,10 @@
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
-        <td class="td-company_btc add-comma" data-title="BTC"></td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ public_companies_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ public_companies_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-          %
+          {{ public_companies_total.percentage_from_21m }}%
         </td>
       </tr>
     </tbody>
@@ -308,10 +224,10 @@
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
-        <td class="td-company_btc add-comma" data-title="BTC"></td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ countries_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ countries_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-          %
+          {{ countries_total.percentage_from_21m }}%
         </td>
       </tr>
     </tbody>
@@ -344,10 +260,10 @@
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
-        <td class="td-company_btc add-comma" data-title="BTC"></td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ private_companies_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ private_companies_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-          %
+          {{ private_companies_total.percentage_from_21m }}%
         </td>
       </tr>
     </tbody>
@@ -385,10 +301,10 @@
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
-        <td class="td-company_btc add-comma" data-title="BTC"></td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ etfs_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ etfs_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-          %
+          {{ etfs_total.percentage_from_21m }}%
         </td>
       </tr>
       
@@ -431,10 +347,10 @@
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
-        <td class="td-company_btc add-comma" data-title="BTC"></td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ miners_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-          %
+          {{ miners_total.percentage_from_21m }}%
         </td>
       </tr>
     </tbody>
@@ -468,10 +384,10 @@
         <td class="hidden-on-mobile"></td>
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
-        <td class="td-company_btc add-comma" data-title="BTC"></td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value"></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ defi_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ defi_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-          %
+          {{ defi_total.percentage_from_21m }}%
         </td>
       </tr>
     </tbody>
@@ -492,7 +408,6 @@
   <br>
    
 
-
   <div class="bitcoin-uptime-days-down">
     <h3 class="bitcoin-uptime-subheading">Help us update and maintain the data:</h3>
     <a target="_blank" rel="nofollow noopener" class="button-cover button" style="max-width: 250px !important;"
@@ -501,8 +416,17 @@
 
   <br>
 
-  {% include 'footer.html' %}
-
 </body>
 
-</html>
+{% endblock %}
+
+
+<script>
+ window.addEventListener('load', (event) => {
+   document.querySelectorAll('.notify-button').forEach(item => {
+   item.addEventListener('click', event => {
+     fathom.trackEvent('Clicked Treasuries Notifications');
+   });
+   });
+ });
+</script>
