@@ -1,11 +1,13 @@
 {% load mathfilters %}
 {% load extras %}
-<tr{% if treasury.cssclass %} class="{{ treasury.cssclass }}"{% endif %}>                                
+{% load static %}
+
+<tr>                                
 <td class="td-company" data-title="Company Name">{{ treasury.company }}</td>
 
 {% if treasury.country != None and treasury.country != ""%}
 <td class="td-location">
-    <img class="flag-icon" src="static/flags/4x3/{{ treasury.country|lower }}.svg" data-tooltip="{{ treasury.country }}"></img>
+    <img class="flag-icon" src="{% static 'flags/4x3/' %}{{ treasury.country|lower }}.svg" data-tooltip="{{ treasury.country }}">
 </td>
 {% else %} 
 <td class="td-location">

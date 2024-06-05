@@ -3,7 +3,12 @@ import datetime
 
 from urllib.request import urlopen
 
-from BitcoinTreasuries.constants import BTC_DEFAULT_PRICE
+from BitcoinTreasuries.constants import (
+    BTC_DEFAULT_PRICE,
+    CATEGORIES_BY_TYPE,
+    NAVBAR_LINKS,
+)
+from treasuries.enums import TreasuryType
 from treasuries.models import Treasury
 
 
@@ -49,9 +54,35 @@ def get_miners():
     return Treasury.objects.filter(miner=True).order_by("-btc")
 
 
+def get_miners_latest_update():
+    return (
+        Treasury.history.filter(miner=True)
+        .order_by("-history_date")
+        .first()
+        .history_date.date()
+    )
+
+
 def get_treasury_count():
     return Treasury.objects.count()
 
 
-def get_latest_update():
+def get_latest_update_by_type(type=None):
+    if type:
+        return (
+            Treasury.history.filter(treasury_type=type)
+            .order_by("-history_date")
+            .first()
+            .history_date.date()
+        )
     return Treasury.history.order_by("-history_date").first().history_date.date()
+
+
+def get_latest_updates():
+    latest_updates = {}
+    types = [type.value for type in TreasuryType]
+    for type in types:
+        latest_updates[CATEGORIES_BY_TYPE[type]] = get_latest_update_by_type(type)
+    latest_updates["miners"] = get_miners_latest_update()
+    latest_updates["treasuries"] = get_latest_update_by_type()
+    return latest_updates

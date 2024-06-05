@@ -1,7 +1,7 @@
 from BitcoinTreasuries.constants import BTC_21M_CAP, NAVBAR_LINKS
 from treasuries.domain import (
     get_bitcoin_price,
-    get_latest_update,
+    get_latest_updates,
     get_miners,
     get_treasury_by_type,
     get_treasury_count,
@@ -50,6 +50,6 @@ def custom_context(request):
     }
     context = calculate_totals(partial_context)
     context["navbar_links"] = NAVBAR_LINKS
-    context["latest_update"] = get_latest_update()
+    context["latest_updates"] = get_latest_updates()
     context["base_domain"] = request.get_host()
     return context

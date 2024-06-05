@@ -32,7 +32,7 @@
           {{ treasuries_total_percentage }}%
         </td>
         <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
-          {{ latest_update }} 
+          {{ latest_updates.treasuries }} 
         </td>
 	    </tr>
     </tbody>    
@@ -59,89 +59,14 @@
       </tr>
       <tr>
         <th class="top-treasuries-table-label">Last Updated</th>
-        <td>{{ latest_update }}</td>
+        <td>{{ latest_update.treasuries }}</td>
       </tr>
     </tbody>
   </table>
 
   <br>
 
-  <h2 class="center-on-mobile">Totals by Category</h2>
-  <table class="treasuries-index treasuries-table treasuries-table--smaller">
-    <thead>
-      <tr>
-        <th class="th-company" data-title="Company Name">Category</th>
-        <th class="th-company_btc" data-title="BTC"># of BTC</th>
-        <th class="th-value-today" data-title="Value">Value Today</th>
-        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="td-symbol" data-title="Category"><a href="#etfs">ETFs</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-            {{ etfs_total.btc }}
-        </td>
-        <td class="td-value" data-title="Value"> {{ etfs_total.btc_in_usd }}</td>
-        <td class="td-company_percent" data-title="% of 21m">
-          {{ etfs_total.percentage_from_21m }}%
-        </td>
-      </tr>
-      <tr>
-        <td class="td-symbol" data-title="Category">
-          <a href="#countries">Countries</a>
-        </td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-          {{ countries_total.btc }}
-        </td>
-        <td class="td-value" data-title="Value"> {{ countries_total.btc_in_usd }}</td>
-        <td class="td-company_percent" data-title="% of 21m">
-          {{ countries_total.percentage_from_21m }}%
-        </td>
-      </tr>
-      <tr>
-        <td class="td-symbol" data-title="Category"><a href="#public">Public Companies</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-          {{ public_companies_total.btc }}
-        </td>
-        <td class="td-value" data-title="Value">{{ public_companies_total.btc_in_usd }}</td>
-        <td class="td-company_percent" data-title="% of 21m">
-          {{ public_companies_total.percentage_from_21m }}%
-        </td>
-      </tr>
-      <tr>
-        <td class="td-symbol" data-title="Category"><a href="#private">Private Companies</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-          {{ private_companies_total.btc }}
-        </td>
-        <td class="td-value" data-title="Value">{{ private_companies_total.btc_in_usd }}</td>
-        <td class="td-company_percent" data-title="% of 21m">
-          {{ private_companies_total.percentage_from_21m }}%
-        </td>
-      </tr>
-
-      <tr>
-        <td class="td-symbol" data-title="Category"><a href="/miners/">BTC Mining Companies</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-          {{ miners_total.btc }}
-        </td>
-        <td class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
-        <td class="td-company_percent" data-title="% of 21m">
-          {{ miners_total.percentage_from_21m }}%
-        </td>
-      </tr>
-      <tr>
-        <td class="td-symbol" data-title="Category"><a href="/#defi">Defi</a></td>
-        <td class="td-company_btc add-comma" data-title="BTC">
-          {{ defi_total.btc }}
-        </td>
-        <td class="td-value" data-title="Value">{{ defi_total.btc_in_usd }}</td>
-        <td class="td-company_percent" data-title="% of 21m">
-          {{ defi_total.percentage_from_21m }}%
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  {% include 'totalowned.html' %}
 
   <br>
 
@@ -211,11 +136,6 @@
         <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
       </tr>
     </thead>
-
-
-
-
-
     <tbody>
       {% for treasury in countries %}
         {% include 'treasury_row.html' %}
