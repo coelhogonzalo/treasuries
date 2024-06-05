@@ -7,7 +7,7 @@
 
 {% if treasury.country != None and treasury.country != ""%}
 <td class="td-location">
-    <img class="flag-icon" src="{% static 'flags/4x3/' %}{{ treasury.country|lower }}.svg" data-tooltip="{{ treasury.country }}">
+    <img class="flag-icon" src="{% static 'flags/4x3/' %}{{ treasury.country|lower }}.svg" alt="country flag" data-tooltip="{{ treasury.country }}">
 </td>
 {% else %} 
 <td class="td-location">
