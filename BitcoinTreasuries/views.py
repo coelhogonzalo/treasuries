@@ -10,3 +10,8 @@ def index(request):
 def countries(request):
     template = loader.get_template("countries.html")
     return HttpResponse(template.render({}, request))
+
+
+def miners(request):
+    template = loader.get_template("miners.html")
+    return HttpResponse(template.render({}, request))

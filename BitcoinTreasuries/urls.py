@@ -6,13 +6,14 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from .views import countries, index
+from .views import countries, index, miners
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("treasuries/", include("treasuries.urls")),
     path("", index, name="index"),
     path("countries/", countries, name="countries"),
+    path("miners/", miners, name="miners"),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/schema/swagger-ui/",

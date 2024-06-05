@@ -1,0 +1,162 @@
+{% extends 'page.html' %}
+
+{% block content %}
+
+{% include 'header.html' with 
+title="Bitcoin Holdings of Public Bitcoin Miners"
+subtitle="This page shows a chart and list of Bitcoin mining companies and the amount of bitcoins each company owns." %}
+<table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
+  <thead>
+    <tr class="top-table-header">
+      <th class="top-treasuries-table-label" data-title="Company Name">Countries</th>
+      <th class="top-treasuries-table-label" data-title="BTC"># of BTC</th>
+      <th class="top-treasuries-table-label" data-title="Value">Value Today</th>
+      <th class="top-treasuries-table-label" style="padding-left: 20px !important;" data-title="% of 21m">% of 21M BTC</th>
+      <th class="top-treasuries-table-label" data-title="Last Updated">Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="display: none;">
+      <td class="td-symbol" data-title="Category"><a href="/treasuries/#etfs">ETFs</a></td>
+      <td class="td-company_btc add-comma" data-title="BTC">
+        {{miners_total.btc}}
+      </td>
+      <td class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+      <td class="td-company_percent" data-title="% of 21m">
+        {{ miners_total.percentage_from_21m }}%
+      </td>
+    </tr>
+    <tr class="top-table-data-row">
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">{{ miners|length }}</td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">
+        {{ miners_total.btc }}
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+      <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
+        {{ miners_total.percentage_from_21m }}%
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
+        {{ latest_updates.miners }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="treasuries-index treasuries-table--mobile">
+  <tbody>
+    <tr>
+      <th class="top-treasuries-table-label">Entities</th>
+      <td>{{ miners|length }}</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label"># of BTC</th>
+      <td class="add-comma">
+        {{ miners_total.btc }}
+      </td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">Value Today</th>
+      <td class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">% of 21m</th>
+      <td>{{ miners_total.percentage_from_21m }}%</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">Last Updated</th>
+      <td> {{ latest_updates.miners }}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<!-- Your Jekyll Loop Here -->
+{% for treasury in miners %}
+	  <span class="company-data" data-name="{{ treasury.company }}" data-btcc="{{ treasury.btc }}"></span>
+{% endfor %}
+
+<div id="myHighchart" style="width:100%; height:400px;"></div>
+
+
+
+<script>
+  // Read data from the Jekyll generated elements
+  var companies = [];
+  var btcCounts = [];
+
+  document.querySelectorAll('.company-data').forEach(function(el) {
+	  companies.push(el.getAttribute('data-name'));
+  
+	  // Remove commas before converting to a float
+	  var btcCount = el.getAttribute('data-btcc').replace(/,/g, '');
+	  btcCounts.push(parseFloat(btcCount));
+  });
+
+
+  // Initialize Highcharts
+  Highcharts.chart('myHighchart', {
+	  chart: {
+		  type: 'bar'
+	  },
+	  title: {
+		  text: 'Mining Companies Holding Bitcoin (BTC)'
+	  },
+	  xAxis: {
+		  categories: companies
+	  },
+	  yAxis: {
+		  title: {
+			  text: 'Number of bitcoins'
+		  }
+	  },
+	  tooltip: {
+		  pointFormatter: function() {
+			  // Format the number with commas for thousands
+			  return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + Highcharts.numberFormat(this.y, 0, '.', ',') + '</b><br/>';
+		  }
+	  },
+	  series: [{
+		  name: 'Bitcoins',
+		  data: btcCounts
+	  }]
+  });
+</script>
+
+<br><br>
+
+<h2 class="center-on-mobile" id="miners">Mining Companies that Own Bitcoin</h2>
+<table class="treasuries-table">
+   <thead>
+	  <tr>
+		<th class="th-company" data-title="Company Name">Entity</th>
+		<th class="th-location">Country</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Symbol:Exchange</th>
+        <th class="th-purchases" data-title="Purchases/Filings">Filings & Sources</th>
+		<th class="th-company_btc" data-title="BTC"># of BTC</th>
+		<th class="th-value-today" data-title="Value">Value Today</th>
+		<th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+	  </tr>
+   </thead>
+   <tbody>
+    {% for treasury in miners %}
+        {% include 'treasury_row.html' %}
+    {% endfor %}
+    <tr>
+        <td class="hidden-on-mobile"></td>
+        <td class="hidden-on-mobile"></td>
+        <td class="total-label"><b>Totals:</b></td>
+        <td class="td-company_btc add-comma" data-title="BTC">{{ miners_total.btc }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+        <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+            {{ miners_total.percentage_from_21m }}%
+        </td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+{% include 'totalowned.html' %}
+
+{% endblock %}
