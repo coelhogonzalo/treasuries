@@ -1,10 +1,10 @@
-{% extends 'page.html' %}
+{% extends 'components/page.html' %}
 
 {% block title %}Bitcoin Holdings of Public Bitcoin Miners{% endblock %}
 
 {% block content %}
 
-{% include 'header.html' with 
+{% include 'components/header.html' with 
 title="Bitcoin Holdings of Public Bitcoin Miners"
 subtitle="This page shows a chart and list of Bitcoin mining companies and the amount of bitcoins each company owns." %}
 <table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
@@ -142,7 +142,7 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
    </thead>
    <tbody>
     {% for treasury in miners %}
-        {% include 'treasury_row.html' %}
+        components/treasury_row.html' %}
     {% endfor %}
     <tr>
         <td class="hidden-on-mobile"></td>
@@ -159,6 +159,6 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
 
 <br><br>
 
-{% include 'total_owned.html' %}
+{% include 'components/total_owned.html' %}
 
 {% endblock %}

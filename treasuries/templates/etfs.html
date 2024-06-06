@@ -1,4 +1,4 @@
-{% extends 'page.html' %}
+{% extends 'components/page.html' %}
 
 {% block title %}US Bitcoin ETF Flows Tracker & Charts{% endblock %}
 
@@ -7,7 +7,7 @@
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-{% include 'header.html' with title="US Bitcoin ETF Flows Tracker & Charts" %}
+{% include 'components/header.html' with title="US Bitcoin ETF Flows Tracker & Charts" %}
 
 <table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
   <thead>
@@ -103,7 +103,7 @@
     </tr> 
    </thead>
    {% for treasury in etfs %}
-    {% include 'treasury_row.html' %} 
+    {% include 'components/treasury_row.html' %} 
    {% endfor %}
    <tbody>
         <tr>
@@ -152,7 +152,7 @@
 
 
 
-{% include 'jobs_ad.html' %}
+{% include 'components/jobs_ad.html' %}
 <br>
 
 
@@ -190,14 +190,9 @@
 
 
 <br><br>
-<h2>Get Notifications</h2>
 
-<p>Get notified when any company, country or ETF on this page gets its balance updated.</p>
+{% include 'components/treasuries_alerts.html' %}
 
-<a href="https://t.me/BTCTreasuries" target="_blank" class="notify-button">Telegram</a>
-<a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
-
-<br><br>
 <h3>How often is this page updated?</h3>
 <p>We update this page daily, and get our source data directly from the ETF websites.</p>
 

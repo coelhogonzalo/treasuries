@@ -1,9 +1,9 @@
-{% extends 'page.html' %}
+{% extends 'components/page.html' %}
 
 {% block content %}
 
   
-  {% include 'header.html' with title=base_domain %}
+  {% include 'components/header.html' with title=base_domain %}
 
   <p class="treasuries-subtitle">BTC holdings in publicly traded and private companies, ETFs and countries. Help update data <a href="/contact/">here</a>.</p>
 
@@ -65,21 +65,13 @@
 
   <br>
 
-  {% include 'total_owned.html' %}
+  {% include 'components/total_owned.html' %}
 
   <br>
 
-  <h2>Get Notifications</h2>
+  {% include 'components/treasuries_alerts.html' %}
 
-  <p>Get notified when any company, country or ETF on this page gets its balance updated.</p>
-
-
-  <div class="button-holder">
-    <a href="https://t.me/BTCTreasuries" target="_blank" class="notify-button">Telegram</a>
-    <a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
-  </div>
-
-  {% include 'jobs_ad.html' %}
+  {% include 'components/jobs_ad.html' %}
 
   <br>
 
@@ -105,7 +97,7 @@
 
     <tbody>
       {% for treasury in public_companies %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
       {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
@@ -137,7 +129,7 @@
     </thead>
     <tbody>
       {% for treasury in countries %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
       {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
@@ -173,7 +165,7 @@
 
     <tbody>
       {% for treasury in private_companies %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
       {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
@@ -213,7 +205,7 @@
 
     <tbody>
       {% for treasury in etfs %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
       {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
@@ -259,7 +251,7 @@
 
     <tbody>
       {% for treasury in miners %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
       {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
@@ -297,7 +289,7 @@
 
     <tbody>
       {% for treasury in defi %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
       {% endfor %}
       <tr>
         <td class="hidden-on-mobile"></td>
@@ -311,21 +303,9 @@
       </tr>
     </tbody>
   </table>
-
-  <br>
   <br>
 
-  <h2>Get Notifications</h2>
-
-  <p>Get notified when any company, country or ETF on this page gets its balance updated.</p>
-
-  <div class="button-holder">
-    <a href="https://t.me/BTCTreasuries" target="_blank" class="notify-button">Telegram</a>
-    <a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
-  </div>
-
-  <br>
-   
+  {% include 'components/treasuries_alerts.html' %}
 
   <div class="bitcoin-uptime-days-down">
     <h3 class="bitcoin-uptime-subheading">Help us update and maintain the data:</h3>

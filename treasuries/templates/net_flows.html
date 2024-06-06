@@ -1,10 +1,10 @@
-{% extends 'page.html' %}
+{% extends 'components/page.html' %}
 
 {% block title %}Bitcoin ETF Net Daily Inflows & Outflows{% endblock %}
 
 {% block content %}
 
-{% include 'header.html' with title="Bitcoin ETF Net Daily Inflows & Outflows" %}
+{% include 'components/header.html' with title="Bitcoin ETF Net Daily Inflows & Outflows" %}
 
 <div id='nh-chart-loader' data-chart='spot-bitcoin-etf-total-net-flows' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
 

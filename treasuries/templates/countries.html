@@ -1,10 +1,10 @@
-{% extends 'page.html' %}
+{% extends 'components/page.html' %}
 
 {% block title %}Bitcoin Holdings of Countries & Governments{% endblock %}
 
 {% block content %}
 
-{% include 'header.html' with title="Bitcoin Holdings of Countries & Governments" %}
+{% include 'components/header.html' with title="Bitcoin Holdings of Countries & Governments" %}
 <table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
   <thead>
     <tr class="top-table-header">
@@ -139,7 +139,7 @@
    </thead>
    <tbody>
     {% for treasury in countries %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
     {% endfor %}
     <tr>
         <td class="hidden-on-mobile"></td>
@@ -156,6 +156,6 @@
 
 <br><br>
 
-{% include 'total_owned.html' %}
+{% include 'components/total_owned.html' %}
 
 {% endblock %}

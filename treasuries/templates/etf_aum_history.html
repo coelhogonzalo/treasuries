@@ -1,10 +1,10 @@
-{% extends 'page.html' %}
+{% extends 'components/page.html' %}
 
 {% block title %}Bitcoin ETF AUM Tracker & History{% endblock %}
 
 {% block content %}
 
-{% include 'header.html' with title="Bitcoin ETF AUM Tracker & History" %}
+{% include 'components/header.html' with title="Bitcoin ETF AUM Tracker & History" %}
 
 <div id='nh-chart-loader' data-chart='spot-bitcoin-etf-aum' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
 
@@ -79,7 +79,7 @@
      </tr>
     </thead>
     {% for treasury in etfs %}
-        {% include 'treasury_row.html' %}
+        {% include 'components/treasury_row.html' %}
     {% endfor %}
     <tbody>
          <tr>
