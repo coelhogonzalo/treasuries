@@ -6,7 +6,7 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from .views import countries, index, miners
+from .views import countries, etf_aum_history, etfs, index, miners, net_flows
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -14,6 +14,9 @@ urlpatterns = [
     path("", index, name="index"),
     path("countries/", countries, name="countries"),
     path("miners/", miners, name="miners"),
+    path("us-etfs/", etfs, name="us-etfs"),
+    path("us-etf-aum/", etf_aum_history, name="us-etf-aum"),
+    path("net-us-et-flows/", net_flows, name="net-flows"),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/schema/swagger-ui/",

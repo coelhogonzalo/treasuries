@@ -18,6 +18,7 @@ class Treasury(models.Model):
     info_url = models.CharField(null=True, blank=True, max_length=255)
     cssclass = models.CharField(null=True, blank=True, max_length=50)
     miner = models.BooleanField(default=False)
+    etfshortname = models.CharField(null=True, blank=True, max_length=50)
     history = HistoricalRecords()
 
     def __str__(self):
@@ -29,7 +30,7 @@ class Treasury(models.Model):
 
     @property
     def percentage_from_21m(self):
-        return round(self.btc * 100 / BTC_21M_CAP, 4)
+        return round(self.btc * 100 / BTC_21M_CAP, 3)
 
     @property
     def btc_rounded(self):

@@ -1,0 +1,99 @@
+{% extends 'page.html' %}
+
+{% block title %}Bitcoin ETF AUM Tracker & History{% endblock %}
+
+{% block content %}
+
+{% include 'header.html' with title="Bitcoin ETF AUM Tracker & History" %}
+
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-aum' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<p>The chart above shows historical AUM in USD for US spot Bitcoin ETFs.</p>
+
+<h2>Related Charts</h2>
+
+<ul>
+ <li><a href="/us-etfs/">US ETF Balances & Flows</a></li>
+  <li><a href="/net-us-et-flows/">Daily Net Inflows & Outflows</a></li>
+</ul>
+
+<br>
+<h2>Live AUM by ETF in BTC and USD</h2>
+
+
+ <table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
+   <thead>
+     <tr class="top-table-header">
+       <th class="top-treasuries-table-label" data-title="Company Name">Entities</th>
+       <th class="top-treasuries-table-label" data-title="BTC"># of BTC</th>
+       <th class="top-treasuries-table-label" data-title="Value">Total AUM (USD)</th>
+       <th class="top-treasuries-table-label" style="padding-left: 20px !important;" data-title="% of 21m">% of 21M BTC</th>
+       <th class="top-treasuries-table-label" data-title="Last Updated">Last Updated</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr style="display: none;">
+       <td class="td-symbol" data-title="Category"><a href="/treasuries/#etfs">ETFs</a></td>
+       <td class="td-company_btc add-comma" data-title="BTC">
+        {{ etfs_total.btc }}
+       </td>
+       <td class="td-value" data-title="Value">
+        {{ etfs_total.btc_in_usd }}
+       </td>
+       <td class="td-company_percent" data-title="% of 21m">
+         {{ etfs_total.percentage_from_21m }}%
+       </td>
+     </tr>
+     <tr class="top-table-data-row">
+       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">
+        {{ etfs|length }}
+       </td>
+       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">
+        {{ etfs_total.btc }}
+       </td>
+       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">
+        {{ etfs_total.btc_in_usd }}
+       </td>
+       <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
+         {{ etfs_total.percentage_from_21m }}%
+       </td>
+       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
+         {{ latest_updates.etfs }} 
+       </td>
+     </tr>
+   </tbody>
+ </table>
+ 
+ 
+ <br>
+ <table class="treasuries-table">
+     <thead>
+     <tr>
+       <th class="th-company" data-title="Company Name">Entity</th>
+       <th class="th-location">Country</th>
+       <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+       <th class="th-purchases" data-title="Purchases/Filings">Filings & Changes</th>
+       <th class="th-company_btc" data-title="BTC"># of BTC</th>
+       <th class="th-value-today" data-title="Value">AUM (USD)</th>
+       <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+     </tr>
+    </thead>
+    {% for treasury in etfs %}
+        {% include 'treasury_row.html' %}
+    {% endfor %}
+    <tbody>
+         <tr>
+       <td class="hidden-on-mobile"></td>
+       <td class="hidden-on-mobile"></td>
+       <td class="hidden-on-mobile"></td>
+       <td class="total-label"><b>Totals:</b></td>
+       <td class="td-company_btc add-comma" data-title="BTC">{{ etfs_total.btc }}</td>
+       <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ etfs_total.btc_in_usd }}</td>
+       <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+         {{ etfs_total.percentage_from_21m }}%
+       </td>
+     </tr>
+    </tbody>
+ </table>
+
+{% endblock %}

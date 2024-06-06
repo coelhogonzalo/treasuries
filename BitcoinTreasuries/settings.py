@@ -18,6 +18,7 @@ ALLOWED_HOSTS = re.split(" ", os.environ.get("ALLOWED_HOSTS"))
 CSRF_TRUSTED_ORIGINS = re.split(" ", os.environ.get("TRUSTED_ORIGINS"))
 CSRF_ALLOWED_ORIGINS = re.split(" ", os.environ.get("TRUSTED_ORIGINS"))
 
+SECURE_REFERRER_POLICY = "origin-when-cross-origin"
 
 # Application definition
 

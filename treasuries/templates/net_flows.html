@@ -1,0 +1,20 @@
+{% extends 'page.html' %}
+
+{% block title %}Bitcoin ETF Net Daily Inflows & Outflows{% endblock %}
+
+{% block content %}
+
+{% include 'header.html' with title="Bitcoin ETF Net Daily Inflows & Outflows" %}
+
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-total-net-flows' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<p>The chart above shows daily total net flow (in USD) for spot bitcoin ETFs in the USA.</p>
+
+<h2>Related Charts</h2>
+
+<ul>
+ <li><a href="/us-etfs/">US ETF Balances & Flows</a></li>
+  <li><a href="/us-etf-aum/">History of US ETF AUM (USD)</a></li>
+</ul>
+
+{% endblock %}

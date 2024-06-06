@@ -1,0 +1,264 @@
+{% extends 'page.html' %}
+
+{% block title %}US Bitcoin ETF Flows Tracker & Charts{% endblock %}
+
+{% block content %}
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+{% include 'header.html' with title="US Bitcoin ETF Flows Tracker & Charts" %}
+
+<table class="treasuries-index treasuries-table treasuries-table--smaller is--top">
+  <thead>
+    <tr class="top-table-header">
+      <th class="top-treasuries-table-label" data-title="Company Name">ETFs</th>
+      <th class="top-treasuries-table-label" data-title="BTC"># of BTC</th>
+      <th class="top-treasuries-table-label" data-title="Value">Value Today</th>
+      <th class="top-treasuries-table-label" style="padding-left: 20px !important;" data-title="% of 21m">% of 21M BTC</th>
+		  <th class="top-treasuries-table-label" data-title="Last Updated">Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="display: none;">
+      <td class="td-symbol" data-title="Category"><a href="/treasuries/#etfs">ETFs</a></td>
+      <td class="td-company_btc add-comma" data-title="BTC">
+        {{ etfs_total.btc }}
+      </td>
+      <td class="td-value" data-title="Value">
+        {{ etfs_total.btc_in_usd }}
+      </td>
+      <td class="td-company_percent" data-title="% of 21m">
+        {{ etfs_total.percentage_from_21m }}%
+      </td>
+    </tr>
+    <tr class="top-table-data-row">
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">
+        {{ etfs|length }}
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">
+        {{ etfs_total.btc }}
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">
+        {{ etfs_total.btc_in_usd }}
+      </td>
+      <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
+        {{ etfs_total.percentage_from_21m }}%
+      </td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
+        {{ latest_updates.etfs }} 
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="treasuries-index treasuries-table--mobile">
+  <tbody>
+    <tr>
+      <th class="top-treasuries-table-label">Entities</th>
+      <td>
+        {{ etfs|length }}
+      </td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label"># of BTC</th>
+      <td class="add-comma">
+        {{ etfs_total.btc }}
+      </td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">Value Today</th>
+      <td class="td-value" data-title="Value">
+        {{ etfs_total.btc_in_usd }}
+      </td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">% of 21m</th>
+      <td>{{ etfs_total.percentage_from_21m }}%</td>
+    </tr>
+    <tr>
+      <th class="top-treasuries-table-label">Last Updated</th>
+      <td>{{ latest_updates.etfs }} </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<br>
+<a href="#flows" class="view-chart etf-flows">View Flows</a>
+<a href="#historical" class="view-chart balances-etf">View Historical Balances</a>
+
+
+<br>
+<br>
+<table class="treasuries-table">
+    <thead>
+    <tr>
+      <th class="th-company" data-title="Company Name">Entity</th>
+      <th class="th-location">Country</th>
+      <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+      <th class="th-purchases" data-title="Purchases/Filings">Filings & Changes</th>
+      <th class="th-company_btc" data-title="BTC"># of BTC</th>
+      <th class="th-value-today" data-title="Value">Value Today</th>
+      <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+    </tr> 
+   </thead>
+   {% for treasury in etfs %}
+    {% include 'treasury_row.html' %} 
+   {% endfor %}
+   <tbody>
+        <tr>
+      <td class="hidden-on-mobile"></td>
+      <td class="hidden-on-mobile"></td>
+      <td class="hidden-on-mobile"></td>
+      <td class="total-label"><b>Totals:</b></td>
+      <td class="td-company_btc add-comma" data-title="BTC">{{ etfs_total.btc }}</td>
+      <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ etfs_total.btc_in_usd }}</td>
+      <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
+        {{ etfs_total.percentage_from_21m }}%
+      </td>
+    </tr>
+   </tbody>
+</table>
+
+<br><br>
+<h2 id="flows">Flows Tracker</h2>
+
+<p>The chart below shows daily inflow and outflow (in USD) for spot bitcoin ETFs in the USA.</p>
+
+<iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/bitcoin-etf/spot-bitcoin-etf-flows/embed" title="Spot Bitcoin ETF Flows"></iframe>
+
+
+
+
+<script>
+  
+  window.addEventListener('load', (event) => {
+    document.querySelectorAll('.etf-flows').forEach(item => {
+    item.addEventListener('click', event => {
+      fathom.trackEvent('Click View Bitcoin ETF Flows');
+    });
+    });
+  });
+  
+  window.addEventListener('load', (event) => {
+    document.querySelectorAll('.balances-etf').forEach(item => {
+    item.addEventListener('click', event => {
+      fathom.trackEvent('Click View ETF Balances');
+    });
+    });
+  });
+  </script>
+
+
+
+
+{% include 'jobs_ad.html' %}
+<br>
+
+
+<h2 id="historical">Historical Balance Changes</h2>
+<p>The chart below shows you changes in the total US Bitcoin ETF balances, and in each Bitcoin ETFs balance over time.</p>
+
+
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+<br><br>
+
+<h2>Current Balances</h2>
+
+<p>The chart below tracks the current balance in BTC of each of the US Bitcoin ETFs.</p>
+
+<div id="container1" style="width:100%; height:500px !important;"></div>
+
+
+<h2>Related Charts</h2>
+
+<ul>
+  <li><a href="/net-us-et-flows/">Total Net US ETF Flows in USD</a></li>
+  <li><a href="/us-etf-aum/">History of US ETF AUM</a></li>
+  <li><a href="https://bitbo.io/">Live ETF Prices and Premiums</a></li>
+</ul>
+
+<br><br>
+<h2>Live ETF Tracker</h2>
+<p>Bitbo's dashboard can easily be turned into a live Bitcoin ETF tracker:</p>
+
+<h4>Step 1: Go to <a href="https://bitbo.io" target="_blank">bitbo.io</a></h4>
+
+<h4>Step 2: Move the ETF panels to the top</h4>
+
+<p>Watch this <a target="_blank" href="https://x.com/BitboBTC/status/1795474440035184795">18-second video</a> showing you how to turn Bitbo into an ETF tracker.</p>
+
+
+<br><br>
+<h2>Get Notifications</h2>
+
+<p>Get notified when any company, country or ETF on this page gets its balance updated.</p>
+
+<a href="https://t.me/BTCTreasuries" target="_blank" class="notify-button">Telegram</a>
+<a href="https://alerts.bitcointreasuries.com/subscribe" target="_blank" class="email-notify notify-button">Email</a>
+
+<br><br>
+<h3>How often is this page updated?</h3>
+<p>We update this page daily, and get our source data directly from the ETF websites.</p>
+
+
+
+<script>
+const data = [
+	{% for treasury in etfs %}
+			{
+				name: "{{ treasury.etfshortname }}",
+				symbol: "{{ treasury.symbol }}",
+				btc: {{ treasury.btc }}
+			} {% if not forloop.last %},{% endif %}
+	{% endfor %}
+];
+  document.addEventListener('DOMContentLoaded', function () {
+    // Sort data in descending order based on the 'btc' property
+    const sortedData = data.sort((a, b) => b.btc - a.btc);
+
+    Highcharts.chart('container1', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Bitcoin Holdings by ETF'
+        },
+        xAxis: {
+            categories: sortedData.map(item => `${item.name} (${item.symbol})`),
+            title: {
+                text: 'Company Name and Symbol'
+            }
+        },
+        yAxis: {
+            type: 'linear',
+            title: {
+                text: 'Bitcoins Held (log scale)'
+            }
+        },
+        tooltip: {
+            formatter: function() {
+                return `${this.series.name}: <b>${formatNumberWithCommas(this.y.toFixed(1))}</b> BTC`;
+            }
+        },
+        series: [{
+            name: 'Bitcoins',
+            data: sortedData.map(item => item.btc)
+        }]
+    });
+
+    function formatNumberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+});
+
+
+	window.addEventListener('load', (event) => {
+	  document.querySelectorAll('.notify-button').forEach(item => {
+		item.addEventListener('click', event => {
+		  fathom.trackEvent('Clicked Treasuries Notifications');
+		});
+	  });
+	});
+</script>
+{% endblock %}
