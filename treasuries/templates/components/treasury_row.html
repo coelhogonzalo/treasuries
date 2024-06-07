@@ -20,7 +20,9 @@
 {% else %} 
 {% endif %}
 
+{% if treasury.info_url != None %}
 <td class="td-purchases" data-title="Purchases/Filings">{% if treasury.filingurl %}<a href="{{ treasury.filingurl }}" target="_blank" rel="nofollow noopener">Filing</a> | {% endif %}<a href="{{ treasury.info_url }}" target="_blank">News</a></td>
+{% endif %}
 
 <td class="td-company_btc" data-title="BTC">{{ treasury.btc_rounded_str }}</td>
 

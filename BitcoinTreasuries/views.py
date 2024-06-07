@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
 
+from treasuries.domain import get_treasury_by_info_url
+
 
 def index(request):
     template = loader.get_template("index.html")
@@ -30,3 +32,10 @@ def etf_aum_history(request):
 def net_flows(request):
     template = loader.get_template("net_flows.html")
     return HttpResponse(template.render({}, request))
+
+
+def detail_view(request, info_url):
+    treasury = get_treasury_by_info_url(info_url=info_url)
+    treasury.info_url = None  # This is done to reuse treasury_row.html
+    template = loader.get_template(f"entities/{info_url}.html")
+    return HttpResponse(template.render({"treasury": treasury}, request))

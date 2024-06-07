@@ -1,0 +1,771 @@
+{% extends 'components/page.html' %}
+
+{% block title %}MicroStrategy Bitcoin Holdings Chart & Purchase History{% endblock %}
+
+{% block content %}
+
+{% include 'components/header.html' with title="MicroStrategy Bitcoin Holdings Chart & Purchase History" %}
+
+<link rel="stylesheet" href="../../css/treasuries-desktop.css" />
+<link rel="stylesheet" href="../../css/treasuries-mobile.css" />
+
+<table class="treasuries-table">
+   <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+   </thead>
+   {% include 'components/treasury_row.html' with treasury=treasury news=false %}
+</table> 
+
+  
+<p>MicroStrategy owns {{ treasury.btc_rounded_str }} bitcoins as of {{ treasury.history }}. MicroStrategy states the <b>average purchase price as $35,158.00 USD per bitcoin</b> with a total cost of $7.538 billion USD.</p>
+
+
+{% comment %} <div class="stats-page-body-section">
+    <div class="stats-page-body-container">
+        <div class="stats-page-body-text">
+                        
+        <h3 id="microstrategy-bitcoin-holdings">MicroStrategy Bitcoin Holdings Chart</h3>
+            <p>Here are MicroStrategy's total bitcoin holdings over the last several months:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Bitcoin Holdings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% assign msbuys = site.data.microbuys %}
+                    {% for record in msbuys %}
+                    <tr>
+                        <td>{{ record.date }}</td>
+                        <td>{{ record.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <p>Be sure to check out our <a href="/">full list of companies & countries that own bitcoins</a>.</p>
+            
+            {% include jobsad.html %}
+            
+            <h3>MicroStrategy Bitcoin Purchase History</h3>
+            <p>Here is an up-to-date MicroStrategy bitcoin purchases chart.</p>
+            <div class="stats-table-scroll-wrapper no-scroll-bar">
+                <table class="stats-table larger-table"> 
+                <tbody> 
+                    <tr> 
+                        <td>
+                            <strong><span>Date</span></strong>
+                        </td> 
+                        <td>
+                            <strong><span>BTC Purchased</span></strong>
+                        </td> 
+                        <td>
+                            <strong><span>Amount</span></strong>
+                        </td> 
+                        <td>
+                            <strong><span>Total Bitcoin</span></strong>
+                        </td> 
+                        <td>
+                            <strong><span>Total Dollars</span></strong>
+                        </td> 
+                    </tr> 
+                    <tr>
+                        <td>
+                            <span>4/1/2024 - 5/1/2024</span>
+                        </td>
+                        <td>
+                            <span>164</span>
+                        </td>
+                        <td>
+                            <span>$7.8M</span>
+                        </td>
+                        <td>
+                            <span>214,400</span>
+                        </td>
+                        <td>
+                            <span>$7.538B</span>
+                        </td>
+                    </tr>                 
+
+                    
+                    <tr>
+                          <td>
+                              <span>03/19/2024</span>
+                          </td>
+                          <td>
+                              <span>9,245</span>
+                          </td>
+                          <td>
+                              <span>$623.0M</span>
+                          </td>
+                          <td>
+                              <span>214,246</span>
+                          </td>
+                          <td>
+                              <span>$7.53B</span>
+                          </td>
+                      </tr>                 
+            <tr>
+                  <td>
+                      <span>03/11/2024</span>
+                  </td>
+                  <td>
+                      <span>12,000</span>
+                  </td>
+                  <td>
+                      <span>$821.7M</span>
+                  </td>
+                  <td>
+                      <span>205,000</span>
+                  </td>
+                  <td>
+                      <span>$6.91B</span>
+                  </td>
+              </tr>
+                    <tr>
+                        <td>
+                            <span>02/26/2024</span>
+                        </td>
+                        <td>
+                            <span>3,000</span>
+                        </td>
+                        <td>
+                            <span>$155.0M</span>
+                        </td>
+                        <td>
+                            <span>193,000</span>
+                        </td>
+                        <td>
+                            <span>$6.09B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>02/06/2024</span>
+                        </td>
+                        <td>
+                            <span>850</span>
+                        </td>
+                        <td>
+                            <span>$37.2M</span>
+                        </td>
+                        <td>
+                            <span>190,000</span>
+                        </td>
+                        <td>
+                            <span>$5.93B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>12/27/2023</span>
+                        </td>
+                        <td>
+                            <span>14,620</span>
+                        </td>
+                        <td>
+                            <span>$615.7M</span>
+                        </td>
+                        <td>
+                            <span>189,150</span>
+                        </td>
+                        <td>
+                            <span>$5.90B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>11/30/2023</span>
+                        </td>
+                        <td>
+                            <span>16,130</span>
+                        </td>
+                        <td>
+                            <span>$593.3M</span>
+                        </td>
+                        <td>
+                            <span>174,530</span>
+                        </td>
+                        <td>
+                            <span>$5.28B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>11/01/2023</span>
+                        </td>
+                        <td>
+                            <span>155</span>
+                        </td>
+                        <td>
+                            <span>$5.3M</span>
+                        </td>
+                        <td>
+                            <span>158,400</span>
+                        </td>
+                        <td>
+                            <span>$4.69B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>09/24/2023</span>
+                        </td>
+                        <td>
+                            <span>5,445</span>
+                        </td>
+                        <td>
+                            <span>$147.3M</span>
+                        </td>
+                        <td>
+                            <span>158,245</span>
+                        </td>
+                        <td>
+                            <span>$4.68B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>07/01/2023 - 7/31/2023</span>
+                        </td>
+                        <td>
+                            <span>467</span>
+                        </td>
+                        <td>
+                            <span>$14.4M</span>
+                        </td>
+                        <td>
+                            <span>152,800</span>
+                        </td>
+                        <td>
+                            <span>$4.53B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>04/29/2023 - 6/27/2023</span>
+                        </td>
+                        <td>
+                            <span>12,333</span>
+                        </td>
+                        <td>
+                            <span>$347M</span>
+                        </td>
+                        <td>
+                            <span>152,333</span>
+                        </td>
+                        <td>
+                            <span>$4.517B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>04/05/2023</span>
+                        </td>
+                        <td>
+                            <span>1,045</span>
+                        </td>
+                        <td>
+                            <span>$29.30M</span>
+                        </td>
+                        <td>
+                            <span>140,000</span>
+                        </td>
+                        <td>
+                            <span>$4.170B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>03/27/2023</span>
+                        </td>
+                        <td>
+                            <span>6,455</span>
+                        </td>
+                        <td>
+                            <span>$150.00M</span>
+                        </td>
+                        <td>
+                            <span>138,955</span>
+                        </td>
+                        <td>
+                            <span>$4.140B</span>
+                        </td>
+                    </
+                    
+                    tr>
+                    <tr>
+                        <td>
+                            <span>12/24/2022</span>
+                        </td>
+                        <td>
+                            <span>810</span>
+                        </td>
+                        <td>
+                            <span>$13.65M</span>
+                        </td>
+                        <td>
+                            <span>132,500</span>
+                        </td>
+                        <td>
+                            <span>$4.027B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>12/22/2022</span>
+                        </td>
+                        <td>
+                            <span>-704</span>
+                        </td>
+                        <td>
+                            <span>$11.8M</span>
+                        </td>
+                        <td>
+                            <span>131,690</span>
+                        </td>
+                        <td>
+                            <span>$4.012B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>11/01/2021 - 12/21/2022</span>
+                        </td>
+                        <td>
+                            <span>2,395</span>
+                        </td>
+                        <td>
+                            <span>$42.8M</span>
+                        </td>
+                        <td>
+                            <span>132,395</span>
+                        </td>
+                        <td>
+                            <span>$4.024B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>9/20/2022</span>
+                        </td>
+                        <td>
+                            <span>301</span>
+                        </td>
+                        <td>
+                            <span>$6M</span>
+                        </td>
+                        <td>
+                            <span>130,000</span>
+                        </td>
+                        <td>
+                            <span>$3.981B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>6/28/2022</span>
+                        </td>
+                        <td>
+                            <span>480</span>
+                        </td>
+                        <td>
+                            <span>$10M</span>
+                        </td>
+                        <td>
+                            <span>129,699</span>
+                        </td>
+                        <td>
+                            <span>$3.975B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>2/15/2022 - 4/5/2022</span>
+                        </td>
+                        <td>
+                            <span>4,167</span>
+                        </td>
+                        <td>
+                            <span>$190M</span>
+                        </td>
+                        <td>
+                            <span>129,218</span>
+                        </td>
+                        <td>
+                            <span>$3.965B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>1/1/2022 - 1/31/2022</span>
+                        </td>
+                        <td>
+                            <span>660</span>
+                        </td>
+                        <td>
+                            <span>$25M</span>
+                        </td>
+                        <td>
+                            <span>125,051</span>
+                        </td>
+                        <td>
+                            <span>$3.775B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>12/30/2021</span>
+                        </td>
+                        <td>
+                            <span>1,914</span>
+                        </td>
+                        <td>
+                            <span>$94.2M</span>
+                        </td>
+                        <td>
+                            <span>124,391</span>
+                        </td>
+                        <td>
+                            <span>$3.750B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>11/29/21 - 12/8/2021</span>
+                        </td>
+                        <td>
+                            <span>1,434</span>
+                        </td>
+                        <td>
+                            <span>$82.4M</span>
+                        </td>
+                        <td>
+                            <span>122,478</span>
+                        </td>
+                        <td>
+                            <span>$3.655B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>11/28/21</span>
+                        </td>
+                        <td>
+                            <span>7,002</span>
+                        </td>
+                        <td>
+                            <span>$414M</span>
+                        </td>
+                        <td>
+                            <span>121,044</span>
+                        </td>
+                        <td>
+                            <span>$3.573B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>9/
+                    
+                    13/21</span>
+                        </td>
+                        <td>
+                            <span>8,957</span>
+                        </td>
+                        <td>
+                            <span>$419M</span>
+                        </td>
+                        <td>
+                            <span>114,042</span>
+                        </td>
+                        <td>
+                            <span>$3.159B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>6/21/21</span>
+                        </td>
+                        <td>
+                            <span>13,005</span>
+                        </td>
+                        <td>
+                            <span>$249M</span>
+                        </td>
+                        <td>
+                            <span>105,085</span>
+                        </td>
+                        <td>
+                            <span>$2.740B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>5/18/21</span>
+                        </td>
+                        <td>
+                            <span>229</span>
+                        </td>
+                        <td>
+                            <span>$10M</span>
+                        </td>
+                        <td>
+                            <span>92,079</span>
+                        </td>
+                        <td>
+                            <span>$2.251B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>5/13/21</span>
+                        </td>
+                        <td>
+                            <span>271</span>
+                        </td>
+                        <td>
+                            <span>$15M</span>
+                        </td>
+                        <td>
+                            <span>91,850</span>
+                        </td>
+                        <td>
+                            <span>$2.241B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>4/5/21</span>
+                        </td>
+                        <td>
+                            <span>253</span>
+                        </td>
+                        <td>
+                            <span>$15M</span>
+                        </td>
+                        <td>
+                            <span>91,579</span>
+                        </td>
+                        <td>
+                            <span>$2.226B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>3/12/21</span>
+                        </td>
+                        <td>
+                            <span>262</span>
+                        </td>
+                        <td>
+                            <span>$15M</span>
+                        </td>
+                        <td>
+                            <span>91,326</span>
+                        </td>
+                        <td>
+                            <span>$2.211B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>3/5/21</span>
+                        </td>
+                        <td>
+                            <span>205</span>
+                        </td>
+                        <td>
+                            <span>$10M</span>
+                        </td>
+                        <td>
+                            <span>91,064</span>
+                        </td>
+                        <td>
+                            <span>$2.196B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>3/1/21</span>
+                        </td>
+                        <td>
+                            <span>328</span>
+                        </td>
+                        <td>
+                            <span>$15M</span>
+                        </td>
+                        <td>
+                            <span>90,859</span>
+                        </td>
+                        <td>
+                            <span>$2.186B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>2/24/21</span>
+                        </td>
+                        <td>
+                            <span>19,452</span>
+                        </td>
+                        <td>
+                            <span>$1.026B</span>
+                        </td>
+                        <td>
+                            <span>90,531</span>
+                        </td>
+                        <td>
+                            <span>$2.171B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>2/2/21</span>
+                        </td>
+                        <td>
+                            <span>295</span>
+                        </td>
+                        <td>
+                            <span>$10M</span>
+                        </td>
+                        <td>
+                            <span>71,079</span>
+                        </td>
+                        <td>
+                            <span>$1.145B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>1/22/21</span>
+                        </td>
+                        <td>
+                            <span>314</span>
+                        </td>
+                        <td>
+                            <span>$10M</span>
+                        </td>
+                        <td>
+                            <span>70,784</span>
+                        </td>
+                        <td>
+                           
+                    
+                     <span>$1.135B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>12/21/20</span>
+                        </td>
+                        <td>
+                            <span>29,646</span>
+                        </td>
+                        <td>
+                            <span>$650M</span>
+                        </td>
+                        <td>
+                            <span>70,470</span>
+                        </td>
+                        <td>
+                            <span>$1.125B</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>12/4/20</span>
+                        </td>
+                        <td>
+                            <span>2,574</span>
+                        </td>
+                        <td>
+                            <span>$50M</span>
+                        </td>
+                        <td>
+                            <span>40,824</span>
+                        </td>
+                        <td>
+                            <span>$475M</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>9/14/20</span>
+                        </td>
+                        <td>
+                            <span>16,796</span>
+                        </td>
+                        <td>
+                            <span>$175M</span>
+                        </td>
+                        <td>
+                            <span>38,250</span>
+                        </td>
+                        <td>
+                            <span>$425M</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>8/11/20</span>
+                        </td>
+                        <td>
+                            <span>21,454</span>
+                        </td>
+                        <td>
+                            <span>$250M</span>
+                        </td>
+                        <td>
+                            <span>21,454</span>
+                        </td>
+                        <td>
+                            <span>$250M</span>
+                        </td>
+                    </tr>
+              
+
+                </tbody> 
+            </table>
+            </div>
+           
+        </div>
+    </div>
+</div>
+ {% endcomment %}
+
+
+
+<div class="stats-page-chapter-intro">
+    <h2 class="stats-page-chapter-title">Frequently Asked Questions</h2>
+</div>
+
+<div class="stats-page-body-section">
+    <div class="stats-page-body-container">
+        <div class="stats-page-body-text">
+            <h3>What is MicroStrategy?</h3>
+            <p>MicroStrategy Incorporated is an American corporation that is involved with business intelligence (BI), mobile software, and cloud-based services.</p>
+            <p>MicroStrategy finds answers, information, and insights for business data analysis.</p>
+            <p>MicroStrategy uses advanced analytics, reporting, data visualizations, embedded business intelligence, data discovery, and more to produce information.</p>
+            <h3>Why do companies use MicroStrategy?</h3>
+            <p>Companies use MicroStrategy’s business intelligence to develop reports, export reports, develop dashboards, and develop visualizations for analytics.</p>
+            <h3>When did MicroStrategy go public?</h3>
+            <p>Founded in November of 1989, MicroStrategy went public via an IPO in June 11, 1998.</p>
+            <h3 id="microstrategy-owners">Who founded MicroStrategy?</h3>
+            <p><a href="https://buybitcoinworldwide.com/michael-saylor-holdings/">Michael Saylor</a>, Sanju Bansal, and Thomas Spahr all co-founded MicroStrategy. They were classmates together in MIT.</p>
+            <h3>How many employees does MicroStrategy have?</h3>
+            <p>MicroStrategy has 2,100 employees as of 2021, up from about 2,000 in 2020.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

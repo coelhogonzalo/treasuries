@@ -6,12 +6,20 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from .views import countries, etf_aum_history, etfs, index, miners, net_flows
+from .views import (
+    countries,
+    detail_view,
+    etf_aum_history,
+    etfs,
+    index,
+    miners,
+    net_flows,
+)
 
 urlpatterns = [
+    path("", index, name="index"),
     path("admin/", admin.site.urls),
     path("treasuries/", include("treasuries.urls")),
-    path("", index, name="index"),
     path("countries/", countries, name="countries"),
     path("miners/", miners, name="miners"),
     path("us-etfs/", etfs, name="us-etfs"),
@@ -28,4 +36,5 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path("<str:info_url>/", detail_view, name="treasury_detail"),
 ]

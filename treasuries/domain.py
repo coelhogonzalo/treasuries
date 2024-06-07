@@ -1,12 +1,13 @@
 import json
 import datetime
+from uu import Error
+from django.db.models import F
 
 from urllib.request import urlopen
 
 from BitcoinTreasuries.constants import (
     BTC_DEFAULT_PRICE,
     CATEGORIES_BY_TYPE,
-    NAVBAR_LINKS,
 )
 from treasuries.enums import TreasuryType
 from treasuries.models import Treasury
@@ -86,3 +87,11 @@ def get_latest_updates():
     latest_updates["miners"] = get_miners_latest_update()
     latest_updates["treasuries"] = get_latest_update_by_type()
     return latest_updates
+
+
+def get_treasury_by_info_url(info_url):
+    try:
+        return Treasury.objects.get(info_url=f"/{info_url}/")
+    except:
+        print("No Treasury was found for that info_url")
+        raise Error("No Treasury was found for that info_url")
