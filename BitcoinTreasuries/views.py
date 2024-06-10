@@ -1,3 +1,4 @@
+import os
 from django.http import HttpResponse
 from django.template import loader
 
@@ -37,5 +38,9 @@ def net_flows(request):
 def detail_view(request, info_url):
     treasury = get_treasury_by_info_url(info_url=info_url)
     treasury.info_url = None  # This is done to reuse treasury_row.html
-    template = loader.get_template(f"entities/{info_url}.html")
+    template_path = f"entities/{info_url}.html"
+
+    if not os.path.exists(template_path):
+        template_path = "components/detail.html"
+    template = loader.get_template(template_path)
     return HttpResponse(template.render({"treasury": treasury}, request))

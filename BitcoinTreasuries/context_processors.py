@@ -2,6 +2,7 @@ import time
 from BitcoinTreasuries.constants import BTC_21M_CAP, NAVBAR_LINKS
 from treasuries.domain import (
     get_bitcoin_price,
+    get_extra_detailed_treasuries,
     get_latest_updates,
     get_miners,
     get_treasury_by_type,
@@ -54,6 +55,7 @@ def custom_context(request):
     context = calculate_totals(partial_context)
     context["navbar_links"] = NAVBAR_LINKS
     context["latest_updates"] = get_latest_updates()
+    context["extra_detailed"] = get_extra_detailed_treasuries()
     context["base_domain"] = request.get_host()
     end = time.time() * 1000
     print(f"Context has been generated in {end-start}ms")

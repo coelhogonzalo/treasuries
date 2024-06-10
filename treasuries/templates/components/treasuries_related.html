@@ -1,0 +1,30 @@
+{% load mathfilters %}
+{% load extras %}
+{% load static %}
+
+<h2 class="center-on-mobile">Learn More About Other Entities Owning Bitcoin</h2>
+<table class="treasuries-table">
+	<thead>
+		<tr>
+			<th class="th-company" data-title="Company Name">Entity</th>
+			<th class="th-location">Country</th>
+			<th class="th-company_btc" data-title="BTC"># of BTC</th>
+			<th class="th-value-today" data-title="Value">Value Today</th>
+		</tr>
+    </thead>
+   {% for treasury in extra_detailed  %}
+   
+        <tr>                                
+        <td class="td-company related-tr" data-title="Company Name">
+            <a href="{{ treasury.info_url }}">{{ treasury.company }}</a>
+        </td>
+        <td class="td-location">
+            <img class="flag-icon" src="{% static 'flags/4x3/' %}{{ treasury.country|lower }}.svg" alt="country flag" data-tooltip="{{ treasury.country }}">
+        </td>
+
+        <td class="td-company_btc" data-title="BTC">{{ treasury.btc_rounded_str }}</td>
+
+        <td class="td-value" data-title="Value">{{ treasury.btc_rounded|mul:btc_price|number_to_string }}</td>
+        </tr> 
+   {% endfor %}
+</table>

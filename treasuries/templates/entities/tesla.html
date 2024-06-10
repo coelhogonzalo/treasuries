@@ -1,0 +1,50 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Tesla Own? Elon Musk?{% endblock %}
+
+<table class="treasuries-table">
+   <thead>
+	  <tr>
+		<th class="th-company" data-title="Company Name">Entity</th>
+		<th class="th-location">Country</th>
+		<th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+		<th class="th-company_btc" data-title="BTC"># of BTC</th>
+		<th class="th-value-today" data-title="Value">Value Today</th>
+		<th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+	  </tr>
+   </thead>
+   {% include 'treasury_row.html' with treasury=treasury%}
+</table>
+
+
+{% block detail %}
+
+<h2>How Much Bitcoin Does Tesla Own?</h2>
+<p>Tesla owns 10,725 bitcoins as of September 2023.</p>
+
+<h2>Did Tesla Sell Its Bitcoin?</h2>
+<p>Tesla held 42,902 bitcoins, but in July 2022 it was announced that they sold 75% of their holdings bringing the company's total down to 10,725. The Bitcoin price fell about 1.7% on the news<sup><a href="#article-sources">(1)</a></sup>.</p>
+
+<h2>When Did Tesla Buy Bitcoin?</h2>
+<p>Tesla first bought Bitcoin in February 2021<sup><a href="#article-sources">(2)</a></sup>.</p>
+
+<blockquote>Tesla also said it will start accepting payments in Bitcoin in exchange for its products “subject to applicable laws and initially on a limited basis.” That would make Tesla the first major automaker to do so. The $1.5 billion worth of bitcoin will give Tesla liquidity in the cryptocurrency once it starts accepting it for payments.</blockquote>
+
+<h2>Does Tesla Accept Bitcoin?</h2>
+<p>Tesla did accept Bitcoin for its cars at one point. But, citing environmental concerns, the company removed the option to pay through Bitcoin. They do have plans to re-launch Bitcoin payments soon<sup><a href="#article-sources">(4)</a></sup>.</p>
+
+<h2>How Much Has Tesla Made on Bitcoin?</h2>
+<p>It's not clear at which prices Tesla bought its bitcoins. Therefore, we don't know if they have made money on their investment.</sup>
+</p>
+
+<h2>How Many Teslas Have Been Bought with Bitcoin?</h2>
+<p>Tesla has not reported if they sold any cars for bitcoins.</p>
+
+<h2>How Much Bitcoin Does Elon Musk Have?</h2>
+<p>Elon Musk has not publicly reported how much bitcoin he owns.</p>
+
+<h2>Did Tesla Buy Ethereum?</h2>
+<p>Tesla did not purchase any Ethereum.</p>
+
+{% endblock %}
+

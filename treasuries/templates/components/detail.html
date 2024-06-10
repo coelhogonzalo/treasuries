@@ -1,0 +1,38 @@
+{% extends 'components/page.html' %}
+
+{% block content %}
+
+{% block title %}{{ treasury.company }}{% endblock %}
+
+{% include 'components/header.html' with title=treasury.company %}
+
+<table class="treasuries-table">
+   <thead>
+      <tr>
+        <th class="th-company" data-title="Company Name">Entity</th>
+        <th class="th-location">Country</th>
+        <th class="th-symbol" data-title="Symbol">Symbol:Exchange</th>
+        <th class="th-company_btc" data-title="BTC"># of BTC</th>
+        <th class="th-value-today" data-title="Value">Value Today</th>
+        <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
+      </tr>
+   </thead>
+   {% include 'components/treasury_row.html' with treasury=treasury %}
+</table> 
+
+{% comment %} {% include 'components/btc_history.html' %}
+ {% endcomment %}
+
+{% include 'components/jobs_ad.html' %}
+  
+{% block detail %}
+
+{% endblock %}
+
+{% include 'components/total_owned.html' %}
+
+{% include 'components/treasuries_related.html' %}
+
+{% include 'components/treasuries_alerts.html' %}
+
+{% endblock %}

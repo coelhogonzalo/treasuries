@@ -1,7 +1,7 @@
 import json
 import datetime
 from uu import Error
-from django.db.models import F
+from django.db.models import Q
 
 from urllib.request import urlopen
 
@@ -95,3 +95,9 @@ def get_treasury_by_info_url(info_url):
     except:
         print("No Treasury was found for that info_url")
         raise Error("No Treasury was found for that info_url")
+
+
+def get_extra_detailed_treasuries():
+    return Treasury.objects.filter(
+        Q(info_url__isnull=False) & ~Q(info_url__startswith="http")
+    ).order_by("-btc")
