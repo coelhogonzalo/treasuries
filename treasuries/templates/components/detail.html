@@ -20,8 +20,9 @@
    {% include 'components/treasury_row.html' with treasury=treasury %}
 </table> 
 
-{% comment %} {% include 'components/btc_history.html' %}
- {% endcomment %}
+{% if treasury.historic_values.count > 10 %}
+   {% include 'components/btc_history.html' %}
+{% endif %}
 
 {% include 'components/jobs_ad.html' %}
   

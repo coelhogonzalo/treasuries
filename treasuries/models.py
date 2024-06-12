@@ -44,6 +44,10 @@ class Treasury(models.Model):
             return "{:,.0f}".format(self.btc)
         return "{:,.1f}".format(self.btc)
 
+    @property
+    def historic_values(self):
+        return self.history.all()
+
 
 class TreasuriesAPIKey(AbstractAPIKey):
     hit_count = models.IntegerField(

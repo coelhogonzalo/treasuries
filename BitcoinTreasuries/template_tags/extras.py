@@ -1,3 +1,4 @@
+from datetime import datetime
 from django import template
 
 register = template.Library()
@@ -22,3 +23,12 @@ def lower(value: str) -> str:
 @register.filter
 def float_to_string(value):
     return "{:,.1f}".format(value)
+
+
+@register.filter
+def to_ms(date):
+    if isinstance(date, datetime):
+        milliseconds = int(date.timestamp() * 1000)
+        return milliseconds
+    else:
+        return "Invalid date format"
