@@ -23,7 +23,7 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
       <td class="td-company_btc add-comma" data-title="BTC">
         {{miners_total.btc}}
       </td>
-      <td class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+      <td class="td-value" data-title="Value">${{ miners_total.btc_in_usd }}</td>
       <td class="td-company_percent" data-title="% of 21m">
         {{ miners_total.percentage_from_21m }}%
       </td>
@@ -33,7 +33,7 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">
         {{ miners_total.btc }}
       </td>
-      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">${{ miners_total.btc_in_usd }}</td>
       <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
         {{ miners_total.percentage_from_21m }}%
       </td>
@@ -57,7 +57,7 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
     </tr>
     <tr>
       <th class="top-treasuries-table-label">Value Today</th>
-      <td class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+      <td class="td-value" data-title="Value">${{ miners_total.btc_in_usd }}</td>
     </tr>
     <tr>
       <th class="top-treasuries-table-label">% of 21m</th>
@@ -149,7 +149,7 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
         <td class="td-company_btc add-comma" data-title="BTC">{{ miners_total.btc }}</td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ miners_total.btc_in_usd }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">${{ miners_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
             {{ miners_total.percentage_from_21m }}%
         </td>

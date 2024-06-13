@@ -21,7 +21,7 @@
       <td class="td-company_btc add-comma" data-title="BTC">
         {{countries_total.btc}}
       </td>
-      <td class="td-value" data-title="Value">{{ countries_total.btc_in_usd }}</td>
+      <td class="td-value" data-title="Value">${{ countries_total.btc_in_usd }}</td>
       <td class="td-company_percent" data-title="% of 21m">
         {{ countries_total.percentage_from_21m }}%
       </td>
@@ -31,7 +31,7 @@
       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">
         {{ countries_total.btc }}
       </td>
-      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">{{ countries_total.btc_in_usd }}</td>
+      <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">${{ countries_total.btc_in_usd }}</td>
       <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
         {{ countries_total.percentage_from_21m }}%
       </td>
@@ -55,7 +55,7 @@
     </tr>
     <tr>
       <th class="top-treasuries-table-label">Value Today</th>
-      <td class="td-value" data-title="Value">{{ countries_total.btc_in_usd }}</td>
+      <td class="td-value" data-title="Value">${{ countries_total.btc_in_usd }}</td>
     </tr>
     <tr>
       <th class="top-treasuries-table-label">% of 21m</th>
@@ -146,7 +146,7 @@
         <td class="hidden-on-mobile"></td>
         <td class="total-label"><b>Totals:</b></td>
         <td class="td-company_btc add-comma" data-title="BTC">{{ countries_total.btc }}</td>
-        <td style="font-weight: bold !important;" class="td-value" data-title="Value">{{ countries_total.btc_in_usd }}</td>
+        <td style="font-weight: bold !important;" class="td-value" data-title="Value">${{ countries_total.btc_in_usd }}</td>
         <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
             {{ countries_total.percentage_from_21m }}%
         </td>

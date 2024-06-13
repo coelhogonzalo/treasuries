@@ -24,7 +24,7 @@
 
         <td class="td-company_btc" data-title="BTC">{{ treasury.btc_rounded_str }}</td>
 
-        <td class="td-value" data-title="Value">{{ treasury.btc_rounded|mul:btc_price|number_to_string }}</td>
+        <td class="td-value" data-title="Value">${{ treasury.btc_rounded|mul:btc_price|number_to_string }}</td>
         </tr> 
    {% endfor %}
 </table>
