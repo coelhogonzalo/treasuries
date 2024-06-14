@@ -1,0 +1,60 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Grayscale Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-grayscale-own">How Much Bitcoin Does Grayscale Own?</h2>
+<p><b>Grayscale Bitcoin Trust (<a href="/gbtc/">GBTC</a>) holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}.</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup>.</p>
+{% endblock %} 
+
+{% block detail %}
+
+
+<h2>GBTC Historical Holdings</h2>
+<p>You can view GBTC's historical holdings using the chart below. Just click "GBTC" at the top to see only GBTC history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+
+<h2 id="what-does-grayscale-do">What Does Grayscale Do?</h2>
+<p>Grayscale is the world’s largest digital currency asset manager. They offer investors opportunities to buy cryptocurrencies without the time and effort of storing and safekeeping them. Instead of managing coins yourself, you can quickly buy and sell shares of their investment options. </p>
+<h2 id="who-owns-grayscale">Who Owns Grayscale?</h2>
+<p>Digital Currency Group is the parent company of Grayscale Investments and Coindesk. They started Grayscale back in 2013. Barry Silbert is the founder and current CEO and Michael Sonnenshein is Managing Director.</p>
+<h2 id="does-grayscale-only-mine-bitcoin">Does Grayscale Only Mine Bitcoin?</h2>
+<p>Grayscale has two main Trusts concerning Bitcoin.</p>
+<p>The Bitcoin Trust solely consists of Bitcoin.</p>
+<p>The Digital Large Cap Fund is a diverse combination of many cryptocurrencies. It consists of 64.77% BTC as of July 29th, 2022</p>
+<h2 id="does-grayscale-own-ethereum">Does Grayscale Own Ethereum?</h2>
+<p>There are options for both Ethereum (ETH) and Ethereum Classic (ETC).</p>
+<p>The Ethereum Trust has a value of $7.2 billion as of January 18, 2024<sup><a href="#article-sources">(3)</a></sup>.</p>
+<p>The Ethereum Classic Fund has a value of $281.3 million as of January 18, 2024. </p>
+
+
+<h2 id="does-grayscale-own-or-mine-other-cryptocurrencies">Does Grayscale Own or Mine Other Cryptocurrencies?</h2>
+<p>Since Grayscale is focused on digital currency as a whole, they don’t just stop with Bitcoin and Ethereum. They offer investment Trusts for some of the most popular cryptocurrencies and diversified funds made up of various crypto assets.</p>
+<h3 id="grayscale-trusts-include">Grayscale Trusts include:</h3>
+<ul>
+<li>Basic Attention Token (BAT)</li>
+<li>Bitcoin Cash (BCH)</li>
+<li>Bitcoin (BTC)</li>
+<li>Chainlink (LINK)</li>
+<li>Decentraland (MANA)</li>
+<li>Ethereum Classic (ETC)</li>
+<li>Ethereum (ETH)</li>
+<li>Filecoin (FIL)</li>
+<li>Horizen (ZEN)</li>
+<li>Litecoin (LTC)</li>
+<li>Livepeer (LPT)</li>
+<li>Solana (SOL)</li>
+<li>Stellar Lumens (XLM)</li>
+<li>Zcash (ZEC)</li>
+</ul>
+<h3 id="grayscale-funds-include">Grayscale Funds include:</h3>
+<ul>
+<li>Decentralized Finance (Defi)Fund</li>
+<li>Digital Large Cap Fund</li>
+<li>Smart Contract Platform Ex-Ethereum Fund</li>
+</ul>
+
+
+{% endblock %}

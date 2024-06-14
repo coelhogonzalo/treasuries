@@ -25,6 +25,12 @@
 {% endif %}
 
 {% include 'components/jobs_ad.html' %}
+
+{% block latest_update %}
+
+<p>{{ treasury.company }} owns {{ treasury.btc_rounded_str }} bitcoins as of {{ treasury.latest }}.</p>
+
+{% endblock %} 
   
 {% block detail %}
 

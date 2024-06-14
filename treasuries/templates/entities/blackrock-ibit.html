@@ -2,10 +2,16 @@
 
 {% block title %}How Much Bitcoin Does BlackRock IBIT Own?{% endblock %}
 
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-blackrock-own">How Much Bitcoin Does BlackRock Own?</h2>
+<p><b>The Blackrock’s iShares Bitcoin Trust (IBIT) currently holds {{ treasury.btc_rounded_str }} as of {{treasury.latest}}</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup></p>
+
+{% endblock %} 
+
 {% block detail %}
   
-<h2 id="how-much-bitcoin-does-blackrock-own">How Much Bitcoin Does BlackRock Own?</h2>
-<p><b>The Blackrock’s iShares Bitcoin Trust (IBIT) currently holds {{ treasury.btc_rounded_str }} as of {{treasury.history}}</b><sup><a href="#article-sources">(1)</a></sup></p>
 
 <h2>IBIT Historical Holdings</h2>
 <p>You can view IBIT's historical holdings using the chart below. Just click "IBIT" at the top to see only IBIT history. </p>

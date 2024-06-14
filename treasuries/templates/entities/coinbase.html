@@ -1,0 +1,27 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Many Bitcoins Does Coinbase Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2>How Much Bitcoin Does Coinbase Own?</h2>
+<p>It is estimated based on their financial reports from March 31, 2022, that Coinbase, Inc. owns around {{ treasury.btc_rounded_str }} bitcoins.</p>
+
+{% endblock %} 
+
+{% block detail %}
+
+<h2>How Much Bitcoin Do Coinbase Customers Own?</h2>
+<p><a href="/coinbase/">Coinbase</a>, Inc owns approximately {{ treasury.btc_rounded_str }} bitcoins. This is the number of bitcoins held by Coinbase, the company, on its balance sheet as an investment.</p>
+<p>Coinbase is also holding hundreds of thousands of bitcoins for its customers. However, these are not company assets. They are just customer coins held by Coinbase on behalf of the depositors.</p>
+
+<h2>What is Coinbase's Average Purchase Price?</h2>
+<p>Coinbase has not stated the average purchase price of the bitcoins on its balance sheet.</p>
+
+<h2>Does Coinbase Own Ethereum?</h2>
+<p>According to recent filings, it appears Coinbase owns about 90,000 Ethereum (ETH). </p>
+
+<h2>Who Owns Coinbase?</h2>
+<p>Coinbase Founder Brian Armstrong owns 16% of Coinbase. Co-founder Fred Ehrsam owns 4.5%. The rest of the company is owned by venture capital funds and the general public since Coinbase is a public company.</p>
+
+{% endblock %}

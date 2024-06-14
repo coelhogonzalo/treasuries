@@ -1,0 +1,28 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Invesco BTCO Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-invesco-own">How Much Bitcoin Does the ETF - Invesco BTCO  Own?</h2>
+<p><b>The BTCO fund currently holds {{ treasury.btc_rounded_str }} BTC as of e_dt {{ treasury.latest }}.</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup> </p>
+
+{% endblock %} 
+
+{% block detail %}
+
+
+<h2>BTCO Historical Holdings</h2>
+<p>You can view BTCO's historical holdings using the chart below. Just click "BTCO" at the top to see only BTCO history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-invesco-do">What Does Invesco Do?</h2>
+<p>Invesco provides investment management company that is headquartered in Atlanta, GA.</p>
+<h2 id="who-owns-invesco">Who Owns Invesco?</h2>
+<p>Invesco is a public company traded on the NYSE under the IVZ symbol.</p>
+<h2 id="does-invesco-only-mine-bitcoin">Does Invesco Mine Bitcoin?</h2>
+<p>Invesco is not involved in the mining of Bitcoin.</p>
+<h2 id="does-invesco-own-ethereum">Does Invesco have Ethereum investment products?</h2>
+<p>Invesco does not have a Ethereum ETF Fund. </p>
+
+{% endblock %}

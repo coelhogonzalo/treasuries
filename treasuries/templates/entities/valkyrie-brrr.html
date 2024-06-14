@@ -1,0 +1,31 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Valkyrie BRRR Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-valkyrie-own">How Much Bitcoin Does the ETF Valkyrie (BRRR) Own?</h2>
+
+<p><b>The BRRR fund currently holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}.</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup> </p>
+
+{% endblock %} 
+
+{% block detail %}
+
+<h2>BRRR Historical Holdings</h2>
+<p>You can view BRRR's historical holdings using the chart below. Just click "BRRR" at the top to see only BRRR history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-valkyrie-do">What Does Valkyrie Do?</h2>
+<p>Valkyrie is a traditional asset management company that started in 2020 and is headquartered in Brentwood, Tennessee. </p>
+
+<h2 id="who-owns-valkyrie">Who Owns Valkyrie?</h2>
+<p>Valkyrie Asset Management, Inc. is a privately held company that was co-founded by the CEO Leah Wald and Chief Investment Officer Steven McClurg.</p>
+
+<h2 id="does-valkyrie-only-mine-bitcoin">Does Valkyrie Mine Bitcoin?</h2>
+<p>Valkyrie is not involved in the mining of Bitcoin but does have a Bitcoin Miners ETF.</p>
+
+<h2 id="does-valkyrie-own-ethereum">Does Valkyrie have Ethereum investment products?</h2>
+<p>Valkyrie has a Bitcoin and Ethereum Strategy ETF among it's crypto product offerings. </p>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Many Bitcoins Does El Salvador Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2>How Much Bitcoin Does El Salvador Own?</h2>
+<p>El Salvador owns {{ treasury.btc_rounded_str }} bitcoins as of {{ treasury.latest }}. The country is constantly buying, and adds more bitcoins to its holdings every so often.</p>
+
+{% endblock %} 
+
+{% block detail %}
+
+
+
+<h2>What is El Salvador's Average Bitcoin Price on Purchases?</h2>
+<p>As of July 21, 2022, El Salvador has purchased 2,381 bitcoins at an average price of $43,357 USD.</p>
+
+<p>The country announced that it now owns 5,748.76 BTC in May 2024. El Salvador has stated they accuire BTC through daily purchases and mining.  
+</p>
+
+<p>Here is the purchases history for the publicly known buys:</p>
+
+<table id="table-box"><tbody><tr><th id="thcolor">Purchase<br>Date</th><th id="thcolor">Bitcoins</th><th id="thcolor">Cost per Bitcoin</th><th id="thcolor">Total Invested</th></tr>
+<tr><td>June 30, 2022</td><td>80</td><td>$19,000</td><td>$1,520,000.00</td></tr>
+<tr><td>May 9, 2022</td><td>500</td><td>$30,744</td><td>$15,372,000</td></tr>
+<tr><td>Jan 21, 2022</td><td>410</td><td>$36,585</td><td>$15,000,000</td></tr>
+<tr><td>Dec 21, 2021</td><td>21</td><td>$49,220</td><td>$1,033,620</td></tr>
+<tr><td>Dec 3, 2021</td><td>150</td><td>$48,670</td><td>$7,300,500</td></tr><tr><td>Nov 26, 2021</td><td>100</td><td>$54,815</td><td>$5,481,500</td></tr><tr><td>Oct 27, 2021</td><td>420</td><td>$60,622</td><td>$25,461,240</td></tr><tr><td>Sept 19, 2021</td><td>150</td><td>$42,843</td><td>$6,426,450</td></tr><tr><td>Sept 7, 2021</td><td>150</td><td>$46,091</td><td>$6,913,650</td></tr>
+<tr><td>Sept 6, 2021</td><td>400</td><td>$46,811</td><td>$18,724,400</td></tr>
+<tr class="orange"><td>Totals</td><td>2381</td><td>$43,357</td><td>$103,233,360</td></tr></tbody></table>
+<br>
+
+<p>According to the president, El Salvador has never sold any BTC.</p>
+
+<h2>Why Did El Salvador Buy Bitcoin?</h2>
+<p>El Salvador's president Bukele recently tweeted:</p>
+
+<blockquote>Bitcoin is the future!</blockquote>
+
+<p>El Salvador is currently very reliant on the US Dollar and seems intent on branching out to alternative forms of currency. Only 29% of the country has a bank account. Using Bitcoin allows nearly every citizen to have a digital form of payment without the need for a bank account.</p>
+
+<h2>What is the El Salvador Bitcoin Bond?</h2>
+<p>El Salvador planned to launch a bond based around Bitcoin. However, it's delayed and has not launched yet.</p>
+
+<h2>What's the Bitcoin Price in El Salvador?</h2>
+<p>The price of Bitcoin in El Salvador can be checked <a href="https://bitbo.io/">here</a>.</p>
+
+<br>
+   <img alt="el salvador bitcoin" style="max-width: 100%;" src="/img/newimages/els.png">
+   <br>
+
+{% endblock %}

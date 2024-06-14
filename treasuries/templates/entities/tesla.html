@@ -2,10 +2,15 @@
 
 {% block title %}How Much Bitcoin Does Tesla Own? Elon Musk?{% endblock %}
 
-{% block detail %}
+
+{% block latest_update %}
 
 <h2>How Much Bitcoin Does Tesla Own?</h2>
-<p>Tesla owns 10,725 bitcoins as of September 2023.</p>
+<p>Tesla owns {{ treasury.btc_rounded_str }} bitcoins as of {{ treasury.latest }}.</p>
+
+{% endblock %} 
+
+{% block detail %}
 
 <h2>Did Tesla Sell Its Bitcoin?</h2>
 <p>Tesla held 42,902 bitcoins, but in July 2022 it was announced that they sold 75% of their holdings bringing the company's total down to 10,725. The Bitcoin price fell about 1.7% on the news<sup><a href="#article-sources">(1)</a></sup>.</p>

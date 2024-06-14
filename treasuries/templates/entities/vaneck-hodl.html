@@ -1,0 +1,31 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does VanEck HODL Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-vaneck-own">How Much Bitcoin Does the ETF - VanEck HODL  Own?</h2>
+<p><b>The HODL fund currently holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}.</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup> </p>
+
+{% endblock %} 
+
+{% block detail %}
+
+
+<h2>HODL Historical Holdings</h2>
+<p>You can view HODL's historical holdings using the chart below. Just click "HODL" at the top to see only HODL history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-vaneck-do">What Does VanEck Do?</h2>
+<p>VanEck is an international investment portfolio manager that has been in business since 1955. They have offices in New York, Frankfurt, Zurich, Amsterdam, Sydney and Shanghai.</p>
+
+<h2 id="who-owns-vaneck">Who Owns VanEck?</h2>
+<p>VanEck is a private company owned and operated by the VanEck family. Jan VanEck has been the CEO since 2010.</p>
+
+<h2 id="does-vaneck-only-mine-bitcoin">Does VanEck Mine Bitcoin?</h2>
+<p>VanEck is not involved in the mining of Bitcoin.</p>
+
+<h2 id="does-vaneck-own-ethereum">Does VanEck have Ethereum investment products?</h2>
+<p>VanEck has an Ethereum Strategy ETF - EFUT fund. </p>
+
+{% endblock %}

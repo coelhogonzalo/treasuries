@@ -1,0 +1,28 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Franklin Templeton EZBC  Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-franklin-own">How Much Bitcoin Does the ETF - Franklin Templeton EZBC   Own?</h2>
+<p><b>The EZBC fund currently holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}.</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup> </p>
+
+{% endblock %} 
+
+{% block detail %}
+
+<h2>EZBC Historical Holdings</h2>
+<p>You can view EZBC's historical holdings using the chart below. Just click "EZBC" at the top to see only EZBC history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-franklin-do">What Does Franklin Templeton Do?</h2>
+<p>Franklin Templeton provides a wide variety of investment vehicles including ETFs. The company moved it's headquarters from New York City to San Mateo, CA in 1973.</p>
+<h2 id="who-owns-franklin">Who Owns Franklin Templeton?</h2>
+<p>Franklin Templeton is a public company traded on the NYSE under the BEN symbol.</p>
+<h2 id="does-franklin-only-mine-bitcoin">Does Franklin Templeton Mine Bitcoin?</h2>
+<p>Franklin Templeton is not involved in the mining of Bitcoin.</p>
+<h2 id="does-franklin-own-ethereum">Does Franklin Templeton have Ethereum investment products?</h2>
+<p>Franklin Templeton does not have a Ethereum ETF Fund. </p>
+
+
+{% endblock %}

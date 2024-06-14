@@ -1,0 +1,31 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Fidelity FBTC Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-fidelity-own">How Much Bitcoin Does the ETF - Fidelity FBTC  Own?</h2>
+<p><b>The FBTC fund currently holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}.</b></p>
+
+{% endblock %} 
+
+{% block detail %}
+
+
+
+<h2>FBTC Historical Holdings</h2>
+<p>You can view FBTC's historical holdings using the chart below. Just click "FBTC" at the top to see only FBTC history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-fidelity-do">What Does Fidelity Do?</h2>
+<p>Fidelity Investments is an mutual fund company that provides services to individual and corporate investors through their investment products. They have offices in North America, Europe, Asia and Australia.</p>
+</p>
+<h2 id="who-owns-fidelity">Who Owns Fidelity?</h2>
+<p>Fidelity is 49% owned by the Johnson Family and the other 51% is employee owned. Abigail Johnson has been the CEO of Fidelity Investments since October of 2014.</p>
+<h2 id="does-fidelity-only-mine-bitcoin">Does Fidelity Mine Bitcoin?</h2>
+<p>Fidelity is not involved in the mining of Bitcoin.</p>
+<h2 id="does-fidelity-own-ethereum">Does Fidelity have Ethereum investment products?</h2>
+<p>Fidelity has applied for a Ethereum ETF Fund and is awaiting SEC approval.  Fidelity also allows customers to buy and sell bitcoin and ethereum through a Fidelity Crypto account. </p>
+
+
+{% endblock %}

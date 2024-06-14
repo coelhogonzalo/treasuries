@@ -49,6 +49,11 @@ class Treasury(models.Model):
         return self.history.all()
 
 
+    @property
+    def latest(self):
+        return self.history.latest().history_date.date()
+
+
 class TreasuriesAPIKey(AbstractAPIKey):
     hit_count = models.IntegerField(
         default=0, help_text="Number of times this API key has been used."

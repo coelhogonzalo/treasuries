@@ -1,0 +1,35 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does 21Shares ARKB Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-21shares-own">How Much Bitcoin Does the ETF 21Shares ARKB Own?</h2>
+<p>21Shares is a crypto investment exchange company that teamed up with Ark Investment to launch ARK 21Shares Bitcoin ETF(ARKB) in January of 2024.</p>
+<p><b>The ARKB fund currently holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup> </p>
+
+{% endblock %} 
+
+{% block detail %}
+  
+
+<h2>ARKB Historical Holdings</h2>
+<p>You can view ARKB's historical holdings using the chart below. Just click "ARKB" at the top to see only ARKB history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-21shares-do">What Does 21Shares Do?</h2>
+<p>21Shares Investments is a crypto investment exchange company that started in 2018 and is headquartered in New York City. They claim to be the world’s largest issuer of crypto ETPs. </p>
+
+<h2 id="who-owns-21shares">Who Owns 21Shares?</h2>
+<p>Hany Rashwan is the founder of crypto company 21.co which is the parent company of 21Shares. Ophelia Snyder is a co-founder with Hany in 21Shares and is the President of 21Shares.</p>
+
+<h2 id="does-21shares-only-mine-bitcoin">Does 21Shares Mine Bitcoin?</h2>
+<p>21Shares is not involved in the mining of Bitcoin.</p>
+
+<h2 id="does-21shares-own-ethereum">Does 21Shares have Ethereum investment products?</h2>
+<p>21Shares has Ethereum and other crypto products. </p>
+
+
+
+
+{% endblock %}

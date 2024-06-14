@@ -1,0 +1,43 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does Block Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-square-own">How Much Bitcoin Does Block Own?</h2>
+<p>Block (NYSE: SQ), a subsidiary of Block, Inc. owns {{ treasury.btc_rounded_str}} BTC as of {{ treasury.latest}}. This accounts for {{ treasury.percentage_from_21m }}% of the total bitcoin supply of 21 million<sup><a href="{{ treasury.filingurl }}">(1)</a></sup>.</p>
+
+{% endblock %} 
+
+{% block detail %}
+
+<h2 id="what-does-square-inc-do">What Does Block, inc. Do?</h2>
+<p>Square gives business owners a way of accepting credit cards. They offer tools and even equitable loans to give businesses access to funding. Their products and services are also compatible with hundreds of third-party companies to give businesses more opportunities to increase efficiency and growth<sup><a href="#article-sources">(2)</a></sup>.</p>
+<h2 id="who-owns-square">Who Owns Block?</h2>
+<p>Jack Dorsey is the Head and Chairman of Block</p>
+<p>Jim McKelvey is a current Director of Block, Inc.</p>
+<p>Amrita Ahuja is Block’s acting CFO.</p>
+<p>The Board of Directors consists of the following:</p>
+<ul>
+<li>Roelof Botha, a partner at Sequoia Capital</li>
+<li>Amy Brooks, the President of Team Marketing and Business Operations of the NBA and the NBA’s Chief Innovation Officer </li>
+<li>Jay-Z</li>
+<li>Paul Deighton, former UK Commercial Secretary of the Treasury</li>
+<li>Jack Dorsey, cofounder of Block, Inc.</li>
+<li>Randy Garutti, CEO of Shake Shack</li>
+<li>Jim McKelvey, cofounder of Block, Inc. and LaunchCode</li>
+<li>Mary Meeker, a general partner at BOND and former managing director and research analyst at Morgan Stanley</li>
+<li>Sharon Rothstein, former Afterpay Director and Operating Partner at Stripes</li>
+<li>Larry Summers, the 71st Secretary to the U.S. Department of the Treasury and current Charles W. Elliot University Professor and President Emeritus of Harvard University.</li>
+<li>Darren Walker, the President of the Ford Foundation</li>
+</ul>
+<h2 id="does-block-only-own-bitcoin">Does Block Only Own Bitcoin?</h2>
+<p>At this time, Square’s parent company, Block, Inc. is only focused on Bitcoin. They have another subsidiary, Spiral, that builds open-source projects to integrate Bitcoin as a mainstream currency. </p>
+
+
+<h2 id="does-square-inc-own-ethereum-or-other-cryptocurrencies">Does Block, Inc. Own Ethereum or Other Cryptocurrencies?</h2>
+<p>With Block Inc's CashApp bringing in a cool $41 million in profits in Bitcoin in the second quarter of 2022 alone, it is safe to say they are going to be sticking with what works. At this time their emphasis, in terms of cryptocurrency, is solely on Bitcoin. </p>
+
+
+
+{% endblock %}

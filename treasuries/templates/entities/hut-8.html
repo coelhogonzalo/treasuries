@@ -1,0 +1,54 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}Hut 8 Mining Bitcoin Holdings{% endblock %}
+
+{% block latest_update %}
+
+<h2>What is Hut 8?</h2>
+<p>Hut 8 is one of the world's largest Bitcoin mining companies. The company is based in Toronto, Canada.</p>
+
+<h2>How Much Bitcoin Does Hut 8 Mining Own?</h2>
+<p>Hut 8 Mining owns {{ treasury.btc }} bitcoins as of {{ treasury.latest }}.<sup><a href="{{ treasury.filingurl }}">(1)</a></sup>.</p>
+
+{% endblock %} 
+
+{% block detail %}
+
+<h2>When Did Hut 8 Most Recently Announce Their BTC Holdings?</h2>
+<p>On May 6, 2024, Hut 8 (Nasdaq: HUT) (TSX: HUT) announced that they had selfed mined 148 bitcoins during April of 2024.<sup><a href="#article-sources">(2)</a></sup>.</p>
+
+<p>Hut 8 also announced it would be ending it's managed services at the Kearney, Nebraska and Granbury, Texas mining sites on April 30, 2024.</p>
+
+<p>While Hut 8 has a goal of holding its bitcoins long term, rather than selling them for cash, they are prepared to sell if necessary for debt management and mining hardware improvements.</p>
+
+
+<h2>Is Hut 8 Public?</h2>
+<p>Yes, Hut 8 is a public company listed on the NASDAQ and also on the Toronto Stock Exchange (TSX). You can view its live share price <a href="https://finance.yahoo.com/quote/HUT/">here</a>.</p>
+
+<h2>What Do Hut 8's Mines Look Like?</h2>
+<p>You can view the video below to see an example of one of the company's mines:</p>
+
+<div style="height: 0px; overflow: hidden; padding-top: 56.25%; position: relative; width: 100%;">
+        <iframe
+            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+            src="https://tube.rvere.com/embed?v=rWnh2Dhg1_M"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen>
+        </iframe>
+    </div>
+
+<h2>Does the Company Use Renewable Energy?</h2>
+<p>Hut 8 uses a mix of hydro and nuclear power.</p>
+
+<h2>Location</h2>
+<p>A map of the company's mining centers can be found below:</p>
+
+<h2>Does Hut 8 Mine Ethereum?</h2>
+<p>The company also mines Ethereum, however, it does not hold the Ethereum long term. Instead, it converts the coins into Bitcoin.</p>
+<p>In Hut 8's recent press release, the company states:</p>
+<blockquote>Our Ethereum mining – for which we receive payment in Bitcoin – generated approximately 10.7% of our total production</blockquote>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does WisdomTree BTCW Own?{% endblock %}
+
+{% block latest_update %}
+
+<h2 id="how-much-bitcoin-does-wisdomtree-own">How Much Bitcoin Does the ETF - WisdomTree BTCW  Own?</h2>
+
+<p><b>The BTCW fund currently holds {{ treasury.btc_rounded_str }} BTC as of {{ treasury.latest }}.</b><sup><a href="{{ treasury.filingurl }}">(1)</a></sup> </p>
+
+{% endblock %} 
+
+{% block detail %}
+
+
+<h2>BTCW Historical Holdings</h2>
+<p>You can view BTCW's historical holdings using the chart below. Just click "BTCW" at the top to see only BTCW history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-wisdomtree-do">What Does WisdomTree Do?</h2>
+<p>WisdomTree provides various ETF a types of invenstment fund including ETFs. The company that is headquartered in New York City with location in Central and South America, Europe and Israel. </p>
+<h2 id="who-owns-wisdomtree">Who Owns WisdomTree?</h2>
+<p>WisdomTree is a public company traded on the NYSE under the WT symbol.</p>
+<h2 id="does-wisdomtree-only-mine-bitcoin">Does WisdomTree Mine Bitcoin?</h2>
+<p>WisdomTree is not involved in the mining of Bitcoin.</p>
+<h2 id="does-wisdomtree-own-ethereum">Does WisdomTree have Ethereum investment products?</h2>
+<p>WisdomTree does not have a Ethereum ETF Fund. </p>
+
+{% endblock %}

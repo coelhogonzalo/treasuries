@@ -2,11 +2,14 @@
 
 {% block title %}MicroStrategy Bitcoin Holdings Chart & Purchase History{% endblock %}
 
+{% block latest_update %}
+
+<p>MicroStrategy owns {{ treasury.btc_rounded_str }} bitcoins as of {{ treasury.latest }}. MicroStrategy states the <b>average purchase price as $35,158.00 USD per bitcoin</b> with a total cost of $7.538 billion USD.</p>
+
+{% endblock %}
+
 {% block detail %}
   
-<p>MicroStrategy owns {{ treasury.btc_rounded_str }} bitcoins as of {{ treasury.history }}. MicroStrategy states the <b>average purchase price as $35,158.00 USD per bitcoin</b> with a total cost of $7.538 billion USD.</p>
-
-
 
 <div class="stats-page-chapter-intro">
     <h2 class="stats-page-chapter-title">Frequently Asked Questions</h2>
