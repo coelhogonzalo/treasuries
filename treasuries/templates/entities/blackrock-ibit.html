@@ -1,0 +1,28 @@
+{% extends 'components/detail.html' %}
+
+{% block title %}How Much Bitcoin Does BlackRock IBIT Own?{% endblock %}
+
+{% block detail %}
+  
+<h2 id="how-much-bitcoin-does-blackrock-own">How Much Bitcoin Does BlackRock Own?</h2>
+<p><b>The Blackrock’s iShares Bitcoin Trust (IBIT) currently holds {{ treasury.btc_rounded_str }} as of {{treasury.history}}</b><sup><a href="#article-sources">(1)</a></sup></p>
+
+<h2>IBIT Historical Holdings</h2>
+<p>You can view IBIT's historical holdings using the chart below. Just click "IBIT" at the top to see only IBIT history. </p>
+<div id='nh-chart-loader' data-chart='spot-bitcoin-etf-holdings' data-session-key='wmAA5r8ucWV262KbBrlpbXSn'></div><script src='https://newhedge.io/chart-asset/embed'></script>
+
+<h2 id="what-does-blackrock-do">What Does BlackRock Do?</h2>
+<p>BlackRock, Inc (BLK, NYSE) is a multinational investment company headquartered in NYC. It is considered the world's 
+largest asset manager with offices in 30 countries and clients in 100 countries.</p>
+<p>With the recent approval by the SEC for bitcoin spot market exchange-traded fund (ETF), BlackRock launched its Ishares Bitcoin Trust(IBIT).</p>
+
+<h2 id="who-owns-blackrock">Who Owns BlackRock?</h2>
+<p>BlackRock is a publicly traded company with assets of over $9.2 trillion. BlackRock was founded in 1988 by Larry Fink, Robert S. Kapito, Susan Wagner, Barbara Novick, Ben Golub, Hugh Frater, Ralph Schlosstein, and Keith Anderson. 
+Currently Larry Fink is Chairman and CEO of the company. 
+</p>
+
+<h2 id="does-Blackrock-own-ethereum">Does BlackRock Own Ethereum?</h2>
+<p>Currently the ETF is for bitcoin and cash only. But Larry Fink has stated that he sees a case for a spot Ethereum ETF if approved by the SEC.</p>
+
+
+{% endblock %}

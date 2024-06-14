@@ -39,8 +39,7 @@ def detail_view(request, info_url):
     treasury = get_treasury_by_info_url(info_url=info_url)
     treasury.info_url = None  # This is done to reuse treasury_row.html
     template_path = f"entities/{info_url}.html"
-
-    if not os.path.exists(template_path):
+    if not os.path.exists(f"treasuries/templates/{template_path}"):
         template_path = "components/detail.html"
     template = loader.get_template(template_path)
     return HttpResponse(template.render({"treasury": treasury}, request))
