@@ -12,11 +12,17 @@
 			<th class="th-value-today" data-title="Value">Value Today</th>
 		</tr>
     </thead>
-   {% for treasury in extra_detailed  %}
+   {% for treasury in extra_detailed %}
    
         <tr>                                
         <td class="td-company related-tr" data-title="Company Name">
-            <a href="{{ treasury.info_url }}">{{ treasury.company }}</a>
+            {% if treasury.id == selected_id %}
+                <b>
+            {% endif %}
+                <a href="{{ treasury.info_url }}">{{ treasury.company }}</a>
+            {% if treasury.id == selected_id %}
+                </b>
+            {% endif %}
         </td>
         <td class="td-location">
             <img class="flag-icon" src="{% static 'flags/4x3/' %}{{ treasury.country|lower }}.svg" alt="country flag" data-tooltip="{{ treasury.country }}">
@@ -24,7 +30,15 @@
 
         <td class="td-company_btc" data-title="BTC">{{ treasury.btc_rounded_str }}</td>
 
-        <td class="td-value" data-title="Value">${{ treasury.btc_rounded|mul:btc_price|number_to_string }}</td>
+        <td class="td-value" data-title="Value">
+        {% if treasury.id == selected_id %}
+            <b>
+        {% endif %}
+        $ {{ treasury.btc_rounded|mul:btc_price|number_to_string }}
+        {% if treasury.id == selected_id %}
+            </b>
+        {% endif %}
+        </td>
         </tr> 
    {% endfor %}
 </table>
