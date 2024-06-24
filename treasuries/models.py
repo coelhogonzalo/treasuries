@@ -48,7 +48,6 @@ class Treasury(models.Model):
     def historic_values(self):
         return self.history.all()
 
-
     @property
     def latest(self):
         return self.history.latest().history_date.date()

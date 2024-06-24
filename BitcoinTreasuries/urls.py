@@ -14,6 +14,7 @@ from .views import (
     index,
     miners,
     net_flows,
+    robots_txt,
 )
 
 urlpatterns = [
@@ -36,5 +37,6 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path("robots.txt", robots_txt),
     path("<str:info_url>/", detail_view, name="treasury_detail"),
 ]

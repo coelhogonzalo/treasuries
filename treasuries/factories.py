@@ -17,3 +17,4 @@ class TreasuryFactory(factory.django.DjangoModelFactory):
     dateoffirstbuy = factory.Faker("date")
     info_url = factory.Faker("url")
     cssclass = factory.Faker("word")
+    miner = False

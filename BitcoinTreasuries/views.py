@@ -1,6 +1,7 @@
 import os
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.http import require_GET
 
 from treasuries.domain import get_treasury_by_info_url
 
@@ -43,3 +44,18 @@ def detail_view(request, info_url):
         template_path = "components/detail.html"
     template = loader.get_template(template_path)
     return HttpResponse(template.render({"treasury": treasury}, request))
+
+
+@require_GET
+def robots_txt(request):
+    return HttpResponse(robots_txt_content, content_type="text/plain")
+
+
+robots_txt_content = """\
+User-Agent: *
+Disallow: /private/
+Disallow: /junk/
+
+User-agent: GPTBot
+Disallow: /
+"""
