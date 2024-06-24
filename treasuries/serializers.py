@@ -34,7 +34,8 @@ class TreasurySerializer(serializers.ModelSerializer):
     dateoffirstbuy = CustomDateFormatField(required=False, allow_null=True)
     info_url = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=255)
     cssclass = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
-    miner = serializers.BooleanField()
+    etfshortname = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
+    miner = serializers.BooleanField(required=False)
 
     class Meta:
         model = Treasury

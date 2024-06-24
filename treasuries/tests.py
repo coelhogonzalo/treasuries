@@ -47,6 +47,8 @@ class TreasuriesTestCase(TestCase):
             "treasury_type": "public",
             "dateoffirstbuy": "2020-04-02",
             "cssclass": "tesla-treasuries",
+            "miner": False,
+            "etfshortname": "Tesla"
         }
 
     # Permissions tests
@@ -119,44 +121,24 @@ class TreasuriesTestCase(TestCase):
     # Admin tests
     def test_post_treasury(self):
         password = "mypassword3"
-        my_admin = User.objects.create_superuser(
-            "myuser3", "myemail3@test.com", password
-        )
+        my_admin = User.objects.create_superuser("myuser3", "myemail3@test.com", password)
         client = getAdminClient()
         client.login(username=my_admin.username, password=password)
         url = reverse("treasury-admin-list")
         response = client.post(url, TreasuriesTestCase.treasury, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(
-            response.data["company"], TreasuriesTestCase.treasury["company"]
-        )
-        self.assertEqual(
-            response.data["country"], TreasuriesTestCase.treasury["country"]
-        )
+        self.assertEqual(response.data["company"], TreasuriesTestCase.treasury["company"])
+        self.assertEqual(response.data["country"], TreasuriesTestCase.treasury["country"])
         self.assertEqual(response.data["symbol"], TreasuriesTestCase.treasury["symbol"])
-        self.assertEqual(
-            response.data["exchange"], TreasuriesTestCase.treasury["exchange"]
-        )
-        self.assertEqual(
-            response.data["filingurl"], TreasuriesTestCase.treasury["filingurl"]
-        )
+        self.assertEqual(response.data["exchange"], TreasuriesTestCase.treasury["exchange"])
+        self.assertEqual(response.data["filingurl"], TreasuriesTestCase.treasury["filingurl"])
         self.assertEqual(response.data["btc"], TreasuriesTestCase.treasury["btc"])
-        self.assertEqual(
-            response.data["btc_source_dt"], TreasuriesTestCase.treasury["btc_source_dt"]
-        )
-        self.assertEqual(
-            response.data["treasury_type"], TreasuriesTestCase.treasury["treasury_type"]
-        )
-        self.assertEqual(
-            response.data["dateoffirstbuy"],
-            TreasuriesTestCase.treasury["dateoffirstbuy"],
-        )
-        self.assertEqual(
-            response.data["info_url"], TreasuriesTestCase.treasury["info_url"]
-        )
-        self.assertEqual(
-            response.data["cssclass"], TreasuriesTestCase.treasury["cssclass"]
-        )
+        self.assertEqual(response.data["btc_source_dt"], TreasuriesTestCase.treasury["btc_source_dt"])
+        self.assertEqual(response.data["treasury_type"], TreasuriesTestCase.treasury["treasury_type"])
+        self.assertEqual(response.data["dateoffirstbuy"],TreasuriesTestCase.treasury["dateoffirstbuy"],)
+        self.assertEqual(response.data["info_url"], TreasuriesTestCase.treasury["info_url"])
+        self.assertEqual(response.data["cssclass"], TreasuriesTestCase.treasury["cssclass"])
+        self.assertEqual(response.data["miner"], TreasuriesTestCase.treasury["miner"])
 
     def test_patch_treasury(self):
         treasury = TreasuryFactory.create()
@@ -196,6 +178,8 @@ class TreasuriesTestCase(TestCase):
                 "treasury_type": "public",
                 "dateoffirstbuy": "2020-04-02",
                 "cssclass": "microstategies-treasuries",
+                "miner": False,
+                "etfshortname": "Tesla"
             },
             TreasuriesTestCase.treasury,
         ]
@@ -217,7 +201,7 @@ class TreasuriesTestCase(TestCase):
             }
         ]
         for key, value in treasury_data[0].items():
-            if key != "id":
+            if key != "id" and key != "miner":
                 self.assertNotEqual(getattr(treasury, key), value)
         response = TreasuriesTestCase.client.post(url, treasury_data, format="json")
         modified_treasury = response.data["modified_treasuries"][0]
@@ -434,3 +418,17 @@ class TreasuriesTestCase(TestCase):
         self.assertNotEqual(api_key.hit_count, 0)
         self.assertNotEqual(api_key.data_used, 0)
         self.assertNotEqual(api_key.last_used, None)
+
+    # Robots.txt tests
+    class RobotsTxtTests(TestCase):
+        def test_get(self):
+            response = self.client.get("/robots.txt")
+
+            assert response.status_code == status.HTTP_200_OK
+            assert response["content-type"] == "text/plain"
+            assert response.content.startswith(b"User-Agent: *\n")
+
+        def test_post_disallowed(self):
+            response = self.client.post("/robots.txt")
+
+            assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
