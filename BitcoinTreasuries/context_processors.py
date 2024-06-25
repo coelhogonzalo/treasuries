@@ -7,6 +7,7 @@ from treasuries.domain import (
     get_miners,
     get_treasury_by_type,
     get_treasury_count,
+    get_us_etfs,
 )
 from treasuries.enums import TreasuryType
 
@@ -46,6 +47,7 @@ def custom_context(request):
     print("Context is being generated")
     partial_context = {
         "etfs": get_treasury_by_type(TreasuryType.ETF.value),
+        "usetfs": get_us_etfs(),
         "countries": get_treasury_by_type(TreasuryType.GOVERNMENT.value),
         "public_companies": get_treasury_by_type(TreasuryType.PUBLIC.value),
         "private_companies": get_treasury_by_type(TreasuryType.PRIVATE.value),

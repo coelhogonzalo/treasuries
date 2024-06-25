@@ -55,9 +55,22 @@ def get_miners():
     return Treasury.objects.filter(miner=True).order_by("-btc")
 
 
+def get_us_etfs():
+    return Treasury.objects.filter(treasury_type=TreasuryType.ETF.value,country="US").order_by("-btc")
+
+
 def get_miners_latest_update():
     return (
         Treasury.history.filter(miner=True)
+        .order_by("-history_date")
+        .first()
+        .history_date.date()
+    )
+
+
+def get_us_etfs_latest_update():
+    return (
+        Treasury.history.filter(treasury_type=TreasuryType.ETF.value,country="US")
         .order_by("-history_date")
         .first()
         .history_date.date()
@@ -86,6 +99,7 @@ def get_latest_updates():
         latest_updates[CATEGORIES_BY_TYPE[type]] = get_latest_update_by_type(type)
     latest_updates["miners"] = get_miners_latest_update()
     latest_updates["treasuries"] = get_latest_update_by_type()
+    latest_updates["usetfs"] = get_us_etfs_latest_update()
     return latest_updates
 
 

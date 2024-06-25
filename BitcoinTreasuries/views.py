@@ -21,8 +21,8 @@ def miners(request):
     return HttpResponse(template.render({}, request))
 
 
-def etfs(request):
-    template = loader.get_template("etfs.html")
+def usetfs(request):
+    template = loader.get_template("usetfs.html")
     return HttpResponse(template.render({}, request))
 
 

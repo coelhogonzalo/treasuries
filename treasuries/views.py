@@ -1,4 +1,3 @@
-from pickle import FALSE
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
@@ -6,7 +5,6 @@ from rest_framework import viewsets
 from rest_framework import filters
 
 import json
-from typing import Type
 
 from treasuries.permissions import HasTreasuriesAPIKey
 
@@ -69,7 +67,9 @@ class AdminTreasuryViewSet(BaseViewSet):
             modified_treasuries = []
             for item in data:
                 treasury_id = item.get("id")
+                company = item.get("company")
                 treasury = Treasury.objects.filter(id=treasury_id).first()
+                treasury_by_name = Treasury.objects.filter(company=company).first()
                 if treasury:
                     serializer = UpdateTreasurySerializer(treasury, data=item)
                     if serializer.is_valid(raise_exception=True):
@@ -80,6 +80,11 @@ class AdminTreasuryViewSet(BaseViewSet):
                         {"error": "id should not be specified for new treasuries"},
                         status=status.HTTP_400_BAD_REQUEST,
                     )
+                elif treasury_by_name:
+                    serializer = UpdateTreasurySerializer(treasury_by_name, data=item)
+                    if serializer.is_valid(raise_exception=True):
+                        serializer.save(partial=True)
+                        modified_treasuries.append(serializer.data)
                 else:
                     serializer = self.get_serializer(data=item)
                     if serializer.is_valid(raise_exception=True):

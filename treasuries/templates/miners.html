@@ -142,7 +142,7 @@ subtitle="This page shows a chart and list of Bitcoin mining companies and the a
    </thead>
    <tbody>
     {% for treasury in miners %}
-        components/treasury_row.html' %}
+      {% include 'components/treasury_row.html' %}
     {% endfor %}
     <tr>
         <td class="hidden-on-mobile"></td>

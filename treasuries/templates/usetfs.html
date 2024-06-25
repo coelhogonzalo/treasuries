@@ -21,32 +21,32 @@
   </thead>
   <tbody>
     <tr style="display: none;">
-      <td class="td-symbol" data-title="Category"><a href="/treasuries/#etfs">ETFs</a></td>
+      <td class="td-symbol" data-title="Category"><a href="/treasuries/#usetfs">ETFs</a></td>
       <td class="td-company_btc add-comma" data-title="BTC">
-        {{ etfs_total.btc }}
+        {{ usetfs_total.btc }}
       </td>
       <td class="td-value" data-title="Value">
-        ${{ etfs_total.btc_in_usd }}
+        ${{ usetfs_total.btc_in_usd }}
       </td>
       <td class="td-company_percent" data-title="% of 21m">
-        {{ etfs_total.percentage_from_21m }}%
+        {{ usetfs_total.percentage_from_21m }}%
       </td>
     </tr>
     <tr class="top-table-data-row">
       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-symbol totals-pseudo-hide">
-        {{ etfs|length }}
+        {{ usetfs|length }}
       </td>
       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-company_btc add-comma" data-title="BTC">
-        {{ etfs_total.btc }}
+        {{ usetfs_total.btc }}
       </td>
       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-value" data-title="Value">
-        ${{ etfs_total.btc_in_usd }}
+        ${{ usetfs_total.btc_in_usd }}
       </td>
       <td style="font-weight: 500 !important; text-align: left !important; font-size: 18px !important; padding-left: 20px !important;" class="td-company_percent" data-title="% of 21m">
-        {{ etfs_total.percentage_from_21m }}%
+        {{ usetfs_total.percentage_from_21m }}%
       </td>
       <td style="font-weight: 500 !important; font-size: 18px !important;" class="td-last-updated" data-title="Last Updated">
-        {{ latest_updates.etfs }} 
+        {{ latest_updates.usetfs }} 
       </td>
     </tr>
   </tbody>
@@ -56,28 +56,28 @@
     <tr>
       <th class="top-treasuries-table-label">Entities</th>
       <td>
-        {{ etfs|length }}
+        {{ usetfs|length }}
       </td>
     </tr>
     <tr>
       <th class="top-treasuries-table-label"># of BTC</th>
       <td class="add-comma">
-        {{ etfs_total.btc }}
+        {{ usetfs_total.btc }}
       </td>
     </tr>
     <tr>
       <th class="top-treasuries-table-label">Value Today</th>
       <td class="td-value" data-title="Value">
-        ${{ etfs_total.btc_in_usd }}
+        ${{ usetfs_total.btc_in_usd }}
       </td>
     </tr>
     <tr>
       <th class="top-treasuries-table-label">% of 21m</th>
-      <td>{{ etfs_total.percentage_from_21m }}%</td>
+      <td>{{ usetfs_total.percentage_from_21m }}%</td>
     </tr>
     <tr>
       <th class="top-treasuries-table-label">Last Updated</th>
-      <td>{{ latest_updates.etfs }} </td>
+      <td>{{ latest_updates.usetfs }} </td>
     </tr>
   </tbody>
 </table>
@@ -102,7 +102,7 @@
       <th class="th-company_percent" data-title="% of 21m">% of 21m</th>
     </tr> 
    </thead>
-   {% for treasury in etfs %}
+   {% for treasury in usetfs %}
     {% include 'components/treasury_row.html' %} 
    {% endfor %}
    <tbody>
@@ -111,10 +111,10 @@
       <td class="hidden-on-mobile"></td>
       <td class="hidden-on-mobile"></td>
       <td class="total-label"><b>Totals:</b></td>
-      <td class="td-company_btc add-comma" data-title="BTC">{{ etfs_total.btc }}</td>
-      <td style="font-weight: bold !important;" class="td-value" data-title="Value">${{ etfs_total.btc_in_usd }}</td>
+      <td class="td-company_btc add-comma" data-title="BTC">{{ usetfs_total.btc }}</td>
+      <td style="font-weight: bold !important;" class="td-value" data-title="Value">${{ usetfs_total.btc_in_usd }}</td>
       <td style="font-weight: bold !important;" class="td-company_percent" data-title="% of 21m">
-        {{ etfs_total.percentage_from_21m }}%
+        {{ usetfs_total.percentage_from_21m }}%
       </td>
     </tr>
    </tbody>
@@ -200,7 +200,7 @@
 
 <script>
 const data = [
-	{% for treasury in etfs %}
+	{% for treasury in usetfs %}
 			{
 				name: "{{ treasury.etfshortname }}",
 				symbol: "{{ treasury.symbol }}",

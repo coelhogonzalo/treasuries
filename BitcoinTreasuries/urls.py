@@ -10,11 +10,11 @@ from .views import (
     countries,
     detail_view,
     etf_aum_history,
-    etfs,
     index,
     miners,
     net_flows,
     robots_txt,
+    usetfs,
 )
 
 urlpatterns = [
@@ -23,7 +23,7 @@ urlpatterns = [
     path("treasuries/", include("treasuries.urls")),
     path("countries/", countries, name="countries"),
     path("miners/", miners, name="miners"),
-    path("us-etfs/", etfs, name="us-etfs"),
+    path("us-etfs/", usetfs, name="us-etfs"),
     path("us-etf-aum/", etf_aum_history, name="us-etf-aum"),
     path("net-us-et-flows/", net_flows, name="net-flows"),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
