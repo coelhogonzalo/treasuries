@@ -2,8 +2,13 @@
 {% load extras %}
 {% load static %}
 
-<tr>                                
+<tr>          
+
+{% if treasury.info_url != None %}     
+<td class="td-company" data-title="Company Name"><a href="{{ treasury.info_url }}">{{ treasury.company }}</a></td>
+{% else %}
 <td class="td-company" data-title="Company Name">{{ treasury.company }}</td>
+{% endif %}
 
 {% if treasury.country != None and treasury.country != ""%}
 <td class="td-location">
