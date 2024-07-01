@@ -18,7 +18,7 @@ def calculate_totals(partial_context):
     treasuries_total_btc = 0
     treasuries_total_usd = 0
     treasuries_total_percentage = 0
-    for treasury_type, treasuries in partial_context.items():
+    for type, treasuries in partial_context.items():
         total_btc = sum(treasury.btc for treasury in treasuries)
         treasuries_total_btc += total_btc
         treasuries_total_usd += btc_price * total_btc
@@ -27,7 +27,7 @@ def calculate_totals(partial_context):
         total_percentage_from_21m = round(total_btc * 100 / BTC_21M_CAP, 3)
         total_btc = "{:,.0f}".format(total_btc)
 
-        context[f"{treasury_type}_total"] = {
+        context[f"{type}_total"] = {
             "btc": total_btc,
             "btc_in_usd": total_btc_in_usd,
             "percentage_from_21m": total_percentage_from_21m,

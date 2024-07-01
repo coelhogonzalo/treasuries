@@ -20,7 +20,7 @@
 </td>
 {% endif %}
 
-{% if treasury.treasury_type == 'public' or treasury.treasury_type == 'etf' %}
+{% if treasury.type == 'public' or treasury.type == 'etf' %}
 <td class="td-symbol" data-title="Symbol">{{ treasury.symbol }}:{{ treasury.exchange }}</td>
 {% else %} 
 {% endif %}

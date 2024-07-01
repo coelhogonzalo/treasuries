@@ -13,7 +13,7 @@ class TreasuryFactory(factory.django.DjangoModelFactory):
     filingurl = factory.Faker("url")
     btc = factory.Faker("random_int")
     btc_source_dt = factory.Faker("date")
-    treasury_type = factory.Faker("word")
+    type = factory.Faker("word")
     dateoffirstbuy = factory.Faker("date")
     info_url = factory.Faker("url")
     cssclass = factory.Faker("word")

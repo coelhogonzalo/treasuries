@@ -45,7 +45,7 @@ class TreasuriesTestCase(TestCase):
             "filingurl": "https://tesla.com",
             "btc": 9720,
             "btc_source_dt": "2020-04-02",
-            "treasury_type": "public",
+            "type": "public",
             "dateoffirstbuy": "2020-04-02",
             "cssclass": "tesla-treasuries",
             "miner": False,
@@ -135,7 +135,7 @@ class TreasuriesTestCase(TestCase):
         self.assertEqual(response.data["filingurl"], TreasuriesTestCase.treasury["filingurl"])
         self.assertEqual(response.data["btc"], TreasuriesTestCase.treasury["btc"])
         self.assertEqual(response.data["btc_source_dt"], TreasuriesTestCase.treasury["btc_source_dt"])
-        self.assertEqual(response.data["treasury_type"], TreasuriesTestCase.treasury["treasury_type"])
+        self.assertEqual(response.data["type"], TreasuriesTestCase.treasury["type"])
         self.assertEqual(response.data["dateoffirstbuy"],TreasuriesTestCase.treasury["dateoffirstbuy"],)
         self.assertEqual(response.data["info_url"], TreasuriesTestCase.treasury["info_url"])
         self.assertEqual(response.data["cssclass"], TreasuriesTestCase.treasury["cssclass"])
@@ -176,7 +176,7 @@ class TreasuriesTestCase(TestCase):
                 "info_url": "/microstrategy/",
                 "btc": 214746,
                 "btc_source_dt": "2020-04-02",
-                "treasury_type": "public",
+                "type": "public",
                 "dateoffirstbuy": "2020-04-02",
                 "cssclass": "microstategies-treasuries",
                 "miner": False,
@@ -193,7 +193,7 @@ class TreasuriesTestCase(TestCase):
             self.assertEqual(new_treasury[key], value)
 
     def test_admin_bulk_upload_update(self):
-        treasury = TreasuryFactory.create(treasury_type=TreasuryType.PRIVATE.value)
+        treasury = TreasuryFactory.create(type=TreasuryType.PRIVATE.value)
         url = reverse("treasury-admin-bulk-upload")
         treasury_data = [
             {

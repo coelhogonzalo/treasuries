@@ -48,7 +48,7 @@ def get_bitcoin_price():
 
 
 def get_treasury_by_type(type):
-    return Treasury.objects.filter(treasury_type=type).order_by("-btc")
+    return Treasury.objects.filter(type=type).order_by("-btc")
 
 
 def get_miners():
@@ -56,7 +56,7 @@ def get_miners():
 
 
 def get_us_etfs():
-    return Treasury.objects.filter(treasury_type=TreasuryType.ETF.value,country="US").order_by("-btc")
+    return Treasury.objects.filter(type=TreasuryType.ETF.value,country="US").order_by("-btc")
 
 
 def get_miners_latest_update():
@@ -74,7 +74,7 @@ def get_miners_latest_update():
 def get_us_etfs_latest_update():
     try:
         return (
-            Treasury.history.filter(treasury_type=TreasuryType.ETF.value,country="US")
+            Treasury.history.filter(type=TreasuryType.ETF.value,country="US")
             .order_by("-history_date")
             .first()
             .history_date.date()
@@ -91,7 +91,7 @@ def get_latest_update_by_type(type=None):
     try:
         if type:
             return (
-                Treasury.history.filter(treasury_type=type)
+                Treasury.history.filter(type=type)
                 .order_by("-history_date")
                 .first()
                 .history_date.date()
