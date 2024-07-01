@@ -34,6 +34,7 @@ def calculate_totals(partial_context):
         }
     treasuries_total_btc = "{:,.0f}".format(treasuries_total_btc)
     treasuries_total_usd = "{:,.0f}".format(treasuries_total_usd)
+    treasuries_total_percentage = round(treasuries_total_percentage, 3)
     context["btc_price"] = btc_price
     context["treasury_count"] = get_treasury_count()
     context["treasuries_total_btc"] = treasuries_total_btc

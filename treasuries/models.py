@@ -20,6 +20,16 @@ class Treasury(models.Model):
     miner = models.BooleanField(default=False)
     etfshortname = models.CharField(null=True, blank=True, max_length=50)
     history = HistoricalRecords()
+    _history_date = None
+
+    @property
+    def _history_date(self):
+        return self.__history_date
+
+    @_history_date.setter
+    def _history_date(self, value):
+        self.__history_date = value
+
 
     def __str__(self):
         return f"{self.id}-{self.company}({self.exchange}:{self.symbol})"

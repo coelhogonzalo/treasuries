@@ -8,6 +8,7 @@ from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.db.models import Max
 
+from treasuries.enums import TreasuryType
 from treasuries.models import TreasuriesAPIKey, Treasury
 from treasuries.serializers import TreasurySerializer
 from treasuries.factories import TreasuryFactory
@@ -192,21 +193,26 @@ class TreasuriesTestCase(TestCase):
             self.assertEqual(new_treasury[key], value)
 
     def test_admin_bulk_upload_update(self):
-        treasury = TreasuryFactory.create()
+        treasury = TreasuryFactory.create(treasury_type=TreasuryType.PRIVATE.value)
         url = reverse("treasury-admin-bulk-upload")
         treasury_data = [
             {
                 "id": treasury.id,
                 **TreasuriesTestCase.treasury,
+                "_history_date": datetime.date(2100, 1, 1)
             }
         ]
         for key, value in treasury_data[0].items():
-            if key != "id" and key != "miner":
+            if key != "id" and key != "miner" and key != "_history_date":
                 self.assertNotEqual(getattr(treasury, key), value)
         response = TreasuriesTestCase.client.post(url, treasury_data, format="json")
         modified_treasury = response.data["modified_treasuries"][0]
         for key, value in treasury_data[0].items():
-            self.assertEqual(modified_treasury[key], value)
+            if key != "_history_date":
+                self.assertEqual(modified_treasury[key], value)
+        treasury_history = Treasury.objects.filter(id=treasury.id).first().history
+        self.assertEqual(treasury_history.latest().history_date.date(), datetime.date(2100, 1, 1))
+        
 
     def test_admin_bulk_upload_invalid_id(self):
         treasury = TreasuryFactory.create()
@@ -234,7 +240,7 @@ class TreasuriesTestCase(TestCase):
         response = TreasuriesTestCase.client.post(url, [], format="json")
         self.assertEqual(response.data, {"error": "No data provided"})
 
-    def test_admin_bulk_upload_unique_company_name(self):
+    def test_admin_bulk_upload_modify_by_company_field(self):
         url = reverse("treasury-admin-list")
         response = TreasuriesTestCase.client.post(
             url, TreasuriesTestCase.treasury, format="json"
@@ -244,11 +250,11 @@ class TreasuriesTestCase(TestCase):
             {
                 **TreasuriesTestCase.treasury,
                 "exchange": TreasuriesTestCase.treasury["exchange"],
-                "symbol": "TSLATEST2",
+                "symbol": "NEWSYMBOL",
             }
         ]
         response = TreasuriesTestCase.client.post(url, treasury_data, format="json")
-        self.assertEqual(str(response.data["company"][0]), "This field must be unique.")
+        self.assertEqual(str(response.data["modified_treasuries"][0]["symbol"]), "NEWSYMBOL")
 
     # User tests
     def test_get_treasuries(self):

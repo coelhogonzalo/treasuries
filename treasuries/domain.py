@@ -60,21 +60,27 @@ def get_us_etfs():
 
 
 def get_miners_latest_update():
-    return (
-        Treasury.history.filter(miner=True)
-        .order_by("-history_date")
-        .first()
-        .history_date.date()
-    )
+    try:
+        return (
+            Treasury.history.filter(miner=True)
+            .order_by("-history_date")
+            .first()
+            .history_date.date()
+        )
+    except AttributeError:
+        return None
 
 
 def get_us_etfs_latest_update():
-    return (
-        Treasury.history.filter(treasury_type=TreasuryType.ETF.value,country="US")
-        .order_by("-history_date")
-        .first()
-        .history_date.date()
-    )
+    try:
+        return (
+            Treasury.history.filter(treasury_type=TreasuryType.ETF.value,country="US")
+            .order_by("-history_date")
+            .first()
+            .history_date.date()
+        )
+    except AttributeError:
+            return None
 
 
 def get_treasury_count():
@@ -82,14 +88,17 @@ def get_treasury_count():
 
 
 def get_latest_update_by_type(type=None):
-    if type:
-        return (
-            Treasury.history.filter(treasury_type=type)
-            .order_by("-history_date")
-            .first()
-            .history_date.date()
-        )
-    return Treasury.history.order_by("-history_date").first().history_date.date()
+    try:
+        if type:
+            return (
+                Treasury.history.filter(treasury_type=type)
+                .order_by("-history_date")
+                .first()
+                .history_date.date()
+            )
+        return Treasury.history.order_by("-history_date").first().history_date.date()
+    except AttributeError:
+            return None
 
 
 def get_latest_updates():
