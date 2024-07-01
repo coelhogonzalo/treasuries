@@ -13,7 +13,7 @@ class Treasury(models.Model):
     filingurl = models.URLField(null=True, blank=True, max_length=2000)
     btc = models.FloatField()
     btc_source_dt = models.DateField()
-    treasury_type = models.CharField(max_length=50, default="public")
+    type = models.CharField(max_length=50, default="public")
     dateoffirstbuy = models.DateField(null=True, blank=True)
     info_url = models.CharField(null=True, blank=True, max_length=255)
     cssclass = models.CharField(null=True, blank=True, max_length=50)

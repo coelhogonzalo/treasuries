@@ -30,7 +30,7 @@ class TreasurySerializer(serializers.ModelSerializer):
     filingurl = serializers.URLField(required=False, allow_null=True, allow_blank=True, max_length=2000)
     btc = serializers.FloatField()
     btc_source_dt = CustomDateFormatField()
-    treasury_type = serializers.CharField(max_length=50, default="public")
+    type = serializers.CharField(max_length=50, default="public")
     dateoffirstbuy = CustomDateFormatField(required=False, allow_null=True)
     info_url = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=255)
     cssclass = serializers.CharField(required=False, allow_null=True, allow_blank=True, max_length=50)
